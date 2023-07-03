@@ -6,21 +6,21 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cine.controller.LoginController">
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cine.controller.LoginController">
    <children>
-      <VBox alignment="CENTER" fillWidth="false" prefHeight="150.0" prefWidth="600.0">
+      <VBox alignment="CENTER" fillWidth="false" prefHeight="75.0" prefWidth="600.0">
          <children>
             <Label prefHeight="25.0" text="Nombre de usuario:" />
             <TextField fx:id="nombre" prefWidth="200.0" />
          </children>
       </VBox>
-      <VBox alignment="CENTER" fillWidth="false" prefHeight="150.0" prefWidth="600.0">
+      <VBox alignment="CENTER" fillWidth="false" prefHeight="75.0" prefWidth="600.0">
          <children>
             <Label prefHeight="25.0" text="Contrasenia:" />
             <TextField fx:id="contrasenia" prefWidth="200.0" />
          </children>
       </VBox>
-      <StackPane prefHeight="75.0" prefWidth="600.0">
+      <StackPane prefHeight="100.0" prefWidth="600.0">
          <children>
             <Button mnemonicParsing="false" onAction="#loguear" prefHeight="50.0" prefWidth="130.0" text="Loguear" />
          </children>

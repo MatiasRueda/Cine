@@ -14,6 +14,10 @@ public class MensajeController {
     @FXML
     private Label mensaje;
 
+    public void setMensaje(String mensaje) {
+        this.mensaje.setText(mensaje);
+    }
+
     @FXML
     void aceptar(ActionEvent event) {
         Stage stage = (Stage) this.aceptarBtn.getScene().getWindow();

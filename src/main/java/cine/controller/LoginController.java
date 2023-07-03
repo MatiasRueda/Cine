@@ -1,34 +1,37 @@
 package cine.controller;
 
+import java.io.IOException;
+
+import cine.model.Cine;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.control.TextField;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 public class LoginController {
 
-    @FXML
-    private TextField contrasenia;
+    Cine cine = new Cine();
 
     @FXML
     private TextField nombre;
 
     @FXML
-    void loguear(ActionEvent event) {
+    private TextField contrasenia;
 
+    @FXML
+    void loguear(ActionEvent event) throws IOException {
+        if (!this.cine.login(this.nombre.getText() , this.contrasenia.getText())) {
+            FXMLLoader fxmlLoader = Escenas.getFXML("mensaje");
+            Parent root = fxmlLoader.load();
+            MensajeController mensajeCtrller = fxmlLoader.getController();
+            mensajeCtrller.setMensaje(cine.getMensaje());
+            Stage stage = Escenas.getStage(root, Modality.APPLICATION_MODAL, StageStyle.UNDECORATED);
+            stage.showAndWait();
+        }
     }
 
 }
-
-/*
-
-        if (!this.libreria.login(this.usuario.getText(), this.contrasenia.getText())) {
-            Parent root = Escenas.loadFXML("mensaje");
-            Scene scene = new Scene(root);
-            Stage stage = new Stage();
-            stage.initModality(Modality.APPLICATION_MODAL);
-            stage.initStyle(StageStyle.UNDECORATED);
-            stage.setScene(scene);
-            stage.showAndWait();
-        }
-
-        */
