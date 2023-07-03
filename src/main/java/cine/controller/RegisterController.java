@@ -2,26 +2,25 @@ package cine.controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import cine.model.Cine;
-
 
 public class RegisterController {
-    private Cine libreria = new Cine();
 
     @FXML
-    private TextField usuario;
+    private TextField DNI;
 
     @FXML
     private TextField contrasenia;
 
     @FXML
-    private Button register;
+    private TextField contraseniaConfirm;
 
     @FXML
-    void enviarInfo(ActionEvent event) {
-        this.libreria.register(this.usuario.getText(), this.contrasenia.getText());
+    private TextField usuarioNombre;
+
+    @FXML
+    void registrar(ActionEvent event) {
+
     }
 
 }
