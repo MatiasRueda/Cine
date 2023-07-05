@@ -1,28 +1,30 @@
 package cine.controller;
 
+import java.io.IOException;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.layout.HBox;
 
 public class MenuController {
 
     @FXML
-    void comprar(ActionEvent event) {
+    private HBox menu;
 
+    @FXML
+    void comprar(ActionEvent event) throws IOException {
+        Escenas.mostrarEscenaSig(menu, "comprar");
     }
 
     @FXML
-    void promos(ActionEvent event) {
-
+    void promos(ActionEvent event) throws IOException {
+        Escenas.mostrarEscenaSig(menu, "promos");
     }
 
     @FXML
-    void unirse(ActionEvent event) {
-
+    void unirse(ActionEvent event) throws IOException {
+        Escenas.mostrarEscenaSig(menu, "login");
     }
 
-    @FXML
-    void initialize() {
-
-    }
 
 }

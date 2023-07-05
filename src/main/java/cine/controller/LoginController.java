@@ -15,7 +15,6 @@ import javafx.scene.layout.VBox;
 public class LoginController {
 
     Cine cine = new Cine();
-
     
     @FXML
     private VBox login;
