@@ -7,31 +7,45 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.control.Hyperlink;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
-import javafx.stage.StageStyle;
+import javafx.scene.layout.VBox;
 
 public class LoginController {
 
     Cine cine = new Cine();
 
+    
+    @FXML
+    private VBox login;
+
     @FXML
     private TextField nombre;
 
     @FXML
-    private TextField contrasenia;
+    private PasswordField contrasenia;
+
+    @FXML
+    private Hyperlink register;
 
     @FXML
     void loguear(ActionEvent event) throws IOException {
         if (!this.cine.login(this.nombre.getText() , this.contrasenia.getText())) {
-            FXMLLoader fxmlLoader = Escenas.getFXML("mensaje");
-            Parent root = fxmlLoader.load();
-            MensajeController mensajeCtrller = fxmlLoader.getController();
-            mensajeCtrller.setMensaje(cine.getMensaje());
-            Stage stage = Escenas.getStage(root, Modality.APPLICATION_MODAL, StageStyle.UNDECORATED);
-            stage.showAndWait();
+            Escenas.mostrarMsjError(cine.getMensaje());
+            return;
         }
+
+        FXMLLoader fxmlLoader = Escenas.getFXML("usuarioMenu");
+        Parent root = fxmlLoader.load();
+        UsuarioMenuController usuarioMenuController = fxmlLoader.getController();
+        usuarioMenuController.setUsuarioLabel(nombre.getText());
+        Escenas.mostrarEscenaSig(login, root);
+    }
+
+    @FXML
+    void registrarse(ActionEvent event) throws IOException {
+        Escenas.mostrarEscenaSig(login, "register");
     }
 
 }

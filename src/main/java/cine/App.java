@@ -17,9 +17,10 @@ public class App extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         String escenaInicial = "login";
-        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource( escenaInicial + ".fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(escenaInicial + ".fxml"));
         scene = new Scene(fxmlLoader.load(), 600, 400);
         stage.setScene(scene);
+        stage.setResizable(false);
         stage.show();
     }
 
