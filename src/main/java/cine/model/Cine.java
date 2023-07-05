@@ -4,35 +4,23 @@ import java.util.List;
 
 public class Cine {
     private SQL database = new SQL();
-    private String mensaje;
+    private Mensajes mensajes = new Mensajes();
 
     private boolean nombreEnBlanco(String nombre) {
-        if (!nombre.isBlank()) return false;
-        this.mensaje = "El nombre esta en blanco";
-        return true;
+        return this.mensajes.setMensaje(nombre.isBlank(), "nombre-campo");
     }
 
     private boolean contraseniaEnBlanco(String contrasenia) {
-        if (!contrasenia.isBlank()) return false;
-        this.mensaje = "La contrasenia esta en blanco";
-        return true;
+        return this.mensajes.setMensaje(contrasenia.isBlank(), "contrasenia-campo");
     }
 
     private boolean estaEnDB(String nombre) {
-        if (!this.database.estaAgregado(nombre)) {
-            this.mensaje = "El usuario no esta registrado";
-            return false;
-        }
-        this.mensaje = "Usuario ya registrado";
-        return true;
+        return this.mensajes.setMensaje(this.database.estaAgregado(nombre), "usuario-registrado", "usuario-no-registrado");
     }
 
     private boolean contraseniaCorrecta(String contrasenia, String contraseniaObtenida) {
-        if (this.database.compararContrasenias(contrasenia, contraseniaObtenida)) return true;
-        this.mensaje = "Contrasenia incorrecta";
-        return false;
+        return this.mensajes.setMensaje(this.database.compararContrasenias(contrasenia, contraseniaObtenida), null , "contrasenia-comparacion");
     }
-
 
     public boolean login(String nombre, String contrasenia) {
         if (this.nombreEnBlanco(nombre) || this.contraseniaEnBlanco(contrasenia) || !this.estaEnDB(nombre)) return false;
@@ -46,7 +34,7 @@ public class Cine {
     }
 
     public String getMensaje() {
-        return this.mensaje;
+        return this.mensajes.getMensaje();
     }
 
     public List<String> obtenerUsuarios() {
