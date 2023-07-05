@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.List;
 
 import io.github.cdimascio.dotenv.Dotenv;
 
@@ -16,6 +17,7 @@ public class SQL {
     private String driver = "com.mysql.cj.jdbc.Driver";
     private String url;
     private Encryptor encryptor = new Encryptor();
+    private Peticion peticion = new Peticion();
     private Dotenv dotenv = Dotenv.load();
 
     public  SQL() {
@@ -55,54 +57,43 @@ public class SQL {
         return nombres;
     }
 
-    public String obtenerContrasenia(String nombre, String contrasenia) {
-        String contraseniaEncryptada = null;
+    public String getValor(String tabla, String columna , String columCondicion,String valor) {
+        String valorObtenido = null;
         try {
             Connection conn = this.conectarMySQL();
-            String query = "SELECT contrasenia FROM usuario WHERE nombre = ?";
+            String query = peticion.select(tabla, columna, columCondicion);
             PreparedStatement stmt = conn.prepareStatement(query);
-            stmt.setString(1, nombre);
+            stmt.setString(1, valor);
             ResultSet rs = stmt.executeQuery();
             if (!rs.next()) return null;
-            contraseniaEncryptada = rs.getString("contrasenia");
+            valorObtenido = rs.getString(columna);
             conn.close();
         } catch (SQLException e) {
             e.printStackTrace();
             return null;
         }
-        return contraseniaEncryptada;
+        return valorObtenido;
+    }
+
+    public boolean pertenece(String tabla, String columna , String valor) {
+        return this.getValor(tabla, columna, columna , valor) != null;
     }
 
     public boolean compararContrasenias(String contrasenia, String contraseniaEncryptada) {
-        return encryptor.contraseniasIguales(contrasenia, contraseniaEncryptada);
+        return encryptor.iguales(contrasenia, contraseniaEncryptada);
     }
 
-    public boolean estaAgregado(String nombre) {
-        String nombreEncontrado = null;
+    public boolean agregar(String tabla, List<String> columnas, List<String> valores, List<Integer> encryptar) {
         try{
             Connection conn = this.conectarMySQL();
-            String query = "SELECT nombre FROM usuario WHERE nombre = ?";
+            String query = this.peticion.insert(tabla, columnas);
             PreparedStatement stmt = conn.prepareStatement(query);
-            stmt.setString(1, nombre);
-            ResultSet rs = stmt.executeQuery();
-            if (!rs.next()) return false;
-            nombreEncontrado = rs.getString("nombre");
-            conn.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return false;
-        }
-        return nombreEncontrado.equals(nombre);
-    }
-
-    public boolean agregarUsuario(String nombre, String contrasenia) {
-        try{
-            Connection conn = this.conectarMySQL();
-            String query = "INSERT INTO usuario (nombre, contrasenia) VALUES (?, ?)";
-            String contraseniaEncryptada = this.encryptor.encrytarContrasenia(contrasenia);
-            PreparedStatement stmt = conn.prepareStatement(query);
-            stmt.setString(1, nombre);
-            stmt.setString(2, contraseniaEncryptada);
+            for (int indice : encryptar) {
+                valores.set(indice , this.encryptor.encryptar(valores.get(indice)));
+            }
+            for (int indice = 0; indice < valores.size(); indice++) {
+                stmt.setString(indice+1 , valores.get(indice));
+            }
             stmt.executeUpdate();
             conn.close();
         } catch (SQLException e) {
@@ -125,22 +116,6 @@ public class SQL {
             return false;
         }
         return true;
-    }
-
-    public void imprimirTabla() {
-        try {
-            Connection conn = this.conectarMySQL();
-            Statement stmt = conn.createStatement();
-            String query = "SELECT * FROM usuario";
-            ResultSet rs = stmt.executeQuery(query);
-            while (rs.next()) {
-                System.out.println(rs.getString(2));
-            }
-            conn.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-            System.out.println(e);
-        }
     }
 
 }

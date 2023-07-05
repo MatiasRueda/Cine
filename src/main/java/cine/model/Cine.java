@@ -1,5 +1,6 @@
 package cine.model;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class Cine {
@@ -15,7 +16,7 @@ public class Cine {
     }
 
     private boolean estaEnDB(String nombre) {
-        return this.mensajes.setMensaje(this.database.estaAgregado(nombre), "usuario-registrado", "usuario-no-registrado");
+        return this.mensajes.setMensaje(this.database.pertenece("usuario", "nombre", nombre), "usuario-registrado", "usuario-no-registrado");
     }
 
     private boolean contraseniaCorrecta(String contrasenia, String contraseniaObtenida) {
@@ -24,13 +25,16 @@ public class Cine {
 
     public boolean login(String nombre, String contrasenia) {
         if (this.nombreEnBlanco(nombre) || this.contraseniaEnBlanco(contrasenia) || !this.estaEnDB(nombre)) return false;
-        String contraseniaObtenida = this.database.obtenerContrasenia(nombre, contrasenia);
+        String contraseniaObtenida = this.database.getValor("usuario", "contrasenia" , "nombre" , nombre);
         return contraseniaCorrecta(contrasenia, contraseniaObtenida);
     }
 
-    public boolean register(String nombre, String contrasenia) {
+    public boolean register(String nombre, String DNI ,String contrasenia) {
         if (this.nombreEnBlanco(nombre) || this.contraseniaEnBlanco(contrasenia) || this.estaEnDB(nombre)) return false;
-        return this.database.agregarUsuario(nombre, contrasenia);
+        List<String> columnas = Arrays.asList(new String[]{"nombre", "DNI" ,"contrasenia"});
+        List<String> valores = Arrays.asList(new String[]{nombre, DNI, contrasenia});
+        List<Integer> encryptar = Arrays.asList(new Integer[]{2});
+        return this.database.agregar("usuario", columnas, valores, encryptar);
     }
 
     public String getMensaje() {

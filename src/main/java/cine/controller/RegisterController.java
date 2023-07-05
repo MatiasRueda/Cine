@@ -36,7 +36,7 @@ public class RegisterController {
             return;
         }
 
-        if (!cine.register(usuarioNombre.getText(), contrasenia.getText())) {
+        if (!cine.register(usuarioNombre.getText(), DNI.getText(), contrasenia.getText())) {
             Escenas.mostrarMsjError(cine.getMensaje());
             return;
         }
