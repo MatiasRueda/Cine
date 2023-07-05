@@ -41,7 +41,7 @@ public class SQL {
         try {
             Connection conn = this.conectarMySQL();
             Statement stmt = conn.createStatement();
-            String query = "SELECT nombre FROM usuarios";
+            String query = "SELECT nombre FROM usuario";
             ResultSet rs = stmt.executeQuery(query);
             while (rs.next()) {
                 String nombre = rs.getString("nombre");
@@ -59,7 +59,7 @@ public class SQL {
         String contraseniaEncryptada = null;
         try {
             Connection conn = this.conectarMySQL();
-            String query = "SELECT contrasenia FROM usuarios WHERE nombre = ?";
+            String query = "SELECT contrasenia FROM usuario WHERE nombre = ?";
             PreparedStatement stmt = conn.prepareStatement(query);
             stmt.setString(1, nombre);
             ResultSet rs = stmt.executeQuery();
@@ -81,7 +81,7 @@ public class SQL {
         String nombreEncontrado = null;
         try{
             Connection conn = this.conectarMySQL();
-            String query = "SELECT nombre FROM usuarios WHERE nombre = ?";
+            String query = "SELECT nombre FROM usuario WHERE nombre = ?";
             PreparedStatement stmt = conn.prepareStatement(query);
             stmt.setString(1, nombre);
             ResultSet rs = stmt.executeQuery();
@@ -98,7 +98,7 @@ public class SQL {
     public boolean agregarUsuario(String nombre, String contrasenia) {
         try{
             Connection conn = this.conectarMySQL();
-            String query = "INSERT INTO usuarios (nombre, contrasenia) VALUES (?, ?)";
+            String query = "INSERT INTO usuario (nombre, contrasenia) VALUES (?, ?)";
             String contraseniaEncryptada = this.encryptor.encrytarContrasenia(contrasenia);
             PreparedStatement stmt = conn.prepareStatement(query);
             stmt.setString(1, nombre);
@@ -115,7 +115,7 @@ public class SQL {
     public boolean eliminarUsuario(String nombre) {
         try {
             Connection conn = this.conectarMySQL();
-            String query = "DELETE FROM usuarios WHERE nombre = ?";
+            String query = "DELETE FROM usuario WHERE nombre = ?";
             PreparedStatement stmt = conn.prepareStatement(query);
             stmt.setString(1, nombre);
             stmt.executeUpdate();
@@ -131,7 +131,7 @@ public class SQL {
         try {
             Connection conn = this.conectarMySQL();
             Statement stmt = conn.createStatement();
-            String query = "SELECT * FROM usuarios";
+            String query = "SELECT * FROM usuario";
             ResultSet rs = stmt.executeQuery(query);
             while (rs.next()) {
                 System.out.println(rs.getString(2));

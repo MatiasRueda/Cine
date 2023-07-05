@@ -29,7 +29,7 @@ public class UsuarioMenuController {
 
     }
 
-    public void setUsuarioLabel(String mensaje) {
+    public void setUsuario(String mensaje) {
         this.usuario.setText(mensaje);
     }  
 }

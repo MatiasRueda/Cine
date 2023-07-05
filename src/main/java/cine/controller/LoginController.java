@@ -12,10 +12,11 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 
-public class LoginController {
 
-    Cine cine = new Cine();
+public class LoginController {
     
+    private Cine cine = new Cine();
+
     @FXML
     private VBox login;
 
@@ -29,8 +30,9 @@ public class LoginController {
     private Hyperlink register;
 
     @FXML
-    void loguear(ActionEvent event) throws IOException {
-        if (!this.cine.login(this.nombre.getText() , this.contrasenia.getText())) {
+    void loguear(ActionEvent event) throws IOException {    
+        
+        if (!cine.login(nombre.getText() , contrasenia.getText())) {
             Escenas.mostrarMsjError(cine.getMensaje());
             return;
         }
@@ -38,7 +40,7 @@ public class LoginController {
         FXMLLoader fxmlLoader = Escenas.getFXML("usuarioMenu");
         Parent root = fxmlLoader.load();
         UsuarioMenuController usuarioMenuController = fxmlLoader.getController();
-        usuarioMenuController.setUsuarioLabel(nombre.getText());
+        usuarioMenuController.setUsuario(nombre.getText());
         Escenas.mostrarEscenaSig(login, root);
     }
 
