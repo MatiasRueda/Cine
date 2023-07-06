@@ -7,7 +7,8 @@ import java.util.List;
 public class Errores {
 
     static public enum ErrorUsuario { 
-        NOMBRE_CAMPO, 
+        NOMBRE_CAMPO,
+        DNI_CAMPO,
         CONTRASENIA_CAMPO,
         USUARIO_REGISTRADO,
         USUARIO_NO_REGISTRADO,
@@ -15,6 +16,7 @@ public class Errores {
 
     private List<String> mensajes = Arrays.asList(new String[]{
         "El nombre esta en blanco",
+        "El DNI esta en blanco",
         "La contrasenia esta en blanco",
         "El usuario ya esta registrado",
         "El usuario no esta registrado",

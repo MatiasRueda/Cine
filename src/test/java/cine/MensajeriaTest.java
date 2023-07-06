@@ -9,7 +9,7 @@ import cine.model.Mensajeria;
 import cine.model.Errores.ErrorUsuario;
 
 
-public class MensajesTest {
+public class MensajeriaTest {
     private Mensajeria mensajeria;
     
     @Before

@@ -17,6 +17,12 @@ public class ErroresTest {
     }
 
     @Test
+    public void MensajeCorrectoDNI_CAMPO() {
+        String mensaje =  "El DNI esta en blanco";
+        assertEquals(mensaje, errores.getMensaje(ErrorUsuario.DNI_CAMPO));
+    }
+
+    @Test
     public void MensajeCorrectoCONTRASENIA_CAMPO() {
         String mensaje =  "La contrasenia esta en blanco";
         assertEquals(mensaje, errores.getMensaje(ErrorUsuario.CONTRASENIA_CAMPO));
