@@ -27,4 +27,12 @@ public class Peticion {
     public String select(String tabla, String columna, String columCondicion) {
         return "SELECT " + columna + " FROM " + tabla + " WHERE " + columCondicion + " = ?";
     }
+
+    public String select(String tabla, String columna) {
+        return "SELECT " + columna + " FROM " + tabla ;
+    }
+
+    public String delete(String tabla, String columCondicion ) {
+        return  "DELETE FROM " + tabla + " WHERE " + columCondicion + " = ?" ;
+    }
 }

@@ -22,7 +22,7 @@ public class Cine {
     }
 
     private boolean estaEnDB(String nombre) {
-        boolean resultado = this.database.pertenece("usuario", "nombre", nombre);
+        boolean resultado = this.database.pertenece("usuario", "nombre", "nombre", nombre);
         return this.mensajes.setMensaje(resultado, ErrorUsuario.USUARIO_REGISTRADO, ErrorUsuario.USUARIO_NO_REGISTRADO);
     }
 
@@ -33,7 +33,7 @@ public class Cine {
 
     public boolean login(String nombre, String contrasenia) {
         if (this.nombreEnBlanco(nombre) || this.contraseniaEnBlanco(contrasenia) || !this.estaEnDB(nombre)) return false;
-        String contraseniaObtenida = this.database.getValor("usuario", "contrasenia" , "nombre" , nombre);
+        String contraseniaObtenida = this.database.getValor("usuario", "contrasenia" , "nombre" , nombre).iterator().next();
         return this.contraseniaCorrecta(contrasenia, contraseniaObtenida);
     }
 
@@ -50,7 +50,7 @@ public class Cine {
     }
 
     public List<String> obtenerUsuarios() {
-        return this.database.obtenerNombresUsuarios();
+        return this.database.getValor("usuario", "nombre", null , null);
     }
     
 }
