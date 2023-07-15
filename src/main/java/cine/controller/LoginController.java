@@ -49,4 +49,9 @@ public class LoginController {
         Escenas.mostrarEscenaSig(login, "register");
     }
 
+    @FXML
+    void menu(ActionEvent event) throws IOException {
+        Escenas.mostrarEscenaSig(login, "menu");
+    }   
+
 }

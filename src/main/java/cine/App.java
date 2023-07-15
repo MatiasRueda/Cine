@@ -17,7 +17,7 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        String escenaInicial = "menu";
+        String escenaInicial = "cartelera";
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(escenaInicial + ".fxml"));
         scene = new Scene(fxmlLoader.load(), 600, 400);
         stage.setScene(scene);
@@ -26,7 +26,6 @@ public class App extends Application {
     }
 
     public static void main(String[] args) {
-        //launch();
-        
+        launch();
     }
 }

@@ -4,7 +4,8 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 
 <VBox fx:id="register" alignment="CENTER" fillWidth="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cine.controller.RegisterController">
@@ -33,10 +34,12 @@
             <PasswordField fx:id="contraseniaConfirmar" prefWidth="200.0" />
          </children>
       </VBox>
-      <StackPane prefHeight="75.0" prefWidth="600.0">
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="600.0">
          <children>
             <Button mnemonicParsing="false" onAction="#registrar" prefHeight="50.0" prefWidth="130.0" text="Registrar" />
+            <Region prefHeight="100.0" prefWidth="50.0" />
+            <Button mnemonicParsing="false" onAction="#menu" prefHeight="50.0" prefWidth="130.0" text="Volver al menu" />
          </children>
-      </StackPane>
+      </HBox>
    </children>
 </VBox>

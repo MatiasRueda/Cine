@@ -6,7 +6,7 @@
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 
 <VBox fx:id="login" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cine.controller.LoginController">
@@ -29,10 +29,12 @@
             <Hyperlink fx:id="register" onAction="#registrarse" text="Registrate" />
          </children>
       </HBox>
-      <StackPane prefHeight="100.0" prefWidth="600.0">
+      <HBox alignment="CENTER" fillHeight="false" prefHeight="100.0" prefWidth="600.0">
          <children>
             <Button mnemonicParsing="false" onAction="#loguear" prefHeight="50.0" prefWidth="130.0" text="Loguear" />
+            <Region prefHeight="100.0" prefWidth="50.0" />
+            <Button mnemonicParsing="false" onAction="#menu" prefHeight="50.0" prefWidth="130.0" text="Volver al Menu" />
          </children>
-      </StackPane>
+      </HBox>
    </children>
 </VBox>

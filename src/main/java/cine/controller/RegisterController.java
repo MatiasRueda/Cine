@@ -43,4 +43,10 @@ public class RegisterController {
         Escenas.mostrarEscenaSig(register, "menu");
     }
 
+
+    @FXML
+    void menu(ActionEvent event) throws IOException {
+        Escenas.mostrarEscenaSig(register, "menu");
+    }
+
 }

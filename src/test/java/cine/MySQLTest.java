@@ -37,6 +37,19 @@ public class MySQLTest {
             e.printStackTrace();
         }
     }
+    
+    private void reiniciarID() {
+        try {
+            Connection conn = this.database.conectarMySQL();
+            String query = "ALTER TABLE " + TABLA_USUARIO + " AUTO_INCREMENT = ?";
+            PreparedStatement stmt = conn.prepareStatement(query);
+            stmt.setInt(1, 0);
+            stmt.executeUpdate(query);
+            conn.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 
     @Before
     public void preparativos() {
@@ -109,5 +122,11 @@ public class MySQLTest {
         this.database.eliminar("nombre", this.NOMBRE);
         boolean estaVaciaPostEliminar = this.database.getValor(this.TABLA_USUARIO, "nombre", "nombre", this.NOMBRE).isEmpty();
         assertNotEquals(estaVacia, estaVaciaPostEliminar);
+    }
+
+    @Test
+    public void reiniciarValores() {
+        this.reiniciarID();
+        assertTrue(true);
     }
 }
