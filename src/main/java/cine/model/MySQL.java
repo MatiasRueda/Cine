@@ -36,7 +36,7 @@ public class MySQL {
 
         return conn;
     }
-    public List<String> getValor(String tabla, String columna , String columCondicion, String valor) {
+    public ArrayList<String> getValor(String tabla, String columna , String columCondicion, String valor) {
         ArrayList<String> valoresObtenidos = new ArrayList<>();
         try {
             Connection conn = this.conectarMySQL();
@@ -46,6 +46,29 @@ public class MySQL {
             ResultSet rs = stmt.executeQuery();
             while(rs.next()) {
                 valoresObtenidos.add(rs.getString(columna));
+            }
+            conn.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+        return valoresObtenidos;
+    }
+
+    public ArrayList<ArrayList<String>> getValor(String tabla, List<String> columnas , String columCondicion, String valor) {
+        ArrayList<ArrayList<String>> valoresObtenidos = new ArrayList<>();
+        try {
+            Connection conn = this.conectarMySQL();
+            String query = (columCondicion == null)? peticion.select(tabla, columnas) : peticion.select(tabla, columnas, columCondicion);
+            PreparedStatement stmt = conn.prepareStatement(query);
+            if (!(columCondicion == null)) stmt.setString(1, valor);
+            ResultSet rs = stmt.executeQuery();
+            while(rs.next()) {
+                ArrayList<String> fila = new ArrayList<>();
+                for (String columna : columnas) {
+                    fila.add(rs.getString(columna));
+                }
+                valoresObtenidos.add(fila);
             }
             conn.close();
         } catch (SQLException e) {

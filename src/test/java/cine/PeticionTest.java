@@ -28,4 +28,13 @@ public class PeticionTest {
         String peticionEsperada = "SELECT contrasenia FROM usuario WHERE nombre = ?";
         assertEquals(peticionEsperada, this.peticion.select(tabla, columna, columnCondicion));
     }
+
+    @Test
+    public void selectColumnasTest() {
+        String tabla = "usuario";
+        List<String> columnas = Arrays.asList(new String[]{"nombre" , "DNI" , "contrasenia"}); 
+        String columnCondicion = "nombre";
+        String peticionEsperada = "SELECT nombre, DNI, contrasenia FROM usuario WHERE nombre = ?";
+        assertEquals(peticionEsperada, this.peticion.select(tabla, columnas, columnCondicion));
+    }
 }

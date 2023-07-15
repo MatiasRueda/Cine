@@ -1,5 +1,7 @@
 package cine.visual;
 
+import java.util.List;
+
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
@@ -31,6 +33,16 @@ public class Pelicula {
         this.pelicula = armarPelicula();
     }
 
+    public Pelicula(List<String> informacion) {
+        this.titulo = informacion.get(0);
+        this.fecha = informacion.get(1);
+        this.audio = informacion.get(2);
+        this.subtitulo = informacion.get(3);
+        this.duracion = informacion.get(4);
+        this.imagen = informacion.get(5); 
+        this.pelicula = armarPelicula();
+    }
+
     private VBox contVBox(int width) {
         VBox infoPeli = new VBox();
         infoPeli.setPrefHeight(this.HEIGHT);
@@ -53,7 +65,7 @@ public class Pelicula {
         contImagen.getChildren().add(imagenPeli);
         VBox contDescripcion = contVBox(400);
         Label titulo = new Label("Titulo: " + this.titulo);
-        Label fecha = new Label("Fecha: "+ this.fecha);   
+        Label fecha = new Label("Fecha de estreno: "+ this.fecha);   
         Label audio = new Label("Audio: " + this.audio);
         Label subtitulo = new Label("Subtitulo: " + this.subtitulo);
         Label duracion = new Label("Duracion: " + this.duracion + " min");
