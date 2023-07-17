@@ -1,5 +1,6 @@
 package cine.controller;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -9,17 +10,20 @@ import cine.visual.Pelicula;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TabPane;
+import javafx.scene.layout.VBox;
 
 public class CarteleraController {
 
-    private MySQL database = new MySQL();
+    @FXML
+    private VBox cartelera;
 
     @FXML
     private TabPane peliculas;
+
+    private MySQL database = new MySQL();
     
     @FXML
     void initialize() {
-        assert peliculas != null : "fx:id=\"peliculas\" was not injected: check your FXML file 'cartelera.fxml'.";
         this.cargarCartelera();
     }
 
@@ -33,8 +37,8 @@ public class CarteleraController {
     }
 
     @FXML
-    void cancelar(ActionEvent event) {
-
+    void cancelar(ActionEvent event) throws IOException {
+        Escenas.mostrarEscenaSig(this.cartelera, "menu");
     }
 
     @FXML

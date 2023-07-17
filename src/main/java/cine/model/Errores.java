@@ -10,17 +10,21 @@ public class Errores {
         NOMBRE_CAMPO,
         DNI_CAMPO,
         CONTRASENIA_CAMPO,
+        CONTRASENIA_CONFIRMAR_CAMPO,
         USUARIO_REGISTRADO,
         USUARIO_NO_REGISTRADO,
-        CONTRASENIA_COMPARACION};
+        CONTRASENIA_INCORRECTA,
+        CONTRASENIAS_DISTINTAS};
 
     private List<String> mensajes = Arrays.asList(new String[]{
         "El nombre esta en blanco",
         "El DNI esta en blanco",
         "La contrasenia esta en blanco",
+        "Confirme la contrasenia",
         "El usuario ya esta registrado",
         "El usuario no esta registrado",
-        "La contrasenia es incorrecta"
+        "Contrasenia incorrecta",
+        "Las contrasenias no son iguales"
     });
 
     private HashMap<ErrorUsuario, String> errorMsj = new HashMap<>();

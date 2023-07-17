@@ -17,7 +17,7 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        String escenaInicial = "cartelera";
+        String escenaInicial = "menu";
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(escenaInicial + ".fxml"));
         scene = new Scene(fxmlLoader.load(), 600, 400);
         stage.setScene(scene);

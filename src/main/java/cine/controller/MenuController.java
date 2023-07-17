@@ -10,6 +10,7 @@ import javafx.scene.layout.HBox;
 public class MenuController {
 
     public final static Cine cine = new Cine();
+    
     @FXML
     private HBox menu;
 

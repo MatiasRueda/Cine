@@ -42,7 +42,7 @@ public class ErroresTest {
 
     @Test
     public void MensajeCorrectoCONTRASENIA_COMPARACION() {
-        String mensaje =  "La contrasenia es incorrecta";
-        assertEquals(mensaje, errores.getMensaje(ErrorUsuario.CONTRASENIA_COMPARACION));
+        String mensaje =  "Contrasenia incorrecta";
+        assertEquals(mensaje, errores.getMensaje(ErrorUsuario.CONTRASENIA_INCORRECTA));
     }
 }
