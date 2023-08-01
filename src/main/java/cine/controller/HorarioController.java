@@ -25,6 +25,10 @@ public class HorarioController {
 
     @FXML
     void cancelar(ActionEvent event) throws IOException {
+        if (this.cine.getUsuarioNombre() == null) {
+            Escenas.mostrarEscenaSig(this.horario, "usuarioMenu");
+            return;
+        }
         Escenas.mostrarEscenaSig(this.horario, "menu");
     }
 

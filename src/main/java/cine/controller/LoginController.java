@@ -35,7 +35,7 @@ public class LoginController {
             return;
         }
         this.cine.setUsuarioNombre(this.nombre.getText());
-        Escenas.cargarUsuarioMenu(this.login, this.nombre.getText());
+        Escenas.mostrarEscenaSig(this.login, "usuarioMenu");
     }
 
     @FXML

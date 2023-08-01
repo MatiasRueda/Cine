@@ -92,12 +92,4 @@ public class Escenas {
         });
     }
 
-    public static void cargarUsuarioMenu(Pane escenaActual, String nombre) throws IOException {
-        FXMLLoader fxmlLoader = Escenas.getFXML("usuarioMenu");
-        Parent root = fxmlLoader.load();
-        UsuarioMenuController usuarioMenuController = fxmlLoader.getController();
-        usuarioMenuController.setUsuario(nombre);
-        Escenas.mostrarEscenaSig(escenaActual, root);
-    }
-
 }
