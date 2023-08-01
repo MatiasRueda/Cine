@@ -44,6 +44,10 @@ public class Peticion {
         return "SELECT " + armarColumnas(columnas) + " FROM " + tabla ;
     }
 
+    public String select(String tabla, List<String> columnas, String limit, String offset) {
+        return "SELECT " + armarColumnas(columnas) + " FROM " + tabla + " LIMIT " + limit + " OFFSET " + offset;
+    }
+
 
     public String delete(String tabla, String columCondicion ) {
         return  "DELETE FROM " + tabla + " WHERE " + columCondicion + " = ?" ;
