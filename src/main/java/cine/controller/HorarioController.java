@@ -2,6 +2,7 @@ package cine.controller;
 
 import java.io.IOException;
 
+import cine.model.Cine;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -9,6 +10,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 public class HorarioController {
+    private Cine cine = MenuController.cine;
 
     @FXML
     private VBox horario;
@@ -28,7 +30,11 @@ public class HorarioController {
 
     @FXML
     void comprar(ActionEvent event) {
-        System.out.println(this.titulo);
+        if (this.cine.getUsuarioNombre() == null) {
+            System.out.println("Porfavor ingrese antes de comprar");
+            return;
+        }
+        System.out.println("Usted esta logueado felicidades!!!!");
     }
 
     public void setTitulo(String titulo) {

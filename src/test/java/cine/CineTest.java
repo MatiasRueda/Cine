@@ -22,26 +22,13 @@ public class CineTest {
     private Cine cine;
     private MySQL database = new MySQL();
     private Errores errores = new Errores();
-    final private String NOMBRE = "Matias";
-    final private String DNI = "12345678";
+    final private String NOMBRE = "ASFAFAMFAOEF";
     final private String CONTRASENIA = "123";
-    List<String> columnas = Arrays.asList(new String[]{"nombre", "DNI" ,"contrasenia"});
-    List<String> valores = Arrays.asList(new String[]{NOMBRE, DNI, CONTRASENIA});
-    List<Integer> encryptar = Arrays.asList(new Integer[]{2});
-
-    
-    private void reiniciarID() {
-        try {
-            Connection conn = this.database.conectarMySQL();
-            String query = "ALTER TABLE usuario AUTO_INCREMENT = ?";
-            PreparedStatement stmt = conn.prepareStatement(query);
-            stmt.setInt(1, 0);
-            stmt.executeUpdate(query);
-            conn.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
+    final private String DNI = "12345678";
+    final private String EMAIL = "AFYIAEBFIAEF@gmail.com";
+    List<String> columnas = Arrays.asList(new String[]{"nombre","contrasenia", "dni", "email"});
+    List<String> valores = Arrays.asList(new String[]{NOMBRE, CONTRASENIA, DNI, EMAIL});
+    List<Integer> encryptar = Arrays.asList(new Integer[]{1});
 
     @Before
     public void preparativos() {
@@ -67,52 +54,52 @@ public class CineTest {
 
     @Test
     public void noCompletarNombreEsFalseRegisterTest() {
-        assertFalse(this.cine.register("", this.DNI , this.CONTRASENIA, this.CONTRASENIA));
+        assertFalse(this.cine.register("", this.DNI , this.EMAIL, this.CONTRASENIA, this.CONTRASENIA));
     }
 
     @Test
     public void noCompletarNombreDejaMensajeRegisterTest() {
-        this.cine.register("", this.DNI, this.CONTRASENIA,  this.CONTRASENIA);
+        this.cine.register("", this.DNI,  this.EMAIL, this.CONTRASENIA,  this.CONTRASENIA);
         assertEquals(errores.getMensaje(ErrorUsuario.NOMBRE_CAMPO), this.cine.getMensaje());
     }
 
     @Test
     public void noCompletarDNIEsFalseRegisterTest() {
-        assertFalse(this.cine.register(this.NOMBRE, "" , this.CONTRASENIA,  this.CONTRASENIA));
+        assertFalse(this.cine.register(this.NOMBRE, "" , this.EMAIL, this.CONTRASENIA,  this.CONTRASENIA));
     }
 
     @Test
     public void noCompletarDNIDejaMensajeRegisterTest() {
-        this.cine.register(this.NOMBRE, "", this.CONTRASENIA,  this.CONTRASENIA);
+        this.cine.register(this.NOMBRE, "", this.EMAIL, this.CONTRASENIA,  this.CONTRASENIA);
         assertEquals(errores.getMensaje(ErrorUsuario.DNI_CAMPO), this.cine.getMensaje());
     }
 
     @Test
     public void noCompletarContraseniaEsFalseRegisterTest() {
-        assertFalse(this.cine.register(this.NOMBRE, this.DNI , "",  this.CONTRASENIA));
+        assertFalse(this.cine.register(this.NOMBRE, this.DNI , this.EMAIL, "",  this.CONTRASENIA));
     }
 
     @Test
     public void noCompletarContraseniaDejaMensajeRegisterTest() {
-        this.cine.register(this.NOMBRE, this.DNI, "",  this.CONTRASENIA);
+        this.cine.register(this.NOMBRE, this.DNI, this.EMAIL, "",  this.CONTRASENIA);
         assertEquals(errores.getMensaje(ErrorUsuario.CONTRASENIA_CAMPO), this.cine.getMensaje());
     }
 
     @Test
     public void noCompletarConfirmarContraseniaDejaMensajeRegisterTest() {
-        this.cine.register(this.NOMBRE, this.DNI, this.CONTRASENIA,  "");
+        this.cine.register(this.NOMBRE, this.DNI, this.EMAIL, this.CONTRASENIA,  "");
         assertEquals(errores.getMensaje(ErrorUsuario.CONTRASENIA_CONFIRMAR_CAMPO), this.cine.getMensaje());
     }
 
     @Test
     public void lasContraseniasNoCoincidenDejaMensajeRegisterTest() {
-        this.cine.register(this.NOMBRE, this.DNI, this.CONTRASENIA,  this.CONTRASENIA + "agaig");
+        this.cine.register(this.NOMBRE, this.DNI, this.EMAIL, this.CONTRASENIA,  this.CONTRASENIA + "agaig");
         assertEquals(errores.getMensaje(ErrorUsuario.CONTRASENIAS_DISTINTAS), this.cine.getMensaje());
     }
 
     @Test
     public void registrarseCorrectamenteEsTrueTest() {
-        assertTrue(this.cine.register(this.NOMBRE, this.DNI, this.CONTRASENIA,  this.CONTRASENIA));
+        assertTrue(this.cine.register(this.NOMBRE, this.DNI, this.EMAIL, this.CONTRASENIA,  this.CONTRASENIA));
     }
 
     // ************* LOGIN TEST ****************** //
@@ -157,22 +144,15 @@ public class CineTest {
 
     @Test
     public void contraseniaIncorrectaDejaMensajeRegisterTest() {
-        this.cine.register(this.NOMBRE, this.DNI, this.CONTRASENIA + "agaig",  this.CONTRASENIA + "agaig");
+        this.cine.register(this.NOMBRE, this.DNI, this.EMAIL, this.CONTRASENIA + "agaig",  this.CONTRASENIA + "agaig");
         this.cine.login(this.NOMBRE, this.CONTRASENIA);
         assertEquals(errores.getMensaje(ErrorUsuario.CONTRASENIA_INCORRECTA), this.cine.getMensaje());
     }    
 
     @Test
     public void sePuedeLoguearDespuesDeRegistraseDaTrueTest() {
-        this.cine.register(this.NOMBRE, this.DNI, this.CONTRASENIA,  this.CONTRASENIA);
+        this.cine.register(this.NOMBRE, this.DNI, this.EMAIL, this.CONTRASENIA,  this.CONTRASENIA);
         assertTrue(this.cine.login(this.NOMBRE, this.CONTRASENIA));
-    }
-
-    // -------------------- REINICIAR ID --------------------------------- //
-    @Test
-    public void reiniciarValores() {
-        this.reiniciarID();
-        assertTrue(true);
     }
 
 }

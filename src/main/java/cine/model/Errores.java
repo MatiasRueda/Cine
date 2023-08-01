@@ -9,6 +9,7 @@ public class Errores {
     static public enum ErrorUsuario { 
         NOMBRE_CAMPO,
         DNI_CAMPO,
+        EMAIL_CAMPO,
         CONTRASENIA_CAMPO,
         CONTRASENIA_CONFIRMAR_CAMPO,
         USUARIO_REGISTRADO,
@@ -19,6 +20,7 @@ public class Errores {
     private List<String> mensajes = Arrays.asList(new String[]{
         "El nombre esta en blanco",
         "El DNI esta en blanco",
+        "El Email esta en blanco",
         "La contrasenia esta en blanco",
         "Confirme la contrasenia",
         "El usuario ya esta registrado",

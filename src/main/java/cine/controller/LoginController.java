@@ -12,8 +12,8 @@ import javafx.scene.layout.VBox;
 
 
 public class LoginController {
-    
-    private Cine cine = new Cine();
+
+    private Cine cine = MenuController.cine;
 
     @FXML
     private VBox login;
@@ -30,22 +30,22 @@ public class LoginController {
     @FXML
     void loguear(ActionEvent event) throws IOException {    
         
-        if (!cine.login(nombre.getText() , contrasenia.getText())) {
-            Escenas.mostrarMsjError(cine.getMensaje());
+        if (!this.cine.login(nombre.getText() , contrasenia.getText())) {
+            Escenas.mostrarMsjError(this.cine.getMensaje());
             return;
         }
-
-        Escenas.cargarUsuarioMenu(login, nombre.getText());
+        this.cine.setUsuarioNombre(this.nombre.getText());
+        Escenas.cargarUsuarioMenu(this.login, this.nombre.getText());
     }
 
     @FXML
     void registrarse(ActionEvent event) throws IOException {
-        Escenas.mostrarEscenaSig(login, "register");
+        Escenas.mostrarEscenaSig(this.login, "register");
     }
 
     @FXML
     void menu(ActionEvent event) throws IOException {
-        Escenas.mostrarEscenaSig(login, "menu");
+        Escenas.mostrarEscenaSig(this.login, "menu");
     }   
 
 }
