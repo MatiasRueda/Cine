@@ -2,6 +2,7 @@ package cine.model;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
@@ -69,7 +70,9 @@ public class Cine {
     public ArrayList<String> getFechas() { 
         ArrayList<String> fechasObtenidas = this.database.getValor("sala", "fecha", "titulo", this.tituloPelicula);
         Set<String> unicasFechas = new LinkedHashSet<>(fechasObtenidas);
-        return new ArrayList<>(unicasFechas);
+        ArrayList<String> fechas = new ArrayList<>(unicasFechas);
+        Collections.sort(fechas);
+        return fechas;
     }
 
     public ArrayList<String> getHorarios() { 
