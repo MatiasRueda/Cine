@@ -2,7 +2,9 @@ package cine.model;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
 
 import cine.model.Errores.ErrorUsuario;
 
@@ -65,7 +67,9 @@ public class Cine {
     }
 
     public ArrayList<String> getFechas() { 
-        return this.database.getValor("sala", "fecha", "titulo", this.tituloPelicula);
+        ArrayList<String> fechasObtenidas = this.database.getValor("sala", "fecha", "titulo", this.tituloPelicula);
+        Set<String> unicasFechas = new LinkedHashSet<>(fechasObtenidas);
+        return new ArrayList<>(unicasFechas);
     }
 
     public ArrayList<String> getHorarios() { 

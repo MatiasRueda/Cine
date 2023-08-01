@@ -38,10 +38,10 @@ public class HorarioController {
     void cancelar(ActionEvent event) throws IOException {
         this.cine.reiniciarValores();
         if (this.cine.getUsuarioNombre() == null) {
-            Escenas.mostrarEscenaSig(this.horario, "usuarioMenu");
+            Escenas.mostrarEscenaSig(this.horario, "menu");
             return;
         }
-        Escenas.mostrarEscenaSig(this.horario, "menu");
+        Escenas.mostrarEscenaSig(this.horario, "usuarioMenu");
     }
 
     @FXML
