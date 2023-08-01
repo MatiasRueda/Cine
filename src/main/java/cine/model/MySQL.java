@@ -40,9 +40,32 @@ public class MySQL {
         ArrayList<String> valoresObtenidos = new ArrayList<>();
         try {
             Connection conn = this.conectarMySQL();
-            String query = columCondicion.isEmpty()? peticion.select(tabla, columna) : peticion.select(tabla, columna, columCondicion);
+            String query = (columCondicion == null)? peticion.select(tabla, columna) : peticion.select(tabla, columna, columCondicion);
             PreparedStatement stmt = conn.prepareStatement(query);
             if (!columCondicion.isEmpty()) stmt.setString(1, valor);
+            ResultSet rs = stmt.executeQuery();
+            while(rs.next()) {
+                valoresObtenidos.add(rs.getString(columna));
+            }
+            conn.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+        return valoresObtenidos;
+    }
+
+    public ArrayList<String> getValorVariasCondiciones(String tabla, String columna , List<String> columCondicion, List<String> valores) {
+        ArrayList<String> valoresObtenidos = new ArrayList<>();
+        try {
+            Connection conn = this.conectarMySQL();
+            String query = peticion.select(tabla, columna, columCondicion);
+            PreparedStatement stmt = conn.prepareStatement(query);
+            int indice = 1;
+            for (String valor: valores) {
+                stmt.setString(indice, valor);
+                indice++;
+            }
             ResultSet rs = stmt.executeQuery();
             while(rs.next()) {
                 valoresObtenidos.add(rs.getString(columna));

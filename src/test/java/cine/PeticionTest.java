@@ -81,4 +81,12 @@ public class PeticionTest {
         String peticionEsperada = "SELECT nombre, DNI, contrasenia FROM usuario";
         assertEquals(peticionEsperada, this.peticion.select(TABLA_USUARIO, columnas));
     }
+
+        @Test
+    public void selectFormatoOchoTest() {
+        String columna = "horario";
+        List<String> condiciones = Arrays.asList(new String[]{"nombre" , "DNI"}); 
+        String peticionEsperada = "SELECT horario FROM usuario WHERE nombre = ? AND DNI = ?";
+        assertEquals(peticionEsperada, this.peticion.select(TABLA_USUARIO, columna, condiciones));
+    }
 }

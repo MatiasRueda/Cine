@@ -1,5 +1,6 @@
 package cine.model;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -9,6 +10,8 @@ public class Cine {
     private MySQL database = new MySQL();
     private Mensajeria mensajes = new Mensajeria();
     private String usuarioNombre;
+    private String tituloPelicula;
+    private String fechaPelicula; 
 
     private boolean nombreEnBlanco(String nombre) {
         return this.mensajes.setMensaje(nombre.isBlank(), ErrorUsuario.NOMBRE_CAMPO);
@@ -61,6 +64,16 @@ public class Cine {
         return this.database.agregar("usuario", columnas, valores, encryptar);
     }
 
+    public ArrayList<String> getFechas() { 
+        return this.database.getValor("sala", "fecha", "titulo", this.tituloPelicula);
+    }
+
+    public ArrayList<String> getHorarios() { 
+        List<String> condiciones =  Arrays.asList(new String[]{"fecha", "titulo"});
+        List<String> valores =  Arrays.asList(new String[]{this.fechaPelicula, this.tituloPelicula});
+        return this.database.getValorVariasCondiciones("sala", "horario", condiciones, valores);
+    }
+
     public String getMensaje() {
         return this.mensajes.getMensaje();
     }
@@ -73,8 +86,29 @@ public class Cine {
         this.usuarioNombre = usuarioNombre;
     }
 
+    public void setTituloPelicula(String tituloPelicula) {
+        this.tituloPelicula = tituloPelicula;
+    }
+
+    public void setFechaPelicula(String fechaPelicula) {
+        this.fechaPelicula = fechaPelicula;
+    }
+
     public String getUsuarioNombre() {
         return this.usuarioNombre;
     }
     
+    public String getTituloPelicula() {
+        return this.tituloPelicula;
+    }
+
+    public String getFechaPelicula() {
+        return this.fechaPelicula;
+    }
+
+
+    public void reiniciarValores() {
+        this.tituloPelicula = null;
+        this.fechaPelicula = null;
+    }
 }

@@ -3,28 +3,40 @@ package cine.controller;
 import java.io.IOException;
 
 import cine.model.Cine;
+import cine.view.Horario;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.layout.HBox;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.VBox;
 
 public class HorarioController {
     private Cine cine = MenuController.cine;
+    private Horario horaritos = new Horario();
 
     @FXML
     private VBox horario;
 
     @FXML
-    private HBox horarios;
+    private FlowPane horarios;
 
     @FXML
     private Label labelHorarios;
 
-    private String titulo;
+    @FXML
+    private Label labelFecha;
+
+    @FXML
+    void initialize() {
+        this.labelHorarios.setText("Horarios para: " + this.cine.getTituloPelicula());
+        this.labelFecha.setText("Fecha elegida: " + this.cine.getFechaPelicula());
+        this.horaritos.armarHorarios(horarios, this.cine.getHorarios());
+    }
+
 
     @FXML
     void cancelar(ActionEvent event) throws IOException {
+        this.cine.reiniciarValores();
         if (this.cine.getUsuarioNombre() == null) {
             Escenas.mostrarEscenaSig(this.horario, "usuarioMenu");
             return;
@@ -39,10 +51,5 @@ public class HorarioController {
             return;
         }
         System.out.println("Usted esta logueado felicidades!!!!");
-    }
-
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
-        this.labelHorarios.setText("Horarios para " + this.titulo + ":");
     }
 }

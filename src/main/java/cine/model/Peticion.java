@@ -40,6 +40,15 @@ public class Peticion {
         return "SELECT " + armarColumnas(columnas) + " FROM " + tabla + " WHERE " + columCondicion + " = ?";
     }
 
+    public String select(String tabla, String columna, List<String> columCondicion) {
+        String condiciones = "";
+        for (String columnas : columCondicion) {
+            condiciones += columnas + " " + "= ? AND " ;
+        }
+        condiciones = condiciones.substring(0, condiciones.length() - 5);
+        return "SELECT " + columna + " FROM " + tabla + " WHERE " + condiciones;
+    }
+
     public String select(String tabla, List<String> columnas) {
         return "SELECT " + armarColumnas(columnas) + " FROM " + tabla ;
     }

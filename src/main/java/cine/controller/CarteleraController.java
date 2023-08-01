@@ -5,12 +5,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import cine.model.Cine;
 import cine.model.MySQL;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
@@ -47,10 +46,10 @@ public class CarteleraController {
     private Button btnSiguiente;
 
     private MySQL database = new MySQL();
+
+    private Cine cine = MenuController.cine;
     
     private Peliculas pelicula;
-
-    private String tituloActual;
     
     @FXML
     void initialize() {
@@ -65,7 +64,7 @@ public class CarteleraController {
         ArrayList<ArrayList<String>> filas = this.database.getValorLimitOffset("pelicula", columnas, "2", String.valueOf(this.pelicula.getOffset()));
         ArrayList<String> fila = filas.iterator().next();
         this.pelicula.setInformacion(fila);
-        this.tituloActual = fila.iterator().next();
+        this.cine.setTituloPelicula(fila.iterator().next());
         return filas;
     }
 
@@ -76,11 +75,7 @@ public class CarteleraController {
 
     @FXML
     void continuar(ActionEvent event) throws IOException {
-        FXMLLoader fxmlLoader = Escenas.getFXML("horario");
-        Parent root = fxmlLoader.load();
-        HorarioController horarioController = fxmlLoader.getController();
-        horarioController.setTitulo(this.tituloActual);
-        Escenas.mostrarEscenaSig(cartelera, root);
+        Escenas.mostrarEscenaSig(cartelera, "fecha");
     }
 
 
