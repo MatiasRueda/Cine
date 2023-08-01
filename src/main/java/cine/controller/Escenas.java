@@ -2,6 +2,7 @@ package cine.controller;
 
 import java.io.IOException;
 
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -51,6 +52,44 @@ public class Escenas {
         mensajeCtrller.setMensaje(mensaje);
         Stage stage = Escenas.getStage(root, Modality.APPLICATION_MODAL, StageStyle.UNDECORATED);
         stage.showAndWait();
+    }
+
+    private static Stage armarPantallaCarga(Stage primaryStage) throws IOException {
+        Parent pantallaCarga = Escenas.loadFXML("carga");
+        Scene sceneCarga = new Scene(pantallaCarga);
+        Stage secundaryStage = new Stage();
+        secundaryStage.setWidth(250);
+        secundaryStage.setHeight(75);
+        secundaryStage.setX(primaryStage.getX() + primaryStage.getWidth() / 2 - secundaryStage.getWidth() / 2);
+        secundaryStage.setY(primaryStage.getY() + primaryStage.getHeight() / 2 - secundaryStage.getHeight() / 2);
+        secundaryStage.setResizable(false);
+        secundaryStage.initModality(Modality.APPLICATION_MODAL);
+        secundaryStage.initStyle(StageStyle.UNDECORATED);
+        secundaryStage.setScene(sceneCarga);
+        secundaryStage.show();
+        return secundaryStage;
+    }
+
+    public static void cargarSiguienteEscena(Pane escenaActual, String siguienteEscena) throws IOException {
+        Stage primaryStage = (Stage)escenaActual.getScene().getWindow();
+        Stage secundaryStage = armarPantallaCarga(primaryStage);
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                Parent cartelera;
+                try {
+                    cartelera = Escenas.loadFXML(siguienteEscena);
+                    Scene sceneCartelera = new Scene(cartelera);
+                    primaryStage.setScene(sceneCartelera);
+                    primaryStage.show();
+                    secundaryStage.close();
+                } catch (IOException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+            }
+            
+        });
     }
 
 }
