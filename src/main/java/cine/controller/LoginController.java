@@ -5,8 +5,6 @@ import java.io.IOException;
 import cine.model.Cine;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -37,11 +35,7 @@ public class LoginController {
             return;
         }
 
-        FXMLLoader fxmlLoader = Escenas.getFXML("usuarioMenu");
-        Parent root = fxmlLoader.load();
-        UsuarioMenuController usuarioMenuController = fxmlLoader.getController();
-        usuarioMenuController.setUsuario(nombre.getText());
-        Escenas.mostrarEscenaSig(login, root);
+        Escenas.cargarUsuarioMenu(login, nombre.getText());
     }
 
     @FXML

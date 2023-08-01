@@ -54,7 +54,7 @@ public class Escenas {
         stage.showAndWait();
     }
 
-    private static Stage armarPantallaCarga(Stage primaryStage) throws IOException {
+    public static Stage armarPantallaCarga(Stage primaryStage) throws IOException {
         Parent pantallaCarga = Escenas.loadFXML("carga");
         Scene sceneCarga = new Scene(pantallaCarga);
         Stage secundaryStage = new Stage();
@@ -90,6 +90,14 @@ public class Escenas {
             }
             
         });
+    }
+
+    public static void cargarUsuarioMenu(Pane escenaActual, String nombre) throws IOException {
+        FXMLLoader fxmlLoader = Escenas.getFXML("usuarioMenu");
+        Parent root = fxmlLoader.load();
+        UsuarioMenuController usuarioMenuController = fxmlLoader.getController();
+        usuarioMenuController.setUsuario(nombre);
+        Escenas.mostrarEscenaSig(escenaActual, root);
     }
 
 }

@@ -6,12 +6,16 @@ import java.util.Arrays;
 import java.util.List;
 
 import cine.model.MySQL;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
 public class CarteleraController {
 
@@ -45,6 +49,8 @@ public class CarteleraController {
     private MySQL database = new MySQL();
     
     private Peliculas pelicula;
+
+    private String tituloActual;
     
     @FXML
     void initialize() {
@@ -59,6 +65,7 @@ public class CarteleraController {
         ArrayList<ArrayList<String>> filas = this.database.getValorLimitOffset("pelicula", columnas, "2", String.valueOf(this.pelicula.getOffset()));
         ArrayList<String> fila = filas.iterator().next();
         this.pelicula.setInformacion(fila);
+        this.tituloActual = fila.iterator().next();
         return filas;
     }
 
@@ -68,24 +75,47 @@ public class CarteleraController {
     }
 
     @FXML
-    void continuar(ActionEvent event) {
+    void continuar(ActionEvent event) throws IOException {
+        FXMLLoader fxmlLoader = Escenas.getFXML("horario");
+        Parent root = fxmlLoader.load();
+        HorarioController horarioController = fxmlLoader.getController();
+        horarioController.setTitulo(this.tituloActual);
+        Escenas.mostrarEscenaSig(cartelera, root);
     }
 
 
     @FXML
-    void anterior(ActionEvent event) {
-        btnSiguiente.setDisable(false);
-        this.pelicula.bajarOffset();
-        this.cargarCartelera();
-        if (this.pelicula.getOffset() == 0) btnAnterior.setDisable(true);
+    void anterior(ActionEvent event) throws IOException{
+        Stage primaryStage = (Stage)cartelera.getScene().getWindow();
+        Stage secundaryStage = Escenas.armarPantallaCarga(primaryStage);
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                btnSiguiente.setDisable(false);
+                pelicula.bajarOffset();
+                cargarCartelera();
+                if (pelicula.getOffset() == 0) btnAnterior.setDisable(true);
+                secundaryStage.close();
+            }
+            
+        });
     }
 
     @FXML
-    void siguiente(ActionEvent event) {
-        btnAnterior.setDisable(false);
-        this.pelicula.subirOffset();
-        ArrayList<ArrayList<String>> filas = this.cargarCartelera();
-        if (filas.size() == 1) btnSiguiente.setDisable(true);
+    void siguiente(ActionEvent event) throws IOException {
+        Stage primaryStage = (Stage)cartelera.getScene().getWindow();
+        Stage secundaryStage = Escenas.armarPantallaCarga(primaryStage);
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                btnAnterior.setDisable(false);
+                pelicula.subirOffset();
+                ArrayList<ArrayList<String>> filas = cargarCartelera();
+                if (filas.size() == 1) btnSiguiente.setDisable(true);
+                secundaryStage.close();
+            }
+            
+        });
     }
 
 }
