@@ -22,7 +22,7 @@
                   <Font size="14.0" />
                </font>
             </Label>
-            <FlowPane fx:id="horarios" alignment="CENTER" prefHeight="100.0" />
+            <FlowPane fx:id="horarios" alignment="CENTER" prefHeight="150.0" prefWidth="600.0" />
          </children>
       </VBox>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">

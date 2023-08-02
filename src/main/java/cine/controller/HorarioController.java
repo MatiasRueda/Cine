@@ -3,7 +3,7 @@ package cine.controller;
 import java.io.IOException;
 
 import cine.model.Cine;
-import cine.view.Horario;
+import cine.view.Armador;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -12,7 +12,7 @@ import javafx.scene.layout.VBox;
 
 public class HorarioController {
     private Cine cine = MenuController.cine;
-    private Horario horaritos = new Horario();
+    private Armador armadorHorarios = new Armador("white", "green");
 
     @FXML
     private VBox horario;
@@ -30,7 +30,7 @@ public class HorarioController {
     void initialize() {
         this.labelHorarios.setText("Horarios para: " + this.cine.getTituloPelicula());
         this.labelFecha.setText("Fecha elegida: " + this.cine.getFechaPelicula());
-        this.horaritos.armarHorarios(horarios, this.cine.getHorarios());
+        this.armadorHorarios.armar(horarios, this.cine.getHorarios());
     }
 
 
