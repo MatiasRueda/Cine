@@ -45,11 +45,7 @@ public class HorarioController {
     }
 
     @FXML
-    void comprar(ActionEvent event) {
-        if (this.cine.getUsuarioNombre() == null) {
-            System.out.println("Porfavor ingrese antes de comprar");
-            return;
-        }
-        System.out.println("Usted esta logueado felicidades!!!!");
+    void comprar(ActionEvent event) throws IOException {
+        Escenas.mostrarEscenaSig(horario, "sala");
     }
 }
