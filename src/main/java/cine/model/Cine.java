@@ -1,5 +1,7 @@
 package cine.model;
 
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -7,86 +9,80 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
-import cine.model.Errores.ErrorUsuario;
 
 public class Cine {
     private MySQL database = new MySQL();
-    private Mensajeria mensajes = new Mensajeria();
+    private Conversor conversor = new Conversor();
+    private Verificador verificador = new Verificador(database);
     private String usuarioNombre;
     private String tituloPelicula;
     private String fechaPelicula; 
+    private char fila;
+    private char columna;
 
-    private boolean nombreEnBlanco(String nombre) {
-        return this.mensajes.setMensaje(nombre.isBlank(), ErrorUsuario.NOMBRE_CAMPO);
-    }
-
-    private boolean contraseniaEnBlanco(String contrasenia) {
-        return this.mensajes.setMensaje(contrasenia.isBlank(), ErrorUsuario.CONTRASENIA_CAMPO);
-    }
-
-    private boolean confirmarContraseniaEnBlanco(String confirmarContrasenia) {
-        return this.mensajes.setMensaje(confirmarContrasenia.isBlank(), ErrorUsuario.CONTRASENIA_CONFIRMAR_CAMPO);
-    }
-
-    private boolean DNIEnBlanco(String DNI) {
-        return this.mensajes.setMensaje(DNI.isBlank(), ErrorUsuario.DNI_CAMPO);
-    }
-
-    private boolean emailEnBlanco(String email) {
-        return this.mensajes.setMensaje(email.isBlank(), ErrorUsuario.EMAIL_CAMPO);
-    }
-    private boolean estaEnDB(String nombre) {
-        boolean resultado = this.database.pertenece("usuario", "nombre", "nombre", nombre);
-        return this.mensajes.setMensaje(resultado, ErrorUsuario.USUARIO_REGISTRADO, ErrorUsuario.USUARIO_NO_REGISTRADO);
-    }
-
-    private boolean contraseniaCorrecta(String contrasenia, String contraseniaObtenida) {
-        boolean resultado = this.database.compararContrasenias(contrasenia, contraseniaObtenida);
-        return this.mensajes.setMensaje(resultado, null , ErrorUsuario.CONTRASENIA_INCORRECTA);
-    }
-
-    private boolean NoCoincidenContrasenias(String contrasenia, String confirmarContrasenia) {
-        boolean resultado = !contrasenia.equals(confirmarContrasenia);
-        return this.mensajes.setMensaje(resultado, ErrorUsuario.CONTRASENIAS_DISTINTAS);
-    }
-
-    public boolean login(String nombre, String contrasenia) {
-        if (this.nombreEnBlanco(nombre) || this.contraseniaEnBlanco(contrasenia) || !this.estaEnDB(nombre)) return false;
-        String contraseniaObtenida = this.database.getValor("usuario", "contrasenia" , "nombre" , nombre).iterator().next();
-        return this.contraseniaCorrecta(contrasenia, contraseniaObtenida);
+    private void cerrarConeccion(Connection conn) {
+        try {
+            conn.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     public boolean register(String nombre, String dni , String email, String contrasenia, String confirmarContrasenia) {
-        if (this.nombreEnBlanco(nombre) || this.DNIEnBlanco(dni) || this.emailEnBlanco(email)) return false;
-        if (this.contraseniaEnBlanco(contrasenia) || this.confirmarContraseniaEnBlanco(confirmarContrasenia)) return false;
-        if (this.NoCoincidenContrasenias(contrasenia, confirmarContrasenia)) return false;
-        if (this.estaEnDB(nombre)) return false;
+        Connection conn = this.database.conectarMySQL();
+        if (verificador.registerError(nombre, dni, email, contrasenia, confirmarContrasenia)) return false;
         List<String> columnas = Arrays.asList(new String[]{"nombre","contrasenia", "dni", "email"});
         List<String> valores = Arrays.asList(new String[]{nombre, contrasenia, dni, email});
         List<Integer> encryptar = Arrays.asList(new Integer[]{1});
-        return this.database.agregar("usuario", columnas, valores, encryptar);
+        boolean resultado = this.database.agregar(conn, "usuario", columnas, valores, encryptar);
+        this.cerrarConeccion(conn);
+        return resultado;
+    }
+
+    public boolean login(String nombre, String contrasenia) {
+        Connection conn = this.database.conectarMySQL();
+        if (verificador.loginParteUnoError(nombre, contrasenia)) return false;
+        String contraseniaObtenida = this.database.getValor(conn, "usuario", "contrasenia" , "nombre" , nombre).iterator().next();
+        this.cerrarConeccion(conn);
+        return !this.verificador.loginParteDosError(contrasenia, contraseniaObtenida);
     }
 
     public ArrayList<String> getFechas() { 
-        ArrayList<String> fechasObtenidas = this.database.getValor("sala", "fecha", "titulo", this.tituloPelicula);
+        Connection conn = this.database.conectarMySQL();
+        ArrayList<String> fechasObtenidas = this.database.getValor(conn, "sala", "fecha", "titulo", this.tituloPelicula);
         Set<String> unicasFechas = new LinkedHashSet<>(fechasObtenidas);
         ArrayList<String> fechas = new ArrayList<>(unicasFechas);
         Collections.sort(fechas);
+        this.cerrarConeccion(conn);
         return fechas;
     }
 
     public ArrayList<String> getHorarios() { 
+        Connection conn = this.database.conectarMySQL();
         List<String> condiciones =  Arrays.asList(new String[]{"fecha", "titulo"});
         List<String> valores =  Arrays.asList(new String[]{this.fechaPelicula, this.tituloPelicula});
-        return this.database.getValorVariasCondiciones("sala", "horario", condiciones, valores);
+        ArrayList<String> resultado = this.database.getValorVariasCondiciones(conn, "sala", "horario", condiciones, valores);
+        this.cerrarConeccion(conn);
+        return resultado;
+    }
+
+    public ArrayList<ArrayList<String>> getCartelera(String offset) {
+        Connection conn = this.database.conectarMySQL();
+        List<String> columnas = Arrays.asList(new String[]{"titulo", "fecha" , "audio", "subtitulo", "duracion", "imagen" }); 
+        ArrayList<ArrayList<String>> filas = this.database.getValorLimitOffset(conn, "pelicula", columnas, "2", offset);
+        this.cerrarConeccion(conn);
+        return filas;
     }
 
     public String getMensaje() {
-        return this.mensajes.getMensaje();
+        return this.verificador.getMensajeError();
     }
 
     public List<String> obtenerUsuarios() {
-        return this.database.getValor("usuario", "nombre", null , null);
+        Connection conn = this.database.conectarMySQL();
+        ArrayList<String> resultado =  this.database.getValor(conn, "usuario", "nombre", null , null);
+        this.cerrarConeccion(conn);
+        return resultado;
     }
 
     public void setUsuarioNombre(String usuarioNombre) {
@@ -101,6 +97,15 @@ public class Cine {
         this.fechaPelicula = fechaPelicula;
     }
 
+    public void setFila(int fila) {
+        this.fila = this.conversor.pasarNumeroLetra(fila);
+    }
+
+    public void setColumna(int columna) {
+        char letra = String.valueOf(columna).charAt(0);
+        this.columna = Character.valueOf(letra);
+    }
+
     public String getUsuarioNombre() {
         return this.usuarioNombre;
     }
@@ -113,9 +118,18 @@ public class Cine {
         return this.fechaPelicula;
     }
 
+    public char getColumna() {
+        return this.columna;
+    }
+
+    public char getFila() {
+        return this.fila;
+    }
 
     public void reiniciarValores() {
         this.tituloPelicula = null;
         this.fechaPelicula = null;
+        this.columna = Character.MIN_VALUE;
+        this.fila = Character.MIN_VALUE;
     }
 }

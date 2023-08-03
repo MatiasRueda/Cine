@@ -25,6 +25,7 @@ public class MySQLTest {
     final private List<String> COLUMNAS = Arrays.asList(new String[]{"nombre" ,"contrasenia", "dni", "email"});
     final private List<String> VALORES = Arrays.asList(new String[]{NOMBRE, CONTRASENIA, DNI , EMAIL});
     final private List<Integer> ENCRYPTAR = Arrays.asList(new Integer[]{1});
+    private Connection conn;
 
     private void eliminarUsuario(String nombre) {
         try {
@@ -42,73 +43,75 @@ public class MySQLTest {
     @Before
     public void preparativos() {
         this.database = new MySQL();
+        conn = this.database.conectarMySQL();
     }
 
     @After
-    public void limpiarTabla() {
+    public void limpiarTabla() throws SQLException {
         this.eliminarUsuario(this.NOMBRE);
+        conn.close();
     }
 
     @Test
     public void agregarTrueTest() {
-        assertTrue(this.database.agregar(this.TABLA_USUARIO, this.COLUMNAS, this.VALORES, this.ENCRYPTAR));
+        assertTrue(this.database.agregar(this.conn, this.TABLA_USUARIO, this.COLUMNAS, this.VALORES, this.ENCRYPTAR));
     }
 
     @Test
     public void perteneceUnUsuarioNoAgregadoFalseTest() {
-        assertFalse(this.database.pertenece(this.TABLA_USUARIO, "nombre", "nombre", this.NOMBRE));
+        assertFalse(this.database.pertenece(this.conn, this.TABLA_USUARIO, "nombre", "nombre", this.NOMBRE));
     }
 
     @Test
     public void perteneceUnUsuarioSiAgregadoTrueTest() {
-        this.database.agregar(this.TABLA_USUARIO, this.COLUMNAS, this.VALORES, this.ENCRYPTAR);
-        assertTrue(this.database.pertenece(this.TABLA_USUARIO, "nombre", "nombre", this.NOMBRE));
+        this.database.agregar(this.conn, this.TABLA_USUARIO, this.COLUMNAS, this.VALORES, this.ENCRYPTAR);
+        assertTrue(this.database.pertenece(this.conn, this.TABLA_USUARIO, "nombre", "nombre", this.NOMBRE));
     }
 
     @Test
     public void devuelveListaVaciaSiNoEncuentraNadaTest() {
-        assertTrue(this.database.getValor(this.TABLA_USUARIO, "nombre", "nombre", this.NOMBRE).isEmpty());
+        assertTrue(this.database.getValor(this.conn, this.TABLA_USUARIO, "nombre", "nombre", this.NOMBRE).isEmpty());
     }
 
     @Test
     public void devuelveUnaListaNoVaciaSiEncuentraAlgoTest() {
-        this.database.agregar(this.TABLA_USUARIO, this.COLUMNAS, this.VALORES, this.ENCRYPTAR);
-        assertFalse(this.database.getValor(this.TABLA_USUARIO, "nombre", "nombre", this.NOMBRE).isEmpty());
+        this.database.agregar(this.conn, this.TABLA_USUARIO, this.COLUMNAS, this.VALORES, this.ENCRYPTAR);
+        assertFalse(this.database.getValor(this.conn, this.TABLA_USUARIO, "nombre", "nombre", this.NOMBRE).isEmpty());
     }
 
     @Test
     public void elValorEncontradoEsElPedidoTest() {
-        this.database.agregar(this.TABLA_USUARIO, this.COLUMNAS, this.VALORES, this.ENCRYPTAR);
-        String nombreEncontrado = this.database.getValor(this.TABLA_USUARIO, "nombre", "nombre", this.NOMBRE).iterator().next();
+        this.database.agregar(this.conn, this.TABLA_USUARIO, this.COLUMNAS, this.VALORES, this.ENCRYPTAR);
+        String nombreEncontrado = this.database.getValor(this.conn, this.TABLA_USUARIO, "nombre", "nombre", this.NOMBRE).iterator().next();
         assertEquals(this.NOMBRE, nombreEncontrado);
     }
 
     @Test
     public void compararMismasContraseniasTrueTest() {
-        this.database.agregar(this.TABLA_USUARIO, this.COLUMNAS, this.VALORES, this.ENCRYPTAR);
-        String contraseniaEncryptada = this.database.getValor(this.TABLA_USUARIO, "contrasenia", "nombre", this.NOMBRE).iterator().next();
+        this.database.agregar(this.conn, this.TABLA_USUARIO, this.COLUMNAS, this.VALORES, this.ENCRYPTAR);
+        String contraseniaEncryptada = this.database.getValor(this.conn, this.TABLA_USUARIO, "contrasenia", "nombre", this.NOMBRE).iterator().next();
         assertTrue(this.database.compararContrasenias(this.CONTRASENIA, contraseniaEncryptada));
     }
 
     @Test
     public void seGuardaUnaContraseniaDistintaTest() {
-        this.database.agregar(this.TABLA_USUARIO, this.COLUMNAS, this.VALORES, this.ENCRYPTAR);
-        String contraseniaGuardada = this.database.getValor(this.TABLA_USUARIO, "contrasenia", "nombre", this.NOMBRE).iterator().next();
+        this.database.agregar(this.conn, this.TABLA_USUARIO, this.COLUMNAS, this.VALORES, this.ENCRYPTAR);
+        String contraseniaGuardada = this.database.getValor(this.conn, this.TABLA_USUARIO, "contrasenia", "nombre", this.NOMBRE).iterator().next();
         assertNotEquals(contraseniaGuardada, this.CONTRASENIA);
     }
 
     @Test
     public void eliminarDevuelveTrueTest() {
-        this.database.agregar(this.TABLA_USUARIO, this.COLUMNAS, this.VALORES, this.ENCRYPTAR);
+        this.database.agregar(this.conn, this.TABLA_USUARIO, this.COLUMNAS, this.VALORES, this.ENCRYPTAR);
         assertTrue(this.database.eliminar("nombre", this.NOMBRE));
     }
 
     @Test
     public void seEliminaElUsuarioTest() {
-        this.database.agregar(this.TABLA_USUARIO, this.COLUMNAS, this.VALORES, this.ENCRYPTAR);
-        boolean estaVacia = this.database.getValor(this.TABLA_USUARIO, "nombre", "nombre", this.NOMBRE).isEmpty();
+        this.database.agregar(this.conn, this.TABLA_USUARIO, this.COLUMNAS, this.VALORES, this.ENCRYPTAR);
+        boolean estaVacia = this.database.getValor(this.conn, this.TABLA_USUARIO, "nombre", "nombre", this.NOMBRE).isEmpty();
         this.database.eliminar("nombre", this.NOMBRE);
-        boolean estaVaciaPostEliminar = this.database.getValor(this.TABLA_USUARIO, "nombre", "nombre", this.NOMBRE).isEmpty();
+        boolean estaVaciaPostEliminar = this.database.getValor(this.conn, this.TABLA_USUARIO, "nombre", "nombre", this.NOMBRE).isEmpty();
         assertNotEquals(estaVacia, estaVaciaPostEliminar);
     }
 }

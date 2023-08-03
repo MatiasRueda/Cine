@@ -2,11 +2,8 @@ package cine.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 import cine.model.Cine;
-import cine.model.MySQL;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -45,8 +42,6 @@ public class CarteleraController {
     @FXML
     private Button btnSiguiente;
 
-    private MySQL database = new MySQL();
-
     private Cine cine = MenuController.cine;
     
     private Peliculas pelicula;
@@ -60,8 +55,7 @@ public class CarteleraController {
     }
 
     private ArrayList<ArrayList<String>> cargarCartelera() {
-        List<String> columnas = Arrays.asList(new String[]{"titulo", "fecha" , "audio", "subtitulo", "duracion", "imagen" }); 
-        ArrayList<ArrayList<String>> filas = this.database.getValorLimitOffset("pelicula", columnas, "2", String.valueOf(this.pelicula.getOffset()));
+        ArrayList<ArrayList<String>> filas = this.cine.getCartelera(String.valueOf(this.pelicula.getOffset()));
         ArrayList<String> fila = filas.iterator().next();
         this.pelicula.setInformacion(fila);
         this.cine.setTituloPelicula(fila.iterator().next());

@@ -36,10 +36,9 @@ public class MySQL {
 
         return conn;
     }
-    public ArrayList<String> getValor(String tabla, String columna , String columCondicion, String valor) {
+    public ArrayList<String> getValor(Connection conn, String tabla, String columna , String columCondicion, String valor) {
         ArrayList<String> valoresObtenidos = new ArrayList<>();
         try {
-            Connection conn = this.conectarMySQL();
             String query = (columCondicion == null)? peticion.select(tabla, columna) : peticion.select(tabla, columna, columCondicion);
             PreparedStatement stmt = conn.prepareStatement(query);
             if (!columCondicion.isEmpty()) stmt.setString(1, valor);
@@ -47,7 +46,6 @@ public class MySQL {
             while(rs.next()) {
                 valoresObtenidos.add(rs.getString(columna));
             }
-            conn.close();
         } catch (SQLException e) {
             e.printStackTrace();
             return null;
@@ -55,10 +53,9 @@ public class MySQL {
         return valoresObtenidos;
     }
 
-    public ArrayList<String> getValorVariasCondiciones(String tabla, String columna , List<String> columCondicion, List<String> valores) {
+    public ArrayList<String> getValorVariasCondiciones(Connection conn, String tabla, String columna , List<String> columCondicion, List<String> valores) {
         ArrayList<String> valoresObtenidos = new ArrayList<>();
         try {
-            Connection conn = this.conectarMySQL();
             String query = peticion.select(tabla, columna, columCondicion);
             PreparedStatement stmt = conn.prepareStatement(query);
             int indice = 1;
@@ -70,7 +67,6 @@ public class MySQL {
             while(rs.next()) {
                 valoresObtenidos.add(rs.getString(columna));
             }
-            conn.close();
         } catch (SQLException e) {
             e.printStackTrace();
             return null;
@@ -78,10 +74,9 @@ public class MySQL {
         return valoresObtenidos;
     }
 
-    public ArrayList<ArrayList<String>> getValor(String tabla, List<String> columnas , String columCondicion, String valor) {
+    public ArrayList<ArrayList<String>> getValor(Connection conn, String tabla, List<String> columnas , String columCondicion, String valor) {
         ArrayList<ArrayList<String>> valoresObtenidos = new ArrayList<>();
         try {
-            Connection conn = this.conectarMySQL();
             String query = (columCondicion == null)? peticion.select(tabla, columnas) : peticion.select(tabla, columnas, columCondicion);
             PreparedStatement stmt = conn.prepareStatement(query);
             if (!(columCondicion == null)) stmt.setString(1, valor);
@@ -93,7 +88,6 @@ public class MySQL {
                 }
                 valoresObtenidos.add(fila);
             }
-            conn.close();
         } catch (SQLException e) {
             e.printStackTrace();
             return null;
@@ -102,10 +96,9 @@ public class MySQL {
     }
 
 
-    public ArrayList<ArrayList<String>> getValorLimitOffset(String tabla, List<String> columnas , String limit, String offset) {
+    public ArrayList<ArrayList<String>> getValorLimitOffset(Connection conn, String tabla, List<String> columnas , String limit, String offset) {
         ArrayList<ArrayList<String>> valoresObtenidos = new ArrayList<>();
         try {
-            Connection conn = this.conectarMySQL();
             String query = peticion.select(tabla, columnas, limit, offset);
             PreparedStatement stmt = conn.prepareStatement(query);
             ResultSet rs = stmt.executeQuery();
@@ -116,7 +109,6 @@ public class MySQL {
                 }
                 valoresObtenidos.add(fila);
             }
-            conn.close();
         } catch (SQLException e) {
             e.printStackTrace();
             return null;
@@ -125,9 +117,8 @@ public class MySQL {
     }
 
 
-    public boolean agregar(String tabla, List<String> columnas, List<String> valores, List<Integer> encryptar) {
+    public boolean agregar(Connection conn, String tabla, List<String> columnas, List<String> valores, List<Integer> encryptar) {
         try{
-            Connection conn = this.conectarMySQL();
             String query = this.peticion.insert(tabla, columnas);
             PreparedStatement stmt = conn.prepareStatement(query);
             for (int indice : encryptar) {
@@ -137,7 +128,6 @@ public class MySQL {
                 stmt.setString(indice + 1, valores.get(indice));
             }
             stmt.executeUpdate();
-            conn.close();
         } catch (SQLException e) {
             e.printStackTrace();
             return false;
@@ -160,8 +150,8 @@ public class MySQL {
         return true;
     }
 
-    public boolean pertenece(String tabla, String columna, String columCondicion, String valor) {
-        return !this.getValor(tabla, columna, columCondicion , valor).isEmpty();
+    public boolean pertenece(Connection conn, String tabla, String columna, String columCondicion, String valor) {
+        return !this.getValor(conn, tabla, columna, columCondicion , valor).isEmpty();
     }
 
     public boolean compararContrasenias(String contrasenia, String contraseniaEncryptada) {
