@@ -1,6 +1,7 @@
 package cine.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import cine.model.Cine;
 import javafx.event.ActionEvent;
@@ -12,6 +13,7 @@ import javafx.scene.layout.VBox;
 
 public class SalaController {
    private Cine cine = MenuController.cine;
+   private ArrayList<ArrayList<Integer>> reservas = this.cine.getFilaColumnaReservadas();
 
    @FXML
    private VBox sala;
@@ -28,18 +30,24 @@ public class SalaController {
       setActionGridPane(this.butacasDos);
    }
 
-   private void setColumnaFila(Node node) {
-      Integer columna = GridPane.getColumnIndex(node);
-      Integer fila = GridPane.getRowIndex(node);
-      this.cine.setColumna(columna);
+   private void setFilaColumna(Node node, Integer fila, Integer columna) {
       this.cine.setFila(fila);
+      this.cine.setColumna(columna);
    }
 
    private void setActionGridPane(GridPane gridpane) {
       for (Node node:  gridpane.getChildren()) {
          if (!(node instanceof Button)) continue;
          Button boton = (Button) node;
-         boton.setOnAction(e -> setColumnaFila(node));
+         Integer fila = GridPane.getRowIndex(node);
+         Integer columna = Integer.valueOf(boton.getText());
+         ArrayList<Integer> ubicacion = new ArrayList<>();
+         ubicacion.add(fila);
+         ubicacion.add(columna);
+         boton.setOnAction(e -> setFilaColumna(node, fila, columna));
+         if (!this.reservas.contains(ubicacion)) continue;
+         boton.setStyle("-fx-background-color: red");
+         boton.setDisable(true);
       }
    }
 
@@ -51,7 +59,8 @@ public class SalaController {
    @FXML
    void comprar(ActionEvent event) throws IOException {
       this.cine.guardarEleccion();
-      Escenas.mostrarEscenaSig(this.sala, "menu");
+      this.cine.reiniciarValores();
+      Escenas.mostrarEscenaSig(this.sala, "usuarioMenu");
    }
 
 }

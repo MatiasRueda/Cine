@@ -40,6 +40,20 @@ public class Cine {
         }
     }
 
+    private ArrayList<ArrayList<Integer>> covertirIntFilasColumnas(ArrayList<ArrayList<String>> filasColumnas) {
+        ArrayList<ArrayList<Integer>> reservas = new ArrayList<>();
+        for(ArrayList<String> filaColumna : filasColumnas)  {
+            ArrayList<Integer> reserva = new ArrayList<>();
+            char fila = filaColumna.get(0).charAt(0);
+            char columna = filaColumna.get(1).charAt(0);
+            reserva.add(this.conversor.pasarLetraNumero(fila));
+            reserva.add(Character.getNumericValue(columna));
+            reservas.add(reserva);
+        }
+        return reservas;
+    }
+    
+
     public boolean register(String nombre, String dni , String email, String contrasenia, String confirmarContrasenia) {
         Connection conn = this.database.conectarMySQL();
         if (verificador.registerError(nombre, dni, email, contrasenia, confirmarContrasenia)) return false;
@@ -77,6 +91,7 @@ public class Cine {
         ArrayList<ArrayList<String>> resultado = this.database.getValorVariasCondiciones(conn, "sala", columnas, condiciones, valores);
         this.cerrarConeccion(conn);
         setSalasHorarios(resultado);
+        Collections.sort(this.horarios);
         return this.horarios;
     }
 
@@ -86,6 +101,16 @@ public class Cine {
         ArrayList<ArrayList<String>> filas = this.database.getValorLimitOffset(conn, "pelicula", columnas, "2", offset);
         this.cerrarConeccion(conn);
         return filas;
+    }
+
+    public ArrayList<ArrayList<Integer>> getFilaColumnaReservadas() {
+        Connection conn = this.database.conectarMySQL();
+        List<String> columnas =  Arrays.asList(new String[]{"fila", "Columna"});
+        List<String> condiciones =  Arrays.asList(new String[]{"fecha", "sala", "horario"});
+        List<String> valores =  Arrays.asList(new String[]{this.fechaPelicula, this.sala, this.horario});
+        ArrayList<ArrayList<String>> resultado = this.database.getValorVariasCondiciones(conn, "reserva", columnas, condiciones, valores);
+        this.cerrarConeccion(conn);
+        return covertirIntFilasColumnas( resultado);
     }
 
     public String getMensaje() {
@@ -162,7 +187,10 @@ public class Cine {
 
     public void reiniciarValores() {
         this.tituloPelicula = null;
+        this.horario = null;
         this.fechaPelicula = null;
+        this.horarios = new ArrayList<>();
+        this.salas = new HashMap<>();
         this.columna = Character.MIN_VALUE;
         this.fila = Character.MIN_VALUE;
     }

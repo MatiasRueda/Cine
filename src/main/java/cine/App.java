@@ -20,6 +20,7 @@ public class App extends Application {
         String escenaInicial = "menu";
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(escenaInicial + ".fxml"));
         scene = new Scene(fxmlLoader.load(), 600, 400);
+        stage.setTitle("Cine");
         stage.setScene(scene);
         stage.setResizable(false);
         stage.show();
