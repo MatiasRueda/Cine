@@ -56,7 +56,7 @@ public class Cine {
 
     public boolean register(String nombre, String dni , String email, String contrasenia, String confirmarContrasenia) {
         Connection conn = this.database.conectarMySQL();
-        if (verificador.registerError(nombre, dni, email, contrasenia, confirmarContrasenia)) return false;
+        if (verificador.registerError(conn, nombre, dni, email, contrasenia, confirmarContrasenia)) return false;
         List<String> columnas = Arrays.asList(new String[]{"nombre","contrasenia", "dni", "email"});
         List<String> valores = Arrays.asList(new String[]{nombre, contrasenia, dni, email});
         List<Integer> encryptar = Arrays.asList(new Integer[]{1});
@@ -67,7 +67,7 @@ public class Cine {
 
     public boolean login(String nombre, String contrasenia) {
         Connection conn = this.database.conectarMySQL();
-        if (verificador.loginParteUnoError(nombre, contrasenia)) return false;
+        if (verificador.loginParteUnoError(conn, nombre, contrasenia)) return false;
         String contraseniaObtenida = this.database.getValor(conn, "usuario", "contrasenia" , "nombre" , nombre).iterator().next();
         this.cerrarConeccion(conn);
         return !this.verificador.loginParteDosError(contrasenia, contraseniaObtenida);

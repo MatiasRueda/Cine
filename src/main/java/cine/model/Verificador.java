@@ -1,7 +1,6 @@
 package cine.model;
 
 import java.sql.Connection;
-import java.sql.SQLException;
 
 import cine.model.Errores.ErrorUsuario;
 
@@ -11,14 +10,6 @@ public class Verificador {
 
     public Verificador(MySQL database) {
         this.database = database;
-    }
-
-    private void cerrarConeccion(Connection conn) {
-        try {
-            conn.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
     }
 
     private boolean nombreEnBlanco(String nombre) {
@@ -46,15 +37,13 @@ public class Verificador {
         return this.mensajes.setMensaje(resultado, ErrorUsuario.CONTRASENIAS_DISTINTAS);
     }
 
-    private boolean estaEnDB(String nombre) {
-        Connection conn = this.database.conectarMySQL();
+    private boolean estaEnDB(Connection conn, String nombre) {
         boolean resultado = this.database.pertenece(conn, "usuario", "nombre", "nombre", nombre);
-        this.cerrarConeccion(conn);
         return this.mensajes.setMensaje(resultado, ErrorUsuario.USUARIO_REGISTRADO, ErrorUsuario.USUARIO_NO_REGISTRADO);
     }
 
-    public boolean loginParteUnoError(String nombre, String contrasenia) {
-        return  (this.nombreEnBlanco(nombre) || this.contraseniaEnBlanco(contrasenia) || !this.estaEnDB(nombre));
+    public boolean loginParteUnoError(Connection conn, String nombre, String contrasenia) {
+        return  (this.nombreEnBlanco(nombre) || this.contraseniaEnBlanco(contrasenia) || !this.estaEnDB(conn, nombre));
     }
 
     public boolean loginParteDosError(String contrasenia, String contraseniaObtenida) {
@@ -63,11 +52,11 @@ public class Verificador {
         return resultado;
     }
     
-    public boolean registerError(String nombre, String dni, String email, String contrasenia, String confirmarContrasenia) {
+    public boolean registerError(Connection conn, String nombre, String dni, String email, String contrasenia, String confirmarContrasenia) {
         if (this.nombreEnBlanco(nombre) || this.DNIEnBlanco(dni) || this.emailEnBlanco(email)) return true;
         if (this.contraseniaEnBlanco(contrasenia) || this.confirmarContraseniaEnBlanco(confirmarContrasenia)) return true;
         if (this.NoCoincidenContrasenias(contrasenia, confirmarContrasenia)) return true;
-        if (this.estaEnDB(nombre)) return true;
+        if (this.estaEnDB(conn, nombre)) return true;
         return false;
     }
 
