@@ -14,6 +14,9 @@ import javafx.scene.layout.VBox;
 public class SalaController {
    private Cine cine = MenuController.cine;
    private ArrayList<ArrayList<Integer>> reservas = this.cine.getFilaColumnaReservadas();
+   private Button anteriorBtn;
+   private String DEFAULT_STYLE = "-fx-border-color: black; -fx-text-fill: black; -fx-background-color: white;";
+   private String SELECT_STYLE = "-fx-border-color: black; -fx-text-fill: white; -fx-background-color: green;";
 
    @FXML
    private VBox sala;
@@ -30,7 +33,10 @@ public class SalaController {
       setActionGridPane(this.butacasDos);
    }
 
-   private void setFilaColumna(Node node, Integer fila, Integer columna) {
+   private void action(Node node, Integer fila, Integer columna) {
+      if (this.anteriorBtn != null) anteriorBtn.setStyle(this.DEFAULT_STYLE);
+      node.setStyle(this.SELECT_STYLE);
+      this.anteriorBtn = (Button) node;
       this.cine.setFila(fila);
       this.cine.setColumna(columna);
    }
@@ -44,7 +50,7 @@ public class SalaController {
          ArrayList<Integer> ubicacion = new ArrayList<>();
          ubicacion.add(fila);
          ubicacion.add(columna);
-         boton.setOnAction(e -> setFilaColumna(node, fila, columna));
+         boton.setOnAction(e -> action(node, fila, columna));
          if (!this.reservas.contains(ubicacion)) continue;
          boton.setStyle("-fx-background-color: red");
          boton.setDisable(true);

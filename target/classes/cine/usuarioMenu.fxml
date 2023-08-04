@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.HBox?>
@@ -12,13 +13,25 @@
    <children>
       <VBox fillWidth="false" prefHeight="400.0" prefWidth="200.0">
          <children>
-            <Button mnemonicParsing="false" onAction="#comprar" prefHeight="70.0" prefWidth="200.0" text="Comprar" />
+            <Button mnemonicParsing="false" onAction="#comprar" prefHeight="70.0" prefWidth="200.0" text="Comprar">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Button>
             <Region prefHeight="40.0" prefWidth="200.0" />
-            <Button mnemonicParsing="false" onAction="#promos" prefHeight="70.0" prefWidth="200.0" text="Promos" />
+            <Button mnemonicParsing="false" onAction="#promos" prefHeight="70.0" prefWidth="200.0" text="Promos">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Button>
             <Region prefHeight="40.0" prefWidth="200.0" />
-            <Button mnemonicParsing="false" onAction="#perfil" prefHeight="70.0" prefWidth="200.0" text="Perfil" />
+            <Button mnemonicParsing="false" onAction="#perfil" prefHeight="70.0" prefWidth="200.0" text="Perfil">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Button>
             <Region prefHeight="40.0" prefWidth="200.0" />
-            <Button mnemonicParsing="false" onAction="#salir" prefHeight="70.0" prefWidth="200.0" text="Salir" />
+            <Button mnemonicParsing="false" onAction="#salir" prefHeight="70.0" prefWidth="200.0" text="Salir">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Button>
          </children>
       </VBox>
       <VBox alignment="TOP_CENTER" fillWidth="false" prefHeight="200.0" prefWidth="400.0">
