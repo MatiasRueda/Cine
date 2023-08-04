@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.LinkedHashSet;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
 
@@ -14,9 +15,13 @@ public class Cine {
     private MySQL database = new MySQL();
     private Conversor conversor = new Conversor();
     private Verificador verificador = new Verificador(database);
+    private HashMap<String, String> salas = new HashMap<>();
+    private ArrayList<String> horarios  = new ArrayList<>();
     private String usuarioNombre;
     private String tituloPelicula;
     private String fechaPelicula; 
+    private String horario;
+    private String sala;
     private char fila;
     private char columna;
 
@@ -25,6 +30,13 @@ public class Cine {
             conn.close();
         } catch (SQLException e) {
             e.printStackTrace();
+        }
+    }
+
+    private void setSalasHorarios(ArrayList<ArrayList<String>> salasHorarios) {
+        for(ArrayList<String> salaHorario : salasHorarios)  {
+            salas.put(salaHorario.get(1), salaHorario.get(0));
+            horarios.add(salaHorario.get(1));
         }
     }
 
@@ -59,11 +71,13 @@ public class Cine {
 
     public ArrayList<String> getHorarios() { 
         Connection conn = this.database.conectarMySQL();
+        List<String> columnas =  Arrays.asList(new String[]{"sala", "horario"});
         List<String> condiciones =  Arrays.asList(new String[]{"fecha", "titulo"});
         List<String> valores =  Arrays.asList(new String[]{this.fechaPelicula, this.tituloPelicula});
-        ArrayList<String> resultado = this.database.getValorVariasCondiciones(conn, "sala", "horario", condiciones, valores);
+        ArrayList<ArrayList<String>> resultado = this.database.getValorVariasCondiciones(conn, "sala", columnas, condiciones, valores);
         this.cerrarConeccion(conn);
-        return resultado;
+        setSalasHorarios(resultado);
+        return this.horarios;
     }
 
     public ArrayList<ArrayList<String>> getCartelera(String offset) {
@@ -78,11 +92,14 @@ public class Cine {
         return this.verificador.getMensajeError();
     }
 
-    public List<String> obtenerUsuarios() {
+    
+    public boolean guardarEleccion() {
         Connection conn = this.database.conectarMySQL();
-        ArrayList<String> resultado =  this.database.getValor(conn, "usuario", "nombre", null , null);
+        List<String> columnas =  Arrays.asList(new String[]{"reservado_por", "titulo", "fecha" ,"sala", "horario", "fila" , "columna"});
+        List<String> valores =  Arrays.asList(new String[]{this.usuarioNombre, this.tituloPelicula, this.fechaPelicula, this.salas.get(this.horario) ,this.horario, String.valueOf(this.fila), String.valueOf(this.columna)});
+        this.database.agregar(conn, "reserva", columnas, valores, new ArrayList<>());
         this.cerrarConeccion(conn);
-        return resultado;
+        return true;
     }
 
     public void setUsuarioNombre(String usuarioNombre) {
@@ -96,6 +113,15 @@ public class Cine {
     public void setFechaPelicula(String fechaPelicula) {
         this.fechaPelicula = fechaPelicula;
     }
+
+    public void setHorario(String horario) {
+        this.horario = horario;
+    }
+
+    public void setSala(String horario) {
+        this.sala = this.salas.get(horario);
+    }
+
 
     public void setFila(int fila) {
         this.fila = this.conversor.pasarNumeroLetra(fila);
@@ -118,11 +144,19 @@ public class Cine {
         return this.fechaPelicula;
     }
 
-    public char getColumna() {
+    public String getHorario() {
+        return this.horario;
+    }
+
+    public String getSala() {
+        return this.sala;
+    }
+
+    public Character getColumna() {
         return this.columna;
     }
 
-    public char getFila() {
+    public Character getFila() {
         return this.fila;
     }
 

@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cine.controller.SalaController">
+<VBox fx:id="sala" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cine.controller.SalaController">
    <children>
       <VBox fillWidth="false" prefHeight="300.0" prefWidth="100.0">
          <children>
@@ -64,12 +64,12 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Button>
-                        <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" style="-fx-background-color: white;" text="1"  GridPane.columnIndex="0" GridPane.rowIndex="1">
+                        <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" style="-fx-background-color: white;" text="1" GridPane.columnIndex="0" GridPane.rowIndex="1">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Button>
-                        <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" style="-fx-background-color: white;" text="1"  GridPane.columnIndex="0" GridPane.rowIndex="2">
+                        <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" style="-fx-background-color: white;" text="1" GridPane.columnIndex="0" GridPane.rowIndex="2">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
@@ -170,7 +170,7 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Button>
-                        <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" style="-fx-background-color: white;" text="3"  GridPane.columnIndex="0" GridPane.rowIndex="4">
+                        <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" style="-fx-background-color: white;" text="3" GridPane.columnIndex="0" GridPane.rowIndex="4">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>

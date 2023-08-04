@@ -24,8 +24,8 @@ public class UsuarioMenuController {
     }
 
     @FXML
-    void comprar(ActionEvent event) {
-
+    void comprar(ActionEvent event) throws IOException {
+        Escenas.mostrarEscenaSig(usuarioMenu, "comprar");
     }
 
     @FXML
