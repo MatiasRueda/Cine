@@ -16,6 +16,11 @@ public class MenuController {
 
     @FXML
     void comprar(ActionEvent event) throws IOException {
+        if (cine.getUsuarioNombre() == null) {
+            Escenas.mostrarMsjError("Es necesario ingresar");
+            Escenas.mostrarEscenaSig(menu, "login");
+            return;
+        }
         Escenas.mostrarEscenaSig(menu, "comprar");
     }
 

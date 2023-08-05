@@ -1,6 +1,7 @@
 .button
 {
     -fx-border-color: black;
+    -fx-border-width: 2;
     -fx-background-color: white;
 }
 
@@ -10,4 +11,10 @@
     -fx-text-fill: white;
     -fx-border-color: white;
 
+}
+
+#opciones
+{
+    -fx-background-color: rgb(220, 219, 219);
+    -fx-border-color: black ;
 }

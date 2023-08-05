@@ -33,11 +33,7 @@ public class FechaController {
     @FXML
     void cancelar(ActionEvent event) throws IOException {
         this.cine.reiniciarValores();
-        if (this.cine.getUsuarioNombre() == null) {
-            Escenas.mostrarEscenaSig(fecha, "menu");
-            return;
-        }
-        Escenas.mostrarEscenaSig(fecha, "usuarioMenu");
+        Escenas.mostrarEscenaSig(this.fecha, "usuarioMenu");
     }
 
     @FXML

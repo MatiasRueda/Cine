@@ -59,7 +59,9 @@ public class SalaController {
 
 
    @FXML
-   void cancelar(ActionEvent event) {
+   void cancelar(ActionEvent event) throws IOException{
+      this.cine.reiniciarValores();
+      Escenas.mostrarEscenaSig(this.sala, "usuarioMenu");
    }
 
    @FXML

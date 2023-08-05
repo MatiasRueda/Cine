@@ -64,7 +64,8 @@ public class CarteleraController {
 
     @FXML
     void cancelar(ActionEvent event) throws IOException {
-        Escenas.mostrarEscenaSig(this.cartelera, "menu");
+        this.cine.reiniciarValores();
+        Escenas.mostrarEscenaSig(this.cartelera, "usuarioMenu");
     }
 
     @FXML

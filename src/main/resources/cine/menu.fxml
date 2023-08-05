@@ -10,7 +10,7 @@
 
 <HBox fx:id="menu" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@../estilos/menu.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cine.controller.MenuController">
    <children>
-      <VBox alignment="CENTER" fillWidth="false" prefHeight="400.0" prefWidth="200.0">
+      <VBox fx:id="opciones" alignment="CENTER" fillWidth="false" prefHeight="400.0" prefWidth="200.0">
          <children>
             <Button mnemonicParsing="false" onAction="#comprar" prefHeight="60.0" prefWidth="200.0" text="Comprar">
                <cursor>
