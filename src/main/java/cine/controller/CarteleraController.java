@@ -9,6 +9,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -43,21 +44,24 @@ public class CarteleraController {
     private Button btnSiguiente;
 
     private Cine cine = MenuController.cine;
-    
-    private Peliculas pelicula;
+    private int offset = 0;
     
     @FXML
     void initialize() {
-        this.pelicula = new Peliculas(titulo, fecha, audio, subtitulos, duracion, imagen);
-        this.btnAnterior.setDisable(true);
         ArrayList<ArrayList<String>> filas = this.cargarCartelera();
         if (filas.size() == 1) btnSiguiente.setDisable(true);
     }
 
     private ArrayList<ArrayList<String>> cargarCartelera() {
-        ArrayList<ArrayList<String>> filas = this.cine.getCartelera(String.valueOf(this.pelicula.getOffset()));
+        ArrayList<ArrayList<String>> filas = this.cine.getCartelera(String.valueOf(offset));
         ArrayList<String> fila = filas.iterator().next();
-        this.pelicula.setInformacion(fila);
+        this.titulo.setText(fila.get(0));
+        this.fecha.setText(fila.get(1));
+        this.audio.setText(fila.get(2));
+        this.subtitulos.setText(fila.get(3));
+        this.duracion.setText(fila.get(4));
+        Image imagenPeli = new Image(fila.get(5), 125, 175, false, false);
+        this.imagen.setImage(imagenPeli);
         this.cine.setTituloPelicula(fila.iterator().next());
         return filas;
     }
@@ -82,9 +86,9 @@ public class CarteleraController {
             @Override
             public void run() {
                 btnSiguiente.setDisable(false);
-                pelicula.bajarOffset();
+                offset--;
                 cargarCartelera();
-                if (pelicula.getOffset() == 0) btnAnterior.setDisable(true);
+                if (offset == 0) btnAnterior.setDisable(true);
                 secundaryStage.close();
             }
             
@@ -99,7 +103,7 @@ public class CarteleraController {
             @Override
             public void run() {
                 btnAnterior.setDisable(false);
-                pelicula.subirOffset();
+                offset++;
                 ArrayList<ArrayList<String>> filas = cargarCartelera();
                 if (filas.size() == 1) btnSiguiente.setDisable(true);
                 secundaryStage.close();

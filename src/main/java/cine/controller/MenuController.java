@@ -5,15 +5,20 @@ import java.io.IOException;
 import cine.model.Cine;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
 public class MenuController {
-    
+
     public final static Cine cine = new Cine();
 
     @FXML
     private HBox menu;
+
+    @FXML
+    private Button salirBtn;
+
     
     @FXML
     void comprar(ActionEvent event) throws IOException {
@@ -38,7 +43,8 @@ public class MenuController {
 
     @FXML
     void salir(ActionEvent event) {
-
+        Stage stage = (Stage) this.salirBtn.getScene().getWindow();
+        stage.close();
     }
 
 

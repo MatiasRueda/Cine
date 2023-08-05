@@ -24,7 +24,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor></Button>
             <Region prefHeight="110.0" prefWidth="200.0" />
-            <Button mnemonicParsing="false" onAction="#salir" prefHeight="60.0" prefWidth="200.0" text="Salir">
+            <Button fx:id="salirBtn" mnemonicParsing="false" onAction="#salir" prefHeight="60.0" prefWidth="200.0" text="Salir">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></Button>
