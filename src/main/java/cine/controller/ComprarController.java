@@ -11,13 +11,14 @@ import javafx.scene.layout.HBox;
 // Candy: https://pixabay.com/es/vectors/palomitas-caja-bocadillo-película-4788367/
 
 public class ComprarController {
+    private Escenas escenas = MenuController.escenas;
 
     @FXML
     private HBox comprar;
 
     @FXML
     void pelicula(ActionEvent event) throws IOException, InterruptedException {
-        Escenas.cargarSiguienteEscena(comprar, "cartelera");
+        this.escenas.cargarSiguienteEscena("cartelera");
     }
 
     @FXML

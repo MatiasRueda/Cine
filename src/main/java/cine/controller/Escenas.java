@@ -13,21 +13,25 @@ import javafx.stage.StageStyle;
 import cine.App;
 
 public class Escenas {
+    private Stage primaryStage;
 
-    public static FXMLLoader getFXML(String fxml) {
+    public void setPrimaryStage(Stage stage) {
+        this.primaryStage = stage;
+    }
+
+    public FXMLLoader getFXML(String fxml) {
         return new FXMLLoader(App.class.getResource(fxml + ".fxml"));
     }
 
-    public static Parent loadFXML(String fxml) throws IOException {
-        FXMLLoader fxmlLoader = getFXML(fxml);
+    public Parent loadFXML(String fxml) throws IOException {
+        FXMLLoader fxmlLoader = this.getFXML(fxml);
         return fxmlLoader.load();
     }
 
-    static public void mostrarEscenaSig(Pane escenaActual, String siguienteEscena) throws IOException{
+    public void mostrarEscenaSig(String siguienteEscena) throws IOException{
         Parent root = loadFXML(siguienteEscena);
         Scene scena = new Scene(root);
-        Stage stage = (Stage)escenaActual.getScene().getWindow();
-        stage.setScene(scena);
+        this.primaryStage.setScene(scena);
     }
 
     static public void mostrarEscenaSig(Pane escenaActual, Parent siguienteEscena) throws IOException{
@@ -45,27 +49,27 @@ public class Escenas {
         return stage;
     }
 
-    public static void mostrarMsjError(Stage primaryStage, String mensaje) throws IOException{
-        FXMLLoader fxmlLoader = Escenas.getFXML("mensaje");
+    public void mostrarMsjError(String mensaje) throws IOException{
+        FXMLLoader fxmlLoader = this.getFXML("mensaje");
         Parent root = fxmlLoader.load();
         MensajeController mensajeCtrller = fxmlLoader.getController();
         mensajeCtrller.setMensaje(mensaje);
         Stage secundaryStage = Escenas.getStage(root, Modality.APPLICATION_MODAL, StageStyle.UNDECORATED);
         secundaryStage.setWidth(250);
         secundaryStage.setHeight(150);
-        secundaryStage.setX(primaryStage.getX() + primaryStage.getWidth() / 2 - secundaryStage.getWidth() / 2);
-        secundaryStage.setY(primaryStage.getY() + primaryStage.getHeight() / 2 - secundaryStage.getHeight() / 2);
+        secundaryStage.setX(this.primaryStage.getX() + this.primaryStage.getWidth() / 2 - secundaryStage.getWidth() / 2);
+        secundaryStage.setY(this.primaryStage.getY() + this.primaryStage.getHeight() / 2 - secundaryStage.getHeight() / 2);
         secundaryStage.showAndWait();
     }
 
-    public static Stage armarPantallaCarga(Stage primaryStage) throws IOException {
-        Parent pantallaCarga = Escenas.loadFXML("carga");
+    public Stage armarPantallaCarga() throws IOException {
+        Parent pantallaCarga = this.loadFXML("carga");
         Scene sceneCarga = new Scene(pantallaCarga);
         Stage secundaryStage = new Stage();
         secundaryStage.setWidth(250);
         secundaryStage.setHeight(75);
-        secundaryStage.setX(primaryStage.getX() + primaryStage.getWidth() / 2 - secundaryStage.getWidth() / 2);
-        secundaryStage.setY(primaryStage.getY() + primaryStage.getHeight() / 2 - secundaryStage.getHeight() / 2);
+        secundaryStage.setX(this.primaryStage.getX() + this.primaryStage.getWidth() / 2 - secundaryStage.getWidth() / 2);
+        secundaryStage.setY(this.primaryStage.getY() + this.primaryStage.getHeight() / 2 - secundaryStage.getHeight() / 2);
         secundaryStage.setResizable(false);
         secundaryStage.initModality(Modality.APPLICATION_MODAL);
         secundaryStage.initStyle(StageStyle.UNDECORATED);
@@ -74,15 +78,14 @@ public class Escenas {
         return secundaryStage;
     }
 
-    public static void cargarSiguienteEscena(Pane escenaActual, String siguienteEscena) throws IOException {
-        Stage primaryStage = (Stage)escenaActual.getScene().getWindow();
-        Stage secundaryStage = armarPantallaCarga(primaryStage);
+    public void cargarSiguienteEscena(String siguienteEscena) throws IOException {
+        Stage secundaryStage = this.armarPantallaCarga();
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
                 Parent cartelera;
                 try {
-                    cartelera = Escenas.loadFXML(siguienteEscena);
+                    cartelera = loadFXML(siguienteEscena);
                     Scene sceneCartelera = new Scene(cartelera);
                     primaryStage.setScene(sceneCartelera);
                     primaryStage.show();

@@ -12,7 +12,9 @@ import javafx.scene.layout.VBox;
 
 public class FechaController {
 
-    Cine cine = MenuController.cine;
+    private Cine cine = MenuController.cine;
+    private Escenas escenas = MenuController.escenas;
+
     Armador armadoFichas = new Armador("white", "red");
 
     @FXML
@@ -33,13 +35,13 @@ public class FechaController {
     @FXML
     void cancelar(ActionEvent event) throws IOException {
         this.cine.reiniciarValores();
-        Escenas.mostrarEscenaSig(this.fecha, "usuarioMenu");
+        this.escenas.mostrarEscenaSig("usuarioMenu");
     }
 
     @FXML
     void continuar(ActionEvent event) throws IOException {
         this.cine.setFechaPelicula(this.armadoFichas.getEleccion());
-        Escenas.mostrarEscenaSig(fecha, "horario");
+        this.escenas.mostrarEscenaSig("horario");
     }
 
 }

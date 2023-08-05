@@ -12,6 +12,7 @@ import javafx.stage.Stage;
 public class MenuController {
 
     public final static Cine cine = new Cine();
+    public static Escenas escenas = new Escenas();
 
     @FXML
     private HBox menu;
@@ -19,26 +20,28 @@ public class MenuController {
     @FXML
     private Button salirBtn;
 
-    
+    public void setStage(Stage stage) {
+        escenas.setPrimaryStage(stage);
+    }
+
     @FXML
     void comprar(ActionEvent event) throws IOException {
         if (cine.getUsuarioNombre() == null) {
-            Stage primaryStage = (Stage)menu.getScene().getWindow();
-            Escenas.mostrarMsjError(primaryStage , "Es necesario ingresar");
-            Escenas.mostrarEscenaSig(menu, "login");
+            escenas.mostrarMsjError("Es necesario ingresar");
+            escenas.mostrarEscenaSig("login");
             return;
         }
-        Escenas.mostrarEscenaSig(menu, "comprar");
+        escenas.mostrarEscenaSig("comprar");
     }
 
     @FXML
     void promos(ActionEvent event) throws IOException {
-        Escenas.mostrarEscenaSig(menu, "promos");
+        escenas.mostrarEscenaSig("promos");
     }
 
     @FXML
     void unirse(ActionEvent event) throws IOException {
-        Escenas.mostrarEscenaSig(menu, "login");
+        escenas.mostrarEscenaSig("login");
     }
 
     @FXML
@@ -46,7 +49,5 @@ public class MenuController {
         Stage stage = (Stage) this.salirBtn.getScene().getWindow();
         stage.close();
     }
-
-
 
 }

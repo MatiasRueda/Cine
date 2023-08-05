@@ -11,6 +11,7 @@ import javafx.scene.layout.VBox;
 
 public class UsuarioMenuController {
     private Cine cine = MenuController.cine;
+    private Escenas escenas = MenuController.escenas;
 
     @FXML
     private HBox usuarioMenu;
@@ -29,7 +30,7 @@ public class UsuarioMenuController {
 
     @FXML
     void comprar(ActionEvent event) throws IOException {
-        Escenas.mostrarEscenaSig(this.usuarioMenu, "comprar");
+        this.escenas.mostrarEscenaSig("comprar");
     }
 
     @FXML
@@ -45,7 +46,7 @@ public class UsuarioMenuController {
     @FXML
     void salir(ActionEvent event) throws IOException {
         this.cine.setUsuarioNombre(null);
-        Escenas.mostrarEscenaSig(usuarioMenu, "menu");
+        this.escenas.mostrarEscenaSig("menu");
     }
 
 }

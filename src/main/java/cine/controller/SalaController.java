@@ -13,6 +13,7 @@ import javafx.scene.layout.VBox;
 
 public class SalaController {
    private Cine cine = MenuController.cine;
+   private Escenas escenas = MenuController.escenas;
    private ArrayList<ArrayList<Integer>> reservas = this.cine.getFilaColumnaReservadas();
    private Button anteriorBtn;
    private String DEFAULT_STYLE = "-fx-border-color: black; -fx-text-fill: black; -fx-background-color: white;";
@@ -61,14 +62,14 @@ public class SalaController {
    @FXML
    void cancelar(ActionEvent event) throws IOException{
       this.cine.reiniciarValores();
-      Escenas.mostrarEscenaSig(this.sala, "usuarioMenu");
+      this.escenas.mostrarEscenaSig("usuarioMenu");
    }
 
    @FXML
    void comprar(ActionEvent event) throws IOException {
       this.cine.guardarEleccion();
       this.cine.reiniciarValores();
-      Escenas.mostrarEscenaSig(this.sala, "usuarioMenu");
+      this.escenas.mostrarEscenaSig("usuarioMenu");
    }
 
 }

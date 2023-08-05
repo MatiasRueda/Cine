@@ -7,6 +7,8 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+import cine.controller.MenuController;
+
 /**
  * JavaFX App
  */
@@ -23,6 +25,7 @@ public class App extends Application {
         stage.setTitle("Cine");
         stage.setScene(scene);
         stage.setResizable(false);
+        MenuController.escenas.setPrimaryStage(stage);
         stage.show();
     }
 

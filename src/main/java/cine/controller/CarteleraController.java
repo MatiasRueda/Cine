@@ -15,6 +15,11 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class CarteleraController {
+    private Cine cine = MenuController.cine;
+    
+    private Escenas escenas = MenuController.escenas;
+
+    private int offset = 0;
 
     @FXML
     private VBox cartelera;
@@ -42,9 +47,6 @@ public class CarteleraController {
 
     @FXML
     private Button btnSiguiente;
-
-    private Cine cine = MenuController.cine;
-    private int offset = 0;
     
     @FXML
     void initialize() {
@@ -69,19 +71,18 @@ public class CarteleraController {
     @FXML
     void cancelar(ActionEvent event) throws IOException {
         this.cine.reiniciarValores();
-        Escenas.mostrarEscenaSig(this.cartelera, "usuarioMenu");
+        this.escenas.mostrarEscenaSig("usuarioMenu");
     }
 
     @FXML
     void continuar(ActionEvent event) throws IOException {
-        Escenas.mostrarEscenaSig(cartelera, "fecha");
+        this.escenas.mostrarEscenaSig("fecha");
     }
 
 
     @FXML
     void anterior(ActionEvent event) throws IOException{
-        Stage primaryStage = (Stage)cartelera.getScene().getWindow();
-        Stage secundaryStage = Escenas.armarPantallaCarga(primaryStage);
+        Stage secundaryStage = this.escenas.armarPantallaCarga();
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
@@ -97,8 +98,7 @@ public class CarteleraController {
 
     @FXML
     void siguiente(ActionEvent event) throws IOException {
-        Stage primaryStage = (Stage)cartelera.getScene().getWindow();
-        Stage secundaryStage = Escenas.armarPantallaCarga(primaryStage);
+        Stage secundaryStage = this.escenas.armarPantallaCarga();
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
