@@ -45,13 +45,17 @@ public class Escenas {
         return stage;
     }
 
-    public static void mostrarMsjError(String mensaje) throws IOException{
+    public static void mostrarMsjError(Stage primaryStage, String mensaje) throws IOException{
         FXMLLoader fxmlLoader = Escenas.getFXML("mensaje");
         Parent root = fxmlLoader.load();
         MensajeController mensajeCtrller = fxmlLoader.getController();
         mensajeCtrller.setMensaje(mensaje);
-        Stage stage = Escenas.getStage(root, Modality.APPLICATION_MODAL, StageStyle.UNDECORATED);
-        stage.showAndWait();
+        Stage secundaryStage = Escenas.getStage(root, Modality.APPLICATION_MODAL, StageStyle.UNDECORATED);
+        secundaryStage.setWidth(250);
+        secundaryStage.setHeight(150);
+        secundaryStage.setX(primaryStage.getX() + primaryStage.getWidth() / 2 - secundaryStage.getWidth() / 2);
+        secundaryStage.setY(primaryStage.getY() + primaryStage.getHeight() / 2 - secundaryStage.getHeight() / 2);
+        secundaryStage.showAndWait();
     }
 
     public static Stage armarPantallaCarga(Stage primaryStage) throws IOException {

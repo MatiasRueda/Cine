@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
@@ -22,7 +24,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor></Button>
             <Region prefHeight="110.0" prefWidth="200.0" />
-            <Button mnemonicParsing="false" onAction="#unirse" prefHeight="60.0" prefWidth="200.0" text="Unirse">
+            <Button mnemonicParsing="false" onAction="#salir" prefHeight="60.0" prefWidth="200.0" text="Salir">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></Button>
@@ -30,16 +32,28 @@
       </VBox>
       <VBox alignment="CENTER" fillWidth="false" prefHeight="200.0" prefWidth="400.0">
          <children>
-            <Label alignment="CENTER" prefHeight="49.0" prefWidth="211.0" text="Bienvenido al cine">
-               <font>
-                  <Font size="22.0" />
-               </font>
-            </Label>
-            <Label alignment="CENTER" prefHeight="39.0" prefWidth="266.0" text="Elija alguna de las opciones por favor">
-               <font>
-                  <Font size="15.0" />
-               </font>
-            </Label>
+            <Hyperlink alignment="CENTER_RIGHT" onAction="#unirse" prefHeight="30.0" prefWidth="400.0" text="Unirse">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <padding>
+                  <Insets right="10.0" />
+               </padding>
+            </Hyperlink>
+            <VBox alignment="CENTER" prefHeight="370.0" prefWidth="400.0">
+               <children>
+                  <Label alignment="CENTER" prefHeight="49.0" prefWidth="211.0" text="Bienvenido al cine">
+                     <font>
+                        <Font size="22.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="CENTER" prefHeight="39.0" prefWidth="266.0" text="Elija alguna de las opciones por favor">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+               </children>
+            </VBox>
          </children>
       </VBox>
    </children>

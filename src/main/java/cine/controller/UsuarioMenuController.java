@@ -7,15 +7,19 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 
 public class UsuarioMenuController {
     private Cine cine = MenuController.cine;
 
     @FXML
-    private Label usuario;
+    private HBox usuarioMenu;
 
     @FXML
-    private HBox usuarioMenu;
+    private VBox opciones;
+
+    @FXML
+    private Label usuario;
 
 
     @FXML 
@@ -25,7 +29,7 @@ public class UsuarioMenuController {
 
     @FXML
     void comprar(ActionEvent event) throws IOException {
-        Escenas.mostrarEscenaSig(usuarioMenu, "comprar");
+        Escenas.mostrarEscenaSig(this.usuarioMenu, "comprar");
     }
 
     @FXML

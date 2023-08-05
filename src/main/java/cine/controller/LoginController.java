@@ -9,6 +9,7 @@ import javafx.scene.control.Hyperlink;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
 
 public class LoginController {
@@ -31,7 +32,8 @@ public class LoginController {
     void loguear(ActionEvent event) throws IOException {    
         
         if (!this.cine.login(nombre.getText() , contrasenia.getText())) {
-            Escenas.mostrarMsjError(this.cine.getMensaje());
+            Stage primaryStage = (Stage)login.getScene().getWindow();
+            Escenas.mostrarMsjError(primaryStage, this.cine.getMensaje());
             return;
         }
         this.cine.setUsuarioNombre(this.nombre.getText());
