@@ -79,36 +79,26 @@ public class CarteleraController {
         this.escenas.mostrarEscenaSig("fecha");
     }
 
-
     @FXML
     void anterior(ActionEvent event) throws IOException{
         Stage secundaryStage = this.escenas.armarPantallaCarga();
-        Platform.runLater(new Runnable() {
-            @Override
-            public void run() {
-                btnSiguiente.setDisable(false);
-                offset--;
-                cargarCartelera();
-                if (offset == 0) btnAnterior.setDisable(true);
-                secundaryStage.close();
-            }
-            
+        this.btnSiguiente.setDisable(false);
+        offset--;
+        Platform.runLater(() -> {
+            cargarCartelera();
+            if (offset == 0) btnAnterior.setDisable(true);
+            secundaryStage.close();
         });
     }
 
     @FXML
     void siguiente(ActionEvent event) throws IOException {
         Stage secundaryStage = this.escenas.armarPantallaCarga();
-        Platform.runLater(new Runnable() {
-            @Override
-            public void run() {
-                btnAnterior.setDisable(false);
-                offset++;
-                ArrayList<ArrayList<String>> filas = cargarCartelera();
-                if (filas.size() == 1) btnSiguiente.setDisable(true);
-                secundaryStage.close();
-            }
-            
+        this.btnAnterior.setDisable(false);
+        offset++;
+        Platform.runLater(() -> {
+            if (cargarCartelera().size() == 1) btnSiguiente.setDisable(true);
+            secundaryStage.close();
         });
     }
 

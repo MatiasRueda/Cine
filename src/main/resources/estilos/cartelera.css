@@ -2,4 +2,13 @@
 {
     -fx-background-color: white;
     -fx-border-color: black;
+    -fx-border-style: solid;
+    -fx-border-width: 3px;
+}
+
+.button:hover
+{
+    -fx-background-color: black;
+    -fx-text-fill: white;
+    -fx-border-color: white;
 }

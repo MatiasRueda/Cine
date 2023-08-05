@@ -20,12 +20,11 @@ public class UsuarioMenuController {
     private VBox opciones;
 
     @FXML
-    private Label usuario;
+    private Label usuarioNombre;
 
-
-    @FXML 
+    @FXML
     void initialize() {
-        this.usuario.setText(this.cine.getUsuarioNombre());
+        this.usuarioNombre.setText(this.cine.getUsuarioNombre());
     }
 
     @FXML

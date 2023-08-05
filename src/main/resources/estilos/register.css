@@ -1,4 +1,33 @@
-.button {
+.button 
+{
     -fx-background-color: white;
     -fx-border-color: black;
+    -fx-border-width: 3px;
+}
+
+.button:hover
+{
+    -fx-background-color: black;
+    -fx-text-fill: white;
+    -fx-border-color: white;
+}
+
+.label 
+{
+    -fx-text-fill: white;
+}
+
+#informacion 
+{
+    -fx-background-color: #000428;
+    -fx-background-color: linear-gradient(to right, #000428, #004e92); 
+    -fx-border-color: black;
+    -fx-border-width: 3;
+}
+
+#opciones 
+{   
+    -fx-border-color: black;
+    -fx-border-width: 0px 3px 3px 3px;
+    -fx-background-color: rgb(139, 134, 134);
 }

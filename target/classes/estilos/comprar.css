@@ -7,3 +7,18 @@
     -fx-background-color: rgb(205, 195, 195);
     -fx-border-width: 2;
 }
+
+#peli
+{
+    -fx-background-color: black;
+}
+
+#pochoclo
+{
+    -fx-background-color: white;
+}
+
+#peliculaText
+{
+    -fx-text-fill: white;
+}

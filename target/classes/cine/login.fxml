@@ -9,11 +9,17 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 <VBox fx:id="login" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@../estilos/login.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cine.controller.LoginController">
    <children>
-      <VBox alignment="CENTER" fillWidth="false" prefHeight="300.0" prefWidth="100.0">
+      <VBox fx:id="informacion" alignment="CENTER" fillWidth="false" prefHeight="300.0" prefWidth="100.0">
          <children>
+            <Label text="Login">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
             <VBox alignment="CENTER" fillWidth="false" prefHeight="75.0" prefWidth="600.0">
                <children>
                   <Label prefHeight="25.0" text="Nombre de usuario:" />
@@ -34,14 +40,14 @@
             </HBox>
          </children>
       </VBox>
-      <HBox alignment="CENTER" fillHeight="false" prefHeight="100.0" prefWidth="600.0">
+      <HBox fx:id="opciones" alignment="CENTER" fillHeight="false" prefHeight="100.0" prefWidth="600.0">
          <children>
-            <Button mnemonicParsing="false" onAction="#loguear" prefHeight="40.0" prefWidth="100.0" text="Loguear">
+            <Button contentDisplay="CENTER" mnemonicParsing="false" onAction="#loguear" prefHeight="45.0" prefWidth="121.0" text="Loguear">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></Button>
             <Region prefHeight="100.0" prefWidth="50.0" />
-            <Button mnemonicParsing="false" onAction="#menu" prefHeight="40.0" prefWidth="100.0" text="Volver al Menu">
+            <Button mnemonicParsing="false" onAction="#menu" prefHeight="45.0" prefWidth="110.0" text="Volver al Menu">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></Button>

@@ -12,10 +12,10 @@ public class MensajeController {
     private Button aceptarBtn;
 
     @FXML
-    private Label mensaje;
+    private Label mensajeText;
 
     public void setMensaje(String mensaje) {
-        this.mensaje.setText(mensaje);
+        this.mensajeText.setText(mensaje);
     }
 
     @FXML
