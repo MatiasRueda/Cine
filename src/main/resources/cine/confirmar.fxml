@@ -85,7 +85,7 @@
                         </Label>
                      </children>
                   </StackPane>
-                  <ScrollPane prefHeight="100.0" prefWidth="250.0">
+                  <ScrollPane prefHeight="105.0" prefWidth="250.0">
                      <content>
                         <VBox fx:id="contenedor" prefHeight="20.0" prefWidth="235.0" />
                      </content>

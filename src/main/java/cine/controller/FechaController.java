@@ -6,6 +6,7 @@ import cine.model.Cine;
 import cine.view.Opciones;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.VBox;
@@ -14,8 +15,7 @@ public class FechaController {
 
     private Cine cine = MenuController.cine;
     private Escenas escenas = MenuController.escenas;
-
-    Opciones armadoFichas = new Opciones("white", "red");
+    private Opciones opciones = new Opciones("white", "red");
 
     @FXML
     private VBox fecha;
@@ -29,7 +29,10 @@ public class FechaController {
     @FXML
     void initialize() {
         this.labelFecha.setText("Fechas disponibles para: " + this.cine.getTituloPelicula());
-        this.armadoFichas.armar(fechas, this.cine.getFechas());
+        for (String fecha: this.cine.getFechas()) {
+            Button boton = this.opciones.armar(fecha);
+            this.fechas.getChildren().add(boton);
+        }
     }
 
     @FXML
@@ -40,7 +43,7 @@ public class FechaController {
 
     @FXML
     void continuar(ActionEvent event) throws IOException {
-        this.cine.setFechaPelicula(this.armadoFichas.getEleccion());
+        this.cine.setFechaPelicula(this.opciones.getEleccion());
         this.escenas.mostrarEscenaSig("horario");
     }
 

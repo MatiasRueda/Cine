@@ -77,7 +77,7 @@ public class CandyController {
     void initialize() {
         ArrayList<ArrayList<String>> filas = this.cine.getCandy();
         for (ArrayList<String> fila : filas) {
-            VBox producto = this.candys.armarCandys(fila.get(0), fila.get(1), fila.get(2));
+            VBox producto = this.candys.armar(fila.get(0), fila.get(1), fila.get(2));
             this.elementos.getChildren().add(producto);
         }
         this.recorrerVbox();

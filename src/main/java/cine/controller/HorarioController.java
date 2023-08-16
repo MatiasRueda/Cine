@@ -6,6 +6,7 @@ import cine.model.Cine;
 import cine.view.Opciones;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.VBox;
@@ -13,7 +14,7 @@ import javafx.scene.layout.VBox;
 public class HorarioController {
     private Cine cine = MenuController.cine;
     private Escenas escenas = MenuController.escenas;
-    private Opciones armadorHorarios = new Opciones("white", "green");
+    private Opciones opciones = new Opciones("white", "green");
 
     @FXML
     private VBox horario;
@@ -31,7 +32,10 @@ public class HorarioController {
     void initialize() {
         this.labelHorarios.setText("Horarios para: " + this.cine.getTituloPelicula());
         this.labelFecha.setText("Fecha elegida: " + this.cine.getFechaPelicula());
-        this.armadorHorarios.armar(horarios, this.cine.getHorarios());
+        for (String horario: this.cine.getHorarios()) {
+            Button boton = this.opciones.armar(horario);
+            this.horarios.getChildren().add(boton);        
+        }
     }
 
 
@@ -43,8 +47,8 @@ public class HorarioController {
 
     @FXML
     void comprar(ActionEvent event) throws IOException {
-        this.cine.setHorario(this.armadorHorarios.getEleccion());
-        this.cine.setSala(this.armadorHorarios.getEleccion());
+        this.cine.setHorario(this.opciones.getEleccion());
+        this.cine.setSala(this.opciones.getEleccion());
         this.escenas.mostrarEscenaSig("sala");
     }
 }
