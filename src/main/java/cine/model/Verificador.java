@@ -12,24 +12,8 @@ public class Verificador {
         this.database = database;
     }
 
-    private boolean nombreEnBlanco(String nombre) {
-        return this.mensajes.setMensaje(nombre.isBlank(), ErrorUsuario.NOMBRE_CAMPO);
-    }
-
-    private boolean contraseniaEnBlanco(String contrasenia) {
-        return this.mensajes.setMensaje(contrasenia.isBlank(), ErrorUsuario.CONTRASENIA_CAMPO);
-    }
-
-    private boolean confirmarContraseniaEnBlanco(String confirmarContrasenia) {
-        return this.mensajes.setMensaje(confirmarContrasenia.isBlank(), ErrorUsuario.CONTRASENIA_CONFIRMAR_CAMPO);
-    }
-
-    private boolean DNIEnBlanco(String DNI) {
-        return this.mensajes.setMensaje(DNI.isBlank(), ErrorUsuario.DNI_CAMPO);
-    }
-
-    private boolean emailEnBlanco(String email) {
-        return this.mensajes.setMensaje(email.isBlank(), ErrorUsuario.EMAIL_CAMPO);
+    private boolean campoEnBlanco(String campo, ErrorUsuario error) {
+        return this.mensajes.setMensaje(campo.isBlank(), error);
     }
 
     private boolean NoCoincidenContrasenias(String contrasenia, String confirmarContrasenia) {
@@ -43,7 +27,7 @@ public class Verificador {
     }
 
     public boolean loginParteUnoError(Connection conn, String nombre, String contrasenia) {
-        return  (this.nombreEnBlanco(nombre) || this.contraseniaEnBlanco(contrasenia) || !this.estaEnDB(conn, nombre));
+        return (this.campoEnBlanco(nombre, ErrorUsuario.NOMBRE_CAMPO) || this.campoEnBlanco(contrasenia, ErrorUsuario.CONTRASENIA_CAMPO) || !this.estaEnDB(conn, nombre));
     }
 
     public boolean loginParteDosError(String contrasenia, String contraseniaObtenida) {
@@ -53,8 +37,8 @@ public class Verificador {
     }
     
     public boolean registerError(Connection conn, String nombre, String dni, String email, String contrasenia, String confirmarContrasenia) {
-        if (this.nombreEnBlanco(nombre) || this.DNIEnBlanco(dni) || this.emailEnBlanco(email)) return true;
-        if (this.contraseniaEnBlanco(contrasenia) || this.confirmarContraseniaEnBlanco(confirmarContrasenia)) return true;
+        if (this.campoEnBlanco(nombre, ErrorUsuario.NOMBRE_CAMPO) || this.campoEnBlanco(dni, ErrorUsuario.DNI_CAMPO) || this.campoEnBlanco(email, ErrorUsuario.EMAIL_CAMPO)) return true;
+        if (this.campoEnBlanco(contrasenia, ErrorUsuario.CONTRASENIA_CAMPO) || this.campoEnBlanco(confirmarContrasenia,  ErrorUsuario.CONTRASENIA_CONFIRMAR_CAMPO)) return true;
         if (this.NoCoincidenContrasenias(contrasenia, confirmarContrasenia)) return true;
         if (this.estaEnDB(conn, nombre)) return true;
         return false;
