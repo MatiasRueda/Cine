@@ -1,22 +1,24 @@
 package cine.controller;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import cine.model.Cine;
 import cine.view.Candys;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
+import cine.view.Item;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 public class CandyController {
     private Cine cine = MenuController.cine;
+    private Escenas escenas = MenuController.escenas;
+    private Item fabrica = new Item();
     private Candys candys = new Candys();
 
     @FXML
@@ -26,31 +28,48 @@ public class CandyController {
     private FlowPane elementos;
 
     @FXML
-    private ListView<String> lista;
+    private VBox contenedor;
 
     @FXML
     private Label precio;
 
-    
+    private void sacarDeLaLista(HBox item, String productoNombre) {
+        this.contenedor.getChildren().remove(item);
+        this.cine.sacarProducto(productoNombre);
+        String precio = String.valueOf(this.cine.getPrecioTotal());
+        this.precio.setText(precio);
+    }
 
-    private void setBoton(VBox vbox) {
+    private void setActionLista(HBox item, String productoNombre) {
+        for(Node node : item.getChildren()) {
+            if (!(node instanceof Button)) continue;
+            Button boton = (Button) node;
+            boton.setOnAction(e -> sacarDeLaLista(item, productoNombre));
+
+        }
+    }
+
+    private void agregarItemLista(String productoNombre) {
+        HBox item = this.fabrica.armar(this.contenedor, productoNombre, true);
+        this.setActionLista(item, productoNombre);
+        this.contenedor.getChildren().add(item);
+        this.cine.agregarProducto(productoNombre);
+        String precio = String.valueOf(this.cine.getPrecioTotal());
+        this.precio.setText(precio);
+    }
+
+    private void setActionElementos(VBox vbox) {
         for (Node elemento : vbox.getChildren()) {
             if (!(elemento instanceof Button)) continue;
             Button button = (Button) elemento;
-            button.setOnAction(e -> {
-                String nombreProducto = button.getId();
-                this.lista.getItems().add(nombreProducto);
-                this.cine.agregarProducto(nombreProducto);
-                String precio = String.valueOf(this.cine.getPrecioTotal());
-                this.precio.setText(precio);
-            });
+            button.setOnAction(e -> agregarItemLista(button.getId()));
         }  
     }
 
     private void recorrerVbox() {
         for (Node elemento : this.elementos.getChildren()) {
             if (!(elemento instanceof VBox)) continue;
-            this.setBoton((VBox) elemento);
+            this.setActionElementos((VBox) elemento);
         }   
     }
 
@@ -67,25 +86,13 @@ public class CandyController {
 
 
     @FXML
-    void cancelar(ActionEvent event) {
-
+    void cancelar(ActionEvent event) throws IOException {
+        this.escenas.mostrarEscenaSig("usuarioMenu");
     }
 
     @FXML
-    void continuar(ActionEvent event) {
-
-    }
-
-    
-    @FXML
-    void eliminar(ActionEvent event) {
-        if (this.lista.getItems().size() == 0) return;
-        int indice = this.lista.getSelectionModel().getSelectedIndex();
-        String nombreProducto = this.lista.getSelectionModel().getSelectedItem();
-        this.lista.getItems().remove(indice);
-        this.cine.sacarProducto(nombreProducto);
-        String precio = String.valueOf(this.cine.getPrecioTotal());
-        this.precio.setText(precio);
+    void continuar(ActionEvent event) throws IOException {
+        this.escenas.mostrarEscenaSig("confirmar");
     }
 
 }

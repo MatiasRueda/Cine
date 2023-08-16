@@ -12,7 +12,7 @@ import javafx.stage.Stage;
 public class MenuController {
 
     public final static Cine cine = new Cine();
-    public static Escenas escenas = new Escenas();
+    public final static Escenas escenas = new Escenas();
 
     @FXML
     private HBox menu;

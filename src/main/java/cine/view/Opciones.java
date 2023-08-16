@@ -8,7 +8,7 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Region;
 
-public class Armador {
+public class Opciones {
     private String eleccion;
     private Button anteriorBtn;
     private int HEIGHT = 40;
@@ -17,12 +17,12 @@ public class Armador {
     private String SELECT_STYLE = "-fx-border-color: black; -fx-text-fill: white;";
     private int espacioOcupadoFila = 0;
 
-    public Armador(String defaultColor, String selectColor) {
+    public Opciones(String defaultColor, String selectColor) {
         this.DEFAULT_STYLE += "-fx-background-color: "+ defaultColor + ";";
         this.SELECT_STYLE += "-fx-background-color: "+ selectColor + ";";
     }
 
-    public Armador(String defaultColor, String selectColor, int height, int width) {
+    public Opciones(String defaultColor, String selectColor, int height, int width) {
         this.DEFAULT_STYLE += "-fx-background-color: "+ defaultColor + ";";
         this.SELECT_STYLE += "-fx-background-color: "+ selectColor + ";";
         this.HEIGHT = height;

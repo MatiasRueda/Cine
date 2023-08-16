@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox fx:id="cartelera" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@../estilos/cartelera.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cine.controller.CarteleraController">
+   <children>
+      <HBox alignment="CENTER" prefHeight="300.0" prefWidth="200.0">
+         <children>
+            <StackPane prefHeight="300.0" prefWidth="50.0">
+               <children>
+                  <Button fx:id="btnAnterior" disable="true" mnemonicParsing="false" onAction="#anterior" prefHeight="300.0" prefWidth="50.0" text="&lt;">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></Button>
+               </children>
+            </StackPane>
+            <HBox prefHeight="100.0" prefWidth="500.0">
+               <children>
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <ImageView fx:id="imagen" fitHeight="175.0" fitWidth="125.0" pickOnBounds="true" preserveRatio="true" />
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="300.0">
+                     <children>
+                        <HBox alignment="CENTER" prefHeight="10.0" prefWidth="200.0">
+                           <children>
+                              <Label prefHeight="17.0" prefWidth="42.0" text="Titulo: " />
+                              <Label fx:id="titulo" prefHeight="17.0" prefWidth="205.0" text="Label" />
+                           </children>
+                        </HBox>
+                        <Region prefHeight="20.0" prefWidth="200.0" />
+                        <HBox alignment="CENTER" prefHeight="10.0" prefWidth="200.0">
+                           <children>
+                              <Label prefHeight="17.0" prefWidth="40.0" text="Fecha: " />
+                              <Label fx:id="fecha" prefHeight="17.0" prefWidth="206.0" text="Label" />
+                           </children>
+                        </HBox>
+                        <Region prefHeight="20.0" prefWidth="200.0" />
+                        <HBox alignment="CENTER" prefHeight="10.0" prefWidth="200.0">
+                           <children>
+                              <Label prefHeight="17.0" prefWidth="38.0" text="Audio: " />
+                              <Label fx:id="audio" prefHeight="17.0" prefWidth="203.0" text="Label" />
+                           </children>
+                        </HBox>
+                        <Region prefHeight="20.0" prefWidth="200.0" />
+                        <HBox alignment="CENTER" prefHeight="10.0" prefWidth="200.0">
+                           <children>
+                              <Label text="Substitulos: " />
+                              <Label fx:id="subtitulos" prefHeight="17.0" prefWidth="177.0" text="Label" />
+                           </children>
+                        </HBox>
+                        <Region prefHeight="20.0" prefWidth="200.0" />
+                        <HBox alignment="CENTER" prefHeight="10.0" prefWidth="200.0">
+                           <children>
+                              <Label text="Duracion: " />
+                              <Label fx:id="duracion" prefHeight="17.0" prefWidth="20.0" text="Label" />
+                              <Label prefHeight="17.0" prefWidth="164.0" text=" minutos" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+            <StackPane prefHeight="150.0" prefWidth="50.0">
+               <children>
+                  <Button fx:id="btnSiguiente" mnemonicParsing="false" onAction="#siguiente" prefHeight="300.0" prefWidth="50.0" text="&gt;">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></Button>
+               </children>
+            </StackPane>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="600.0">
+         <children>
+            <Button mnemonicParsing="false" onAction="#continuar" prefHeight="40.0" prefWidth="100.0" text="Continuar">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Button>
+            <Region prefHeight="100.0" prefWidth="50.0" />
+            <Button mnemonicParsing="false" onAction="#cancelar" prefHeight="40.0" prefWidth="100.0" text="Cancelar">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Button>
+         </children>
+      </HBox>
+   </children>
+</VBox>

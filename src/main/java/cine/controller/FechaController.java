@@ -3,7 +3,7 @@ package cine.controller;
 import java.io.IOException;
 
 import cine.model.Cine;
-import cine.view.Armador;
+import cine.view.Opciones;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -15,7 +15,7 @@ public class FechaController {
     private Cine cine = MenuController.cine;
     private Escenas escenas = MenuController.escenas;
 
-    Armador armadoFichas = new Armador("white", "red");
+    Opciones armadoFichas = new Opciones("white", "red");
 
     @FXML
     private VBox fecha;
