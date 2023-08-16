@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import cine.model.Cine;
+import cine.model.Usuario;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -14,6 +15,7 @@ import javafx.scene.layout.VBox;
 public class SalaController {
    private Cine cine = MenuController.cine;
    private Escenas escenas = MenuController.escenas;
+   private Usuario usuario = MenuController.usuario;
    private ArrayList<ArrayList<Integer>> reservas = this.cine.getFilaColumnaReservadas();
    private Button anteriorBtn;
    private String DEFAULT_STYLE = "-fx-border-color: black; -fx-text-fill: black; -fx-background-color: white;";
@@ -38,8 +40,8 @@ public class SalaController {
       if (this.anteriorBtn != null) anteriorBtn.setStyle(this.DEFAULT_STYLE);
       node.setStyle(this.SELECT_STYLE);
       this.anteriorBtn = (Button) node;
-      this.cine.setFila(fila);
-      this.cine.setColumna(columna);
+      this.usuario.setFila(fila);
+      this.usuario.setColumna(columna);
    }
 
    private void setActionGridPane(GridPane gridpane) {
@@ -61,6 +63,7 @@ public class SalaController {
 
    @FXML
    void cancelar(ActionEvent event) throws IOException{
+      this.usuario.reiniciarValores();
       this.cine.reiniciarValores();
       this.escenas.mostrarEscenaSig("usuarioMenu");
    }
@@ -68,6 +71,7 @@ public class SalaController {
    @FXML
    void comprar(ActionEvent event) throws IOException {
       this.cine.guardarEleccion();
+      this.usuario.reiniciarValores();
       this.cine.reiniciarValores();
       this.escenas.mostrarEscenaSig("usuarioMenu");
    }

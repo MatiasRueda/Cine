@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import cine.model.Cine;
+import cine.model.Usuario;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -16,8 +17,8 @@ import javafx.stage.Stage;
 
 public class CarteleraController {
     private Cine cine = MenuController.cine;
-    
     private Escenas escenas = MenuController.escenas;
+    private Usuario usuario = MenuController.usuario;
 
     private int offset = 0;
 
@@ -64,13 +65,13 @@ public class CarteleraController {
         this.duracion.setText(fila.get(4));
         Image imagenPeli = new Image(fila.get(5), 125, 175, false, false);
         this.imagen.setImage(imagenPeli);
-        this.cine.setTituloPelicula(fila.iterator().next());
+        this.usuario.setTituloPelicula(fila.iterator().next());
         return filas;
     }
 
     @FXML
     void cancelar(ActionEvent event) throws IOException {
-        this.cine.reiniciarValores();
+        this.usuario = new Usuario();
         this.escenas.mostrarEscenaSig("usuarioMenu");
     }
 

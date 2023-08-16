@@ -3,6 +3,7 @@ package cine.controller;
 import java.io.IOException;
 
 import cine.model.Cine;
+import cine.model.Usuario;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -11,7 +12,8 @@ import javafx.stage.Stage;
 
 public class MenuController {
 
-    public final static Cine cine = new Cine();
+    public static Usuario usuario = new Usuario();
+    public final static Cine cine = new Cine(usuario);
     public final static Escenas escenas = new Escenas();
 
     @FXML
@@ -26,7 +28,7 @@ public class MenuController {
 
     @FXML
     void comprar(ActionEvent event) throws IOException {
-        if (cine.getUsuarioNombre() == null) {
+        if (usuario.getUsuarioNombre() == null) {
             escenas.mostrarMsjError("Es necesario ingresar");
             escenas.mostrarEscenaSig("login");
             return;

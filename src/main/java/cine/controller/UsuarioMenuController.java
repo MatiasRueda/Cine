@@ -2,7 +2,7 @@ package cine.controller;
 
 import java.io.IOException;
 
-import cine.model.Cine;
+import cine.model.Usuario;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -10,8 +10,8 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 public class UsuarioMenuController {
-    private Cine cine = MenuController.cine;
     private Escenas escenas = MenuController.escenas;
+    private Usuario usuario = MenuController.usuario;
 
     @FXML
     private HBox usuarioMenu;
@@ -24,7 +24,7 @@ public class UsuarioMenuController {
 
     @FXML
     void initialize() {
-        this.usuarioNombre.setText(this.cine.getUsuarioNombre());
+        this.usuarioNombre.setText(this.usuario.getUsuarioNombre());
     }
 
     @FXML
@@ -44,7 +44,7 @@ public class UsuarioMenuController {
 
     @FXML
     void salir(ActionEvent event) throws IOException {
-        this.cine.setUsuarioNombre(null);
+        this.usuario.setUsuarioNombre(null);
         this.escenas.mostrarEscenaSig("menu");
     }
 

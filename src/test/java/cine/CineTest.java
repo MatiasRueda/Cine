@@ -15,6 +15,7 @@ import org.junit.Test;
 import cine.model.Cine;
 import cine.model.Errores;
 import cine.model.MySQL;
+import cine.model.Usuario;
 
 public class CineTest {
 
@@ -30,7 +31,7 @@ public class CineTest {
 
     @Before
     public void preparativos() {
-        this.cine = new Cine();
+        this.cine = new Cine(new Usuario());
     }
 
     @After
@@ -151,36 +152,5 @@ public class CineTest {
     public void sePuedeLoguearDespuesDeRegistraseDaTrueTest() {
         this.cine.register(this.NOMBRE, this.DNI, this.EMAIL, this.CONTRASENIA,  this.CONTRASENIA);
         assertTrue(this.cine.login(this.NOMBRE, this.CONTRASENIA));
-    }
-
-
-    // ***************  VALORES ALMACENADOS ********************** *//
-    @Test
-    public void seGuardanCorrectamenteColumnaCeroTest() {
-        this.cine.setColumna(0);
-        char letra = "0".charAt(0);
-        assertEquals(Character.valueOf(letra), this.cine.getColumna());
-    }
-
-    @Test
-    public void seGuardanCorrectamenteFilaTest() {
-        this.cine.setColumna(1);
-        char letra = "1".charAt(0);
-        assertEquals(Character.valueOf(letra), this.cine.getColumna());
-    }
-
-    @Test
-    public void seGuardanCorrectamenteFilaCeroTest() {
-        this.cine.setFila(0);
-        char letra = "A".charAt(0);
-        assertEquals(Character.valueOf(letra), this.cine.getFila());
-    }
-
-
-    @Test
-    public void seGuardanCorrectamenteFilaUnoTest() {
-        this.cine.setFila(1);
-        char letra = "B".charAt(0);
-        assertEquals(Character.valueOf(letra), this.cine.getFila());
     }
 }

@@ -3,6 +3,7 @@ package cine.controller;
 import java.io.IOException;
 
 import cine.model.Cine;
+import cine.model.Usuario;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Hyperlink;
@@ -15,6 +16,7 @@ public class LoginController {
 
     private Cine cine = MenuController.cine;
     private Escenas escenas = MenuController.escenas;
+    private Usuario usuario = MenuController.usuario;
 
     @FXML
     private VBox login;
@@ -34,7 +36,7 @@ public class LoginController {
             escenas.mostrarMsjError(this.cine.getMensaje());
             return;
         }
-        this.cine.setUsuarioNombre(this.nombre.getText());
+        this.usuario.setUsuarioNombre(this.nombre.getText());
         this.escenas.mostrarEscenaSig("usuarioMenu");
     }
 

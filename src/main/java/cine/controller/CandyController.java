@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import cine.model.Cine;
+import cine.model.Usuario;
 import cine.view.Candys;
 import cine.view.Item;
 import javafx.event.ActionEvent;
@@ -18,6 +19,7 @@ import javafx.scene.layout.VBox;
 public class CandyController {
     private Cine cine = MenuController.cine;
     private Escenas escenas = MenuController.escenas;
+    private Usuario usuario = MenuController.usuario;
     private Item fabrica = new Item();
     private Candys candys = new Candys();
 
@@ -36,7 +38,7 @@ public class CandyController {
     private void sacarDeLaLista(HBox item, String productoNombre) {
         this.contenedor.getChildren().remove(item);
         this.cine.sacarProducto(productoNombre);
-        String precio = String.valueOf(this.cine.getPrecioTotal());
+        String precio = String.valueOf(this.usuario.getPrecioTotal());
         this.precio.setText(precio);
     }
 
@@ -54,7 +56,7 @@ public class CandyController {
         this.setActionLista(item, productoNombre);
         this.contenedor.getChildren().add(item);
         this.cine.agregarProducto(productoNombre);
-        String precio = String.valueOf(this.cine.getPrecioTotal());
+        String precio = String.valueOf(this.usuario.getPrecioTotal());
         this.precio.setText(precio);
     }
 
@@ -87,6 +89,8 @@ public class CandyController {
 
     @FXML
     void cancelar(ActionEvent event) throws IOException {
+        this.usuario.reiniciarValores();
+        this.cine.reiniciarValores();
         this.escenas.mostrarEscenaSig("usuarioMenu");
     }
 

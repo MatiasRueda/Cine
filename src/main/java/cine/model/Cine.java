@@ -18,15 +18,11 @@ public class Cine {
     private HashMap<String, String> salas = new HashMap<>();
     private ArrayList<String> horarios  = new ArrayList<>();
     private HashMap<String, Integer> precios;
-    private HashMap<String, Integer> productos;
-    private int precioTotal;
-    private String usuarioNombre;
-    private String tituloPelicula;
-    private String fechaPelicula; 
-    private String horario;
-    private String sala;
-    private char fila;
-    private char columna;
+    private Usuario usuario;
+
+    public Cine(Usuario usuario) {
+        this.usuario = usuario;
+    }
 
     private void cerrarConeccion(Connection conn) {
         try {
@@ -38,12 +34,12 @@ public class Cine {
 
     private void setSalasHorarios(ArrayList<ArrayList<String>> salasHorarios) {
         for(ArrayList<String> salaHorario : salasHorarios)  {
-            salas.put(salaHorario.get(1), salaHorario.get(0));
-            horarios.add(salaHorario.get(1));
+            this.salas.put(salaHorario.get(1), salaHorario.get(0));
+            this.horarios.add(salaHorario.get(1));
         }
     }
 
-    private ArrayList<ArrayList<Integer>> covertirIntFilasColumnas(ArrayList<ArrayList<String>> filasColumnas) {
+    private ArrayList<ArrayList<Integer>> convertirIntFilasColumnas(ArrayList<ArrayList<String>> filasColumnas) {
         ArrayList<ArrayList<Integer>> reservas = new ArrayList<>();
         for(ArrayList<String> filaColumna : filasColumnas)  {
             ArrayList<Integer> reserva = new ArrayList<>();
@@ -55,7 +51,6 @@ public class Cine {
         }
         return reservas;
     }
-    
 
     private void setProductosPrecios(ArrayList<ArrayList<String>> filas) {
         HashMap<String, Integer> productos = new HashMap<>();
@@ -64,7 +59,7 @@ public class Cine {
             productos.put(fila.get(0), 0);
             precios.put(fila.get(0), Integer.valueOf(fila.get(1)));
         }
-        this.productos = productos;
+        this.usuario.setProductos(productos);
         this.precios = precios;
     }
 
@@ -89,7 +84,7 @@ public class Cine {
 
     public ArrayList<String> getFechas() { 
         Connection conn = this.database.conectarMySQL();
-        ArrayList<String> fechasObtenidas = this.database.getValor(conn, "sala", "fecha", "titulo", this.tituloPelicula);
+        ArrayList<String> fechasObtenidas = this.database.getValor(conn, "sala", "fecha", "titulo", this.usuario.getTituloPelicula());
         Set<String> unicasFechas = new LinkedHashSet<>(fechasObtenidas);
         ArrayList<String> fechas = new ArrayList<>(unicasFechas);
         Collections.sort(fechas);
@@ -101,7 +96,7 @@ public class Cine {
         Connection conn = this.database.conectarMySQL();
         List<String> columnas =  Arrays.asList(new String[]{"sala", "horario"});
         List<String> condiciones =  Arrays.asList(new String[]{"fecha", "titulo"});
-        List<String> valores =  Arrays.asList(new String[]{this.fechaPelicula, this.tituloPelicula});
+        List<String> valores =  Arrays.asList(new String[]{this.usuario.getFechaPelicula(),  this.usuario.getTituloPelicula()});
         ArrayList<ArrayList<String>> resultado = this.database.getValorVariasCondiciones(conn, "sala", columnas, condiciones, valores);
         this.cerrarConeccion(conn);
         setSalasHorarios(resultado);
@@ -121,10 +116,10 @@ public class Cine {
         Connection conn = this.database.conectarMySQL();
         List<String> columnas =  Arrays.asList(new String[]{"fila", "Columna"});
         List<String> condiciones =  Arrays.asList(new String[]{"fecha", "sala", "horario"});
-        List<String> valores =  Arrays.asList(new String[]{this.fechaPelicula, this.sala, this.horario});
+        List<String> valores =  Arrays.asList(new String[]{this.usuario.getFechaPelicula(), this.usuario.getSala(), this.usuario.getHorario()});
         ArrayList<ArrayList<String>> resultado = this.database.getValorVariasCondiciones(conn, "reserva", columnas, condiciones, valores);
         this.cerrarConeccion(conn);
-        return covertirIntFilasColumnas( resultado);
+        return convertirIntFilasColumnas( resultado);
     }
 
     public ArrayList<ArrayList<String>> getCandy() { 
@@ -136,101 +131,35 @@ public class Cine {
         return resultado;
     }
 
-    public String getMensaje() {
-        return this.verificador.getMensajeError();
-    }
-
-
     public boolean guardarEleccion() {
         Connection conn = this.database.conectarMySQL();
         List<String> columnas =  Arrays.asList(new String[]{"reservado_por", "titulo", "fecha" ,"sala", "horario", "fila" , "columna"});
-        List<String> valores =  Arrays.asList(new String[]{this.usuarioNombre, this.tituloPelicula, this.fechaPelicula, this.salas.get(this.horario) ,this.horario, String.valueOf(this.fila), String.valueOf(this.columna)});
+        List<String> valores = this.usuario.getInformacion();
         this.database.agregar(conn, "reserva", columnas, valores, new ArrayList<>());
         this.cerrarConeccion(conn);
         return true;
     }
 
     public void agregarProducto(String productoNombre) {
-        this.productos.put(productoNombre, this.productos.get(productoNombre) + 1);
-        this.precioTotal += this.precios.get(productoNombre);
+        this.usuario.agregarProducto(productoNombre, this.precios.get(productoNombre));
     }
 
     public void sacarProducto(String productoNombre) {
-        this.productos.put(productoNombre, this.productos.get(productoNombre) - 1);
-        this.precioTotal -= this.precios.get(productoNombre);
+        this.usuario.sacarProducto(productoNombre, this.precios.get(productoNombre));
     }
 
-    public int getPrecioTotal() {
-        return this.precioTotal;
-    }
-
-
-    public void setUsuarioNombre(String usuarioNombre) {
-        this.usuarioNombre = usuarioNombre;
-    }
-
-    public void setTituloPelicula(String tituloPelicula) {
-        this.tituloPelicula = tituloPelicula;
-    }
-
-    public void setFechaPelicula(String fechaPelicula) {
-        this.fechaPelicula = fechaPelicula;
-    }
-
-    public void setHorario(String horario) {
-        this.horario = horario;
-    }
-
-    public void setSala(String horario) {
-        this.sala = this.salas.get(horario);
-    }
-
-
-    public void setFila(int fila) {
-        this.fila = this.conversor.pasarNumeroLetra(fila);
-    }
-
-    public void setColumna(int columna) {
-        char letra = String.valueOf(columna).charAt(0);
-        this.columna = Character.valueOf(letra);
-    }
-
-    public String getUsuarioNombre() {
-        return this.usuarioNombre;
-    }
-    
-    public String getTituloPelicula() {
-        return this.tituloPelicula;
-    }
-
-    public String getFechaPelicula() {
-        return this.fechaPelicula;
-    }
-
-    public String getHorario() {
-        return this.horario;
-    }
-
-    public String getSala() {
-        return this.sala;
-    }
-
-    public Character getColumna() {
-        return this.columna;
-    }
-
-    public Character getFila() {
-        return this.fila;
+    public HashMap<String, String> getSalas() {
+        return this.salas;
     }
 
     public void reiniciarValores() {
-        this.tituloPelicula = null;
-        this.horario = null;
-        this.fechaPelicula = null;
-        this.horarios = new ArrayList<>();
         this.salas = new HashMap<>();
+        this.horarios = new ArrayList<>();
         this.precios = new HashMap<>();
-        this.columna = Character.MIN_VALUE;
-        this.fila = Character.MIN_VALUE;
     }
+
+    public String getMensaje() {
+        return this.verificador.getMensajeError();
+    }
+
 }
