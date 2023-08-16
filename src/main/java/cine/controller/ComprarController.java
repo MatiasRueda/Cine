@@ -22,7 +22,7 @@ public class ComprarController {
     }
 
     @FXML
-    void candy(ActionEvent event) {
-
+    void candy(ActionEvent event) throws IOException{
+        this.escenas.cargarSiguienteEscena("candy");
     }
 }

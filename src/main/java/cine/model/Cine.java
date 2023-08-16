@@ -17,6 +17,9 @@ public class Cine {
     private Verificador verificador = new Verificador(database);
     private HashMap<String, String> salas = new HashMap<>();
     private ArrayList<String> horarios  = new ArrayList<>();
+    private HashMap<String, Integer> precios;
+    private HashMap<String, Integer> productos;
+    private int precioTotal;
     private String usuarioNombre;
     private String tituloPelicula;
     private String fechaPelicula; 
@@ -53,6 +56,17 @@ public class Cine {
         return reservas;
     }
     
+
+    private void setProductosPrecios(ArrayList<ArrayList<String>> filas) {
+        HashMap<String, Integer> productos = new HashMap<>();
+        HashMap<String, Integer> precios = new HashMap<>();
+        for (ArrayList<String> fila : filas) {
+            productos.put(fila.get(0), 0);
+            precios.put(fila.get(0), Integer.valueOf(fila.get(1)));
+        }
+        this.productos = productos;
+        this.precios = precios;
+    }
 
     public boolean register(String nombre, String dni , String email, String contrasenia, String confirmarContrasenia) {
         Connection conn = this.database.conectarMySQL();
@@ -113,11 +127,20 @@ public class Cine {
         return covertirIntFilasColumnas( resultado);
     }
 
+    public ArrayList<ArrayList<String>> getCandy() { 
+        Connection conn = this.database.conectarMySQL();
+        List<String> columnas =  Arrays.asList(new String[]{"nombre", "precio", "imagen"});
+        ArrayList<ArrayList<String>> resultado = this.database.getValor(conn, "candy", columnas, null , null);
+        this.cerrarConeccion(conn);
+        this.setProductosPrecios(resultado);
+        return resultado;
+    }
+
     public String getMensaje() {
         return this.verificador.getMensajeError();
     }
 
-    
+
     public boolean guardarEleccion() {
         Connection conn = this.database.conectarMySQL();
         List<String> columnas =  Arrays.asList(new String[]{"reservado_por", "titulo", "fecha" ,"sala", "horario", "fila" , "columna"});
@@ -126,6 +149,21 @@ public class Cine {
         this.cerrarConeccion(conn);
         return true;
     }
+
+    public void agregarProducto(String productoNombre) {
+        this.productos.put(productoNombre, this.productos.get(productoNombre) + 1);
+        this.precioTotal += this.precios.get(productoNombre);
+    }
+
+    public void sacarProducto(String productoNombre) {
+        this.productos.put(productoNombre, this.productos.get(productoNombre) - 1);
+        this.precioTotal -= this.precios.get(productoNombre);
+    }
+
+    public int getPrecioTotal() {
+        return this.precioTotal;
+    }
+
 
     public void setUsuarioNombre(String usuarioNombre) {
         this.usuarioNombre = usuarioNombre;
@@ -191,6 +229,7 @@ public class Cine {
         this.fechaPelicula = null;
         this.horarios = new ArrayList<>();
         this.salas = new HashMap<>();
+        this.precios = new HashMap<>();
         this.columna = Character.MIN_VALUE;
         this.fila = Character.MIN_VALUE;
     }
