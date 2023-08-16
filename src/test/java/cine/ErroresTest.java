@@ -5,44 +5,43 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 import cine.model.Errores;
-import cine.model.Errores.ErrorUsuario;
 
 public class ErroresTest {
-    private Errores errores = new Errores();
+
 
     @Test
     public void MensajeCorrectoNOMBRE_CAMPO() {
         String mensaje =  "El nombre esta en blanco";
-        assertEquals(mensaje, errores.getMensaje(ErrorUsuario.NOMBRE_CAMPO));
+        assertEquals(mensaje, Errores.NOMBRE_CAMPO.mensaje);
     }
 
     @Test
     public void MensajeCorrectoDNI_CAMPO() {
         String mensaje =  "El DNI esta en blanco";
-        assertEquals(mensaje, errores.getMensaje(ErrorUsuario.DNI_CAMPO));
+        assertEquals(mensaje, Errores.DNI_CAMPO.mensaje);
     }
 
     @Test
     public void MensajeCorrectoCONTRASENIA_CAMPO() {
         String mensaje =  "La contrasenia esta en blanco";
-        assertEquals(mensaje, errores.getMensaje(ErrorUsuario.CONTRASENIA_CAMPO));
+        assertEquals(mensaje, Errores.CONTRASENIA_CAMPO.mensaje);
     }
 
     @Test
     public void MensajeCorrectoUSUARIO_REGISTRADO() {
         String mensaje =  "El usuario ya esta registrado";
-        assertEquals(mensaje, errores.getMensaje(ErrorUsuario.USUARIO_REGISTRADO));
+        assertEquals(mensaje, Errores.USUARIO_REGISTRADO.mensaje);
     }
 
     @Test
     public void MensajeCorrectoUSUARIO_NO_REGISTRADO() {
         String mensaje =  "El usuario no esta registrado";
-        assertEquals(mensaje, errores.getMensaje(ErrorUsuario.USUARIO_NO_REGISTRADO));
+        assertEquals(mensaje, Errores.USUARIO_NO_REGISTRADO.mensaje);
     }
 
     @Test
     public void MensajeCorrectoCONTRASENIA_COMPARACION() {
         String mensaje =  "Contrasenia incorrecta";
-        assertEquals(mensaje, errores.getMensaje(ErrorUsuario.CONTRASENIA_INCORRECTA));
+        assertEquals(mensaje, Errores.CONTRASENIA_INCORRECTA.mensaje);
     }
 }

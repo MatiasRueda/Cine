@@ -1,18 +1,16 @@
 package cine.model;
 
-import cine.model.Errores.ErrorUsuario;
 
 public class Mensajeria {
-    private Errores errores = new Errores();
     private String mensaje;
 
-    public boolean setMensaje(boolean resultado, ErrorUsuario errorUsuario) {
-        if (resultado) this.mensaje = errores.getMensaje(errorUsuario);
+    public boolean setMensaje(boolean resultado, Errores errorUsuario) {
+        if (resultado) this.mensaje = errorUsuario.mensaje;
         return resultado;
     }
 
-    public boolean setMensaje(boolean resultado, ErrorUsuario errorUsuario , ErrorUsuario errorUsuario2) {
-        this.mensaje = resultado ?  errores.getMensaje(errorUsuario): errores.getMensaje(errorUsuario2);
+    public boolean setMensaje(boolean resultado, Errores errorUsuario , Errores errorUsuario2) {
+        this.mensaje = resultado ?  errorUsuario.mensaje: errorUsuario2.mensaje;
         return resultado;
     }
 

@@ -15,13 +15,11 @@ import org.junit.Test;
 import cine.model.Cine;
 import cine.model.Errores;
 import cine.model.MySQL;
-import cine.model.Errores.ErrorUsuario;
 
 public class CineTest {
 
     private Cine cine;
     private MySQL database = new MySQL();
-    private Errores errores = new Errores();
     final private String NOMBRE = "ASFAFAMFAOEF";
     final private String CONTRASENIA = "123";
     final private String DNI = "12345678";
@@ -60,7 +58,7 @@ public class CineTest {
     @Test
     public void noCompletarNombreDejaMensajeRegisterTest() {
         this.cine.register("", this.DNI,  this.EMAIL, this.CONTRASENIA,  this.CONTRASENIA);
-        assertEquals(errores.getMensaje(ErrorUsuario.NOMBRE_CAMPO), this.cine.getMensaje());
+        assertEquals(Errores.NOMBRE_CAMPO.mensaje, this.cine.getMensaje());
     }
 
     @Test
@@ -71,7 +69,7 @@ public class CineTest {
     @Test
     public void noCompletarDNIDejaMensajeRegisterTest() {
         this.cine.register(this.NOMBRE, "", this.EMAIL, this.CONTRASENIA,  this.CONTRASENIA);
-        assertEquals(errores.getMensaje(ErrorUsuario.DNI_CAMPO), this.cine.getMensaje());
+        assertEquals(Errores.DNI_CAMPO.mensaje, this.cine.getMensaje());
     }
 
     @Test
@@ -82,19 +80,19 @@ public class CineTest {
     @Test
     public void noCompletarContraseniaDejaMensajeRegisterTest() {
         this.cine.register(this.NOMBRE, this.DNI, this.EMAIL, "",  this.CONTRASENIA);
-        assertEquals(errores.getMensaje(ErrorUsuario.CONTRASENIA_CAMPO), this.cine.getMensaje());
+        assertEquals(Errores.CONTRASENIA_CAMPO.mensaje, this.cine.getMensaje());
     }
 
     @Test
     public void noCompletarConfirmarContraseniaDejaMensajeRegisterTest() {
         this.cine.register(this.NOMBRE, this.DNI, this.EMAIL, this.CONTRASENIA,  "");
-        assertEquals(errores.getMensaje(ErrorUsuario.CONTRASENIA_CONFIRMAR_CAMPO), this.cine.getMensaje());
+        assertEquals(Errores.CONTRASENIA_CONFIRMAR_CAMPO.mensaje, this.cine.getMensaje());
     }
 
     @Test
     public void lasContraseniasNoCoincidenDejaMensajeRegisterTest() {
         this.cine.register(this.NOMBRE, this.DNI, this.EMAIL, this.CONTRASENIA,  this.CONTRASENIA + "agaig");
-        assertEquals(errores.getMensaje(ErrorUsuario.CONTRASENIAS_DISTINTAS), this.cine.getMensaje());
+        assertEquals(Errores.CONTRASENIAS_DISTINTAS.mensaje, this.cine.getMensaje());
     }
 
     @Test
@@ -112,7 +110,7 @@ public class CineTest {
     @Test
     public void noCompletarNombreDejaMensajeTest() {
         this.cine.login("", this.CONTRASENIA);
-        assertEquals(errores.getMensaje(ErrorUsuario.NOMBRE_CAMPO), this.cine.getMensaje());
+        assertEquals(Errores.NOMBRE_CAMPO.mensaje, this.cine.getMensaje());
     }
 
     @Test
@@ -123,7 +121,7 @@ public class CineTest {
     @Test
     public void noCompletarContraseniaDejaMensajeTest() {
         this.cine.login(this.NOMBRE, "");
-        assertEquals(errores.getMensaje(ErrorUsuario.CONTRASENIA_CAMPO), this.cine.getMensaje());
+        assertEquals(Errores.CONTRASENIA_CAMPO.mensaje, this.cine.getMensaje());
     }
 
     @Test
@@ -134,7 +132,7 @@ public class CineTest {
     @Test
     public void noCompletarNombreContraseniaDejaMensajeTest() {
         this.cine.login("", "");
-        assertEquals(errores.getMensaje(ErrorUsuario.NOMBRE_CAMPO), this.cine.getMensaje());
+        assertEquals(Errores.NOMBRE_CAMPO.mensaje, this.cine.getMensaje());
     }
 
     @Test
@@ -146,7 +144,7 @@ public class CineTest {
     public void contraseniaIncorrectaDejaMensajeRegisterTest() {
         this.cine.register(this.NOMBRE, this.DNI, this.EMAIL, this.CONTRASENIA + "agaig",  this.CONTRASENIA + "agaig");
         this.cine.login(this.NOMBRE, this.CONTRASENIA);
-        assertEquals(errores.getMensaje(ErrorUsuario.CONTRASENIA_INCORRECTA), this.cine.getMensaje());
+        assertEquals(Errores.CONTRASENIA_INCORRECTA.mensaje, this.cine.getMensaje());
     }    
 
     @Test
