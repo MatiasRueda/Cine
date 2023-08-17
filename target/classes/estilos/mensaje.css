@@ -3,16 +3,20 @@
     -fx-text-fill: white;
 }
 
-.button 
-{
-    -fx-background-color: yellow;
+
+
+.button
+{   
+    -fx-background-color:yellow ;
     -fx-border-color: black;
     -fx-border-width: 2;
+    -fx-background-insets: 0;
 }
 
-.button:hover
-{
-    -fx-background-color: orange;
+.button:hover {
+    -fx-background-color:orange;
+    -fx-border-color:black;
+    -fx-background-insets: 0;
 }
 
 #mensaje

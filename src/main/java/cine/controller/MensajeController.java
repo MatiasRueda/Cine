@@ -10,7 +10,6 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 
 public class MensajeController {
-    private Escenas escenas = MenuController.escenas;
 
     @FXML
     private VBox mensaje;

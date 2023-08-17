@@ -2,15 +2,12 @@ package cine.controller;
 
 import java.io.IOException;
 
-import cine.App;
 import cine.model.Cine;
 import cine.model.Usuario;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
