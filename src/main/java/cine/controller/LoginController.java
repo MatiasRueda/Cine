@@ -9,6 +9,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 
 
@@ -17,6 +18,9 @@ public class LoginController {
     private Cine cine = MenuController.cine;
     private Escenas escenas = MenuController.escenas;
     private Usuario usuario = MenuController.usuario;
+
+    @FXML
+    private StackPane stackLogin;
 
     @FXML
     private VBox login;
@@ -33,7 +37,7 @@ public class LoginController {
     @FXML
     void loguear(ActionEvent event) throws IOException {    
         if (!this.cine.login(nombre.getText() , contrasenia.getText())) {
-            escenas.mostrarMsjError(this.cine.getMensaje());
+            this.escenas.mensajeError(this.cine.getMensaje(), this.stackLogin, this.login);
             return;
         }
         this.usuario.setUsuarioNombre(this.nombre.getText());

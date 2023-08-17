@@ -20,7 +20,7 @@ public class MySQL {
     private Dotenv dotenv = Dotenv.load();
 
     public  MySQL() {
-        this.url = "jdbc:mysql://" + this.dotenv.get("DB_HOSTNAME") + ":" + this.dotenv.get("DB_PORT") + "/" + this.dotenv.get("DB") + "?useSSL=false";
+        this.url = "jdbc:mysql://" + this.dotenv.get("DB_HOSTNAME") + ":" + this.dotenv.get("DB_PORT") + "/" + this.dotenv.get("DB") + "?useSSL=false&allowPublicKeyRetrieval=true";
     }
 
     public Connection conectarMySQL() {

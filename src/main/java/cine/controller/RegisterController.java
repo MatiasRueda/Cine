@@ -7,11 +7,15 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 
 public class RegisterController {
     private Cine cine = MenuController.cine;
     private Escenas escenas = MenuController.escenas;
+
+    @FXML
+    private StackPane stackRegister;
 
     @FXML
     private VBox register;
@@ -34,7 +38,7 @@ public class RegisterController {
     @FXML
     void registrar(ActionEvent event) throws IOException {
         if (!this.cine.register(usuarioNombre.getText(), DNI.getText(), email.getText(), contrasenia.getText(), contraseniaConfirmar.getText())) {
-            this.escenas.mostrarMsjError(this.cine.getMensaje());
+            this.escenas.mensajeError(this.cine.getMensaje(), this.stackRegister, this.register);
             return;
         }
         this.escenas.mostrarEscenaSig("menu");

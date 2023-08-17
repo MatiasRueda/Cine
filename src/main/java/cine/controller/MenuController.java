@@ -24,7 +24,7 @@ public class MenuController {
     private Button salirBtn;
 
     @FXML
-    private StackPane menuVerdad;
+    private StackPane stackMenu;
 
     public void setStage(Stage stage) {
         escenas.setPrimaryStage(stage);
@@ -33,7 +33,7 @@ public class MenuController {
     @FXML
     void comprar(ActionEvent event) throws IOException {
         if (usuario.getUsuarioNombre() == null) {
-            escenas.mensajeError("Es necesario ingresar", menuVerdad);
+            escenas.mensajeError("Es necesario ingresar", this.stackMenu, this.menu);
             return;
         }
         escenas.mostrarEscenaSig("comprar");

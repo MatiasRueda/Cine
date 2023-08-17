@@ -6,6 +6,7 @@ import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.effect.GaussianBlur;
 import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -48,29 +49,17 @@ public class Escenas {
         stage.setScene(scene);
         return stage;
     }
-
-    public void mostrarMsjError(String mensaje) throws IOException{
-        FXMLLoader fxmlLoader = this.getFXML("mensaje");
-        Parent root = fxmlLoader.load();
-        MensajeController mensajeCtrller = fxmlLoader.getController();
-        mensajeCtrller.setMensaje(mensaje);
-        Stage secundaryStage = Escenas.getStage(root, Modality.APPLICATION_MODAL, StageStyle.UNDECORATED);
-        secundaryStage.setWidth(250);
-        secundaryStage.setHeight(150);
-        secundaryStage.setX(this.primaryStage.getX() + this.primaryStage.getWidth() / 2 - secundaryStage.getWidth() / 2);
-        secundaryStage.setY(this.primaryStage.getY() + this.primaryStage.getHeight() / 2 - secundaryStage.getHeight() / 2);
-        secundaryStage.showAndWait();
-    }
-
-    public void mensajeError(String mensaje, Pane contenedorActual) throws IOException {
+    
+    public void mensajeError(String mensaje, Pane stackPane, Pane contenedorActual) throws IOException {
+        contenedorActual.setDisable(true);
+        contenedorActual.setEffect(new GaussianBlur());
         FXMLLoader fxmlLoader = this.getFXML("mensaje");
         Pane contenido = fxmlLoader.load();
         MensajeController mensajeController = fxmlLoader.getController();
         mensajeController.setMensaje(mensaje);
+        mensajeController.setStackPane(stackPane);
         mensajeController.setContenedorActual(contenedorActual);
-        //Scene scena = new Scene(root);
-        //this.primaryStage.setScene(scena);
-        contenedorActual.getChildren().add(contenido);
+        stackPane.getChildren().add(contenido);
     }
 
     public Stage armarPantallaCarga() throws IOException {
