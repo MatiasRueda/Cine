@@ -62,6 +62,17 @@ public class Escenas {
         secundaryStage.showAndWait();
     }
 
+    public void mensajeError(String mensaje, Pane contenedorActual) throws IOException {
+        FXMLLoader fxmlLoader = this.getFXML("mensaje");
+        Pane contenido = fxmlLoader.load();
+        MensajeController mensajeController = fxmlLoader.getController();
+        mensajeController.setMensaje(mensaje);
+        mensajeController.setContenedorActual(contenedorActual);
+        //Scene scena = new Scene(root);
+        //this.primaryStage.setScene(scena);
+        contenedorActual.getChildren().add(contenido);
+    }
+
     public Stage armarPantallaCarga() throws IOException {
         Parent pantallaCarga = this.loadFXML("carga");
         Scene sceneCarga = new Scene(pantallaCarga);

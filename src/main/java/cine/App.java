@@ -24,7 +24,6 @@ public class App extends Application {
         scene = new Scene(fxmlLoader.load(), 600, 400);
         stage.setTitle("Cine");
         stage.setScene(scene);
-        stage.setResizable(false);
         MenuController.escenas.setPrimaryStage(stage);
         stage.show();
     }

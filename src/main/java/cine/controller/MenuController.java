@@ -2,12 +2,16 @@ package cine.controller;
 
 import java.io.IOException;
 
+import cine.App;
 import cine.model.Cine;
 import cine.model.Usuario;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 public class MenuController {
@@ -22,6 +26,9 @@ public class MenuController {
     @FXML
     private Button salirBtn;
 
+    @FXML
+    private StackPane menuVerdad;
+
     public void setStage(Stage stage) {
         escenas.setPrimaryStage(stage);
     }
@@ -29,8 +36,7 @@ public class MenuController {
     @FXML
     void comprar(ActionEvent event) throws IOException {
         if (usuario.getUsuarioNombre() == null) {
-            escenas.mostrarMsjError("Es necesario ingresar");
-            escenas.mostrarEscenaSig("login");
+            escenas.mensajeError("Es necesario ingresar", menuVerdad);
             return;
         }
         escenas.mostrarEscenaSig("comprar");
