@@ -1,20 +1,27 @@
 package cine.controller;
 
 import java.io.IOException;
+import java.util.concurrent.CountDownLatch;
 
 import javafx.application.Platform;
+import javafx.concurrent.Service;
+import javafx.concurrent.Task;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.effect.GaussianBlur;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import cine.App;
+import cine.view.Carga;
 
 public class Escenas {
     private Stage primaryStage;
+    private Carga carga = new Carga();
 
     public void setPrimaryStage(Stage stage) {
         this.primaryStage = stage;
@@ -50,7 +57,7 @@ public class Escenas {
         return stage;
     }
     
-    public void mensajeError(String mensaje, Pane stackPane, Pane contenedorActual) throws IOException {
+    public void mensajeError(String mensaje, StackPane stackPane, Pane contenedorActual) throws IOException {
         contenedorActual.setDisable(true);
         contenedorActual.setEffect(new GaussianBlur());
         FXMLLoader fxmlLoader = this.getFXML("mensaje");
@@ -62,41 +69,53 @@ public class Escenas {
         stackPane.getChildren().add(contenido);
     }
 
-    public Stage armarPantallaCarga() throws IOException {
-        Parent pantallaCarga = this.loadFXML("carga");
-        Scene sceneCarga = new Scene(pantallaCarga);
-        Stage secundaryStage = new Stage();
-        secundaryStage.setWidth(250);
-        secundaryStage.setHeight(75);
-        secundaryStage.setX(this.primaryStage.getX() + this.primaryStage.getWidth() / 2 - secundaryStage.getWidth() / 2);
-        secundaryStage.setY(this.primaryStage.getY() + this.primaryStage.getHeight() / 2 - secundaryStage.getHeight() / 2);
-        secundaryStage.setResizable(false);
-        secundaryStage.initModality(Modality.APPLICATION_MODAL);
-        secundaryStage.initStyle(StageStyle.UNDECORATED);
-        secundaryStage.setScene(sceneCarga);
-        secundaryStage.show();
-        return secundaryStage;
+    public Pane armarPantallaCarga() throws IOException {
+        FXMLLoader fxmlLoader = this.getFXML("carga");
+        Pane pantallaCarga = fxmlLoader.load();
+        return pantallaCarga;
     }
 
-    public void cargarSiguienteEscena(String siguienteEscena) throws IOException {
-        Stage secundaryStage = this.armarPantallaCarga();
-        Platform.runLater(new Runnable() {
+    public void cargarSiguienteEscena(String siguienteEscena , StackPane stackPane) throws IOException, InterruptedException {
+        Label cartel = carga.armar();
+        stackPane.getChildren().add(cartel);
+        Thread.sleep(100);
+        
+        Service<Void> service = new Service<Void>() {
             @Override
-            public void run() {
-                Parent cartelera;
-                try {
-                    cartelera = loadFXML(siguienteEscena);
-                    Scene sceneCartelera = new Scene(cartelera);
-                    primaryStage.setScene(sceneCartelera);
-                    primaryStage.show();
-                    secundaryStage.close();
-                } catch (IOException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                }
+            protected Task<Void> createTask() {
+                return new Task<Void>() {           
+                        @Override
+                        protected Void call() throws Exception {
+                            //Background work                       
+                            final CountDownLatch latch = new CountDownLatch(1);
+                            Platform.runLater(new Runnable() {                          
+                                @Override
+                                public void run() {
+                                    try{
+                                        Parent cartelera;
+                                        cartelera = loadFXML(siguienteEscena);
+                                        Scene sceneCartelera = new Scene(cartelera);
+                                        primaryStage.setScene(sceneCartelera);
+                                        primaryStage.show();
+                                    } catch (IOException e) {                           
+                                        // TODO Auto-generated catch block
+                                        e.printStackTrace();
+                                    }
+                                    finally {
+                                        latch.countDown();
+                                    }
+                                }
+                            });
+                            latch.await();    
+                            return null;
+                        }
+                    };
             }
-            
-        });
-    }
+        };
 
+        service.start();
+        //Platform.runLater(new ArmarEscena(stackPane));
+        //Platform.runLater(new CargarEscena(stackPane, primaryStage, siguienteEscena));
+
+    }
 }

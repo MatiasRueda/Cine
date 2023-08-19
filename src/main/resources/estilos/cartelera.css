@@ -4,6 +4,7 @@
     -fx-border-color: black;
     -fx-border-style: solid;
     -fx-border-width: 3px;
+    -fx-background-insets: 0;
 }
 
 .button:hover

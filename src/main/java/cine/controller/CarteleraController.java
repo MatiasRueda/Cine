@@ -12,8 +12,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
 
 public class CarteleraController {
     private Cine cine = MenuController.cine;
@@ -21,6 +22,9 @@ public class CarteleraController {
     private Usuario usuario = MenuController.usuario;
 
     private int offset = 0;
+
+    @FXML
+    private StackPane stackCartelera;
 
     @FXML
     private VBox cartelera;
@@ -82,24 +86,26 @@ public class CarteleraController {
 
     @FXML
     void anterior(ActionEvent event) throws IOException{
-        Stage secundaryStage = this.escenas.armarPantallaCarga();
+        Pane pantallaCarga = this.escenas.armarPantallaCarga();
+        this.stackCartelera.getChildren().add(pantallaCarga);
         this.btnSiguiente.setDisable(false);
         offset--;
         Platform.runLater(() -> {
             cargarCartelera();
             if (offset == 0) btnAnterior.setDisable(true);
-            secundaryStage.close();
+            stackCartelera.getChildren().remove(pantallaCarga);
         });
     }
 
     @FXML
     void siguiente(ActionEvent event) throws IOException {
-        Stage secundaryStage = this.escenas.armarPantallaCarga();
+        Pane pantallaCarga = this.escenas.armarPantallaCarga();
+        this.stackCartelera.getChildren().add(pantallaCarga);
         this.btnAnterior.setDisable(false);
         offset++;
         Platform.runLater(() -> {
             if (cargarCartelera().size() == 1) btnSiguiente.setDisable(true);
-            secundaryStage.close();
+            stackCartelera.getChildren().remove(pantallaCarga);
         });
     }
 
