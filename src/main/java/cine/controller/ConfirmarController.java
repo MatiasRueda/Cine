@@ -1,5 +1,6 @@
 package cine.controller;
 
+import cine.model.Usuario;
 import cine.view.Item;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -9,8 +10,9 @@ import javafx.scene.layout.VBox;
 
 public class ConfirmarController {
 
+    private Usuario usuario = MenuController.usuario;
     private Item fabrica = new Item();
-
+    
     @FXML
     private Label fecha;
 
@@ -28,10 +30,17 @@ public class ConfirmarController {
 
     @FXML
     void initialize() {
+
+        this.usuario.getProductos().forEach((producto, cantidad) -> {
+            HBox item = this.fabrica.armar(producto, String.valueOf(cantidad));
+            this.contenedor.getChildren().add(item);
+        });
+        /* 
         for (int cantidad = 0; cantidad < 10; cantidad++) {
             HBox item = this.fabrica.armar(this.contenedor, "Producto" + String.valueOf(cantidad), false);
             this.contenedor.getChildren().add(item);
         }
+        */
     }
 
     @FXML

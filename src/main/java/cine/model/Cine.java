@@ -116,7 +116,7 @@ public class Cine {
         return filas;
     }
 
-    public ArrayList<ArrayList<Integer>> getFilaColumnaReservadas() {
+    public ArrayList<ArrayList<Integer>> getReservas() {
         Connection conn = this.database.conectarMySQL();
         List<String> columnas =  Arrays.asList(new String[]{"fila", "Columna"});
         List<String> condiciones =  Arrays.asList(new String[]{"fecha", "sala", "horario"});

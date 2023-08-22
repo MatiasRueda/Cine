@@ -1,11 +1,11 @@
-.button 
+#opcion
 {
     -fx-background-color: white;
     -fx-border-color: black;
     -fx-background-insets: 0;
 }
 
-.button:hover 
+#opcion:hover 
 {
     -fx-background-color: black;
     -fx-text-fill: white;

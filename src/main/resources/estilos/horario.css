@@ -1,4 +1,12 @@
-.button {
+.button 
+{
     -fx-background-color: white;
     -fx-border-color: black;
+    -fx-background-insets: 0;
+}
+
+.button:hover 
+{
+    -fx-background-color: black;
+    -fx-text-fill: white;
 }

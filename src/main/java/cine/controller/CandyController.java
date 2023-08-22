@@ -47,12 +47,11 @@ public class CandyController {
             if (!(node instanceof Button)) continue;
             Button boton = (Button) node;
             boton.setOnAction(e -> sacarDeLaLista(item, productoNombre));
-
         }
     }
 
     private void agregarItemLista(String productoNombre) {
-        HBox item = this.fabrica.armar(this.contenedor, productoNombre, true);
+        HBox item = this.fabrica.armar(productoNombre, true);
         this.setActionLista(item, productoNombre);
         this.contenedor.getChildren().add(item);
         this.cine.agregarProducto(productoNombre);

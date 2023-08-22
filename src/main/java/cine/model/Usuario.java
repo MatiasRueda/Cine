@@ -91,6 +91,15 @@ public class Usuario {
         this.columna = Character.valueOf(letra);
     }
 
+    public HashMap<String, Integer> getProductos() {
+        HashMap<String, Integer> productos = new HashMap<>();
+        this.productos.forEach((producto, cantidad) -> {
+            if (cantidad == 0) return;
+            productos.put(producto, cantidad);
+        });
+        return productos;
+    }
+
     public void setProductos(HashMap<String, Integer> productos) {
         this.productos = productos;
     }

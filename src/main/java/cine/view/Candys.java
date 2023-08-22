@@ -1,5 +1,7 @@
 package cine.view;
 
+import javafx.geometry.Pos;
+import javafx.scene.Cursor;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -33,6 +35,7 @@ public class Candys {
 
     private Label etiqueta(String nombre) {
         Label etiqueta = new Label(nombre);
+        etiqueta.setAlignment(Pos.CENTER);
         etiqueta.setPrefHeight(this.ETIQUETA_HEIGHT);
         etiqueta.setPrefWidth(this.ETIQUETA_WIDTH);
         return etiqueta;
@@ -40,7 +43,9 @@ public class Candys {
     
     private Button boton(String nombre, String precio) {
         Button boton = new Button("Comprar " + precio + " $");
+        boton.setStyle("-fx-background-color: white; -fx-border-color: black");
         boton.setId(nombre);
+        boton.setCursor(Cursor.HAND);
         boton.prefHeight(this.BOTON_HEIGHT);
         boton.prefWidth(this.BOTON_WIDTH);
         return boton;

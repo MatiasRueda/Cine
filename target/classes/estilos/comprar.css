@@ -1,11 +1,37 @@
-.button {
-    -fx-background-color: white;
-    -fx-border-color: black;
+.button 
+{
+    -fx-border-width: 2;
 }
 
-.button:hover{
-    -fx-background-color: rgb(205, 195, 195);
-    -fx-border-width: 2;
+.button:hover
+{
+    -fx-background-color: grey;
+}
+
+#btnPeliculas
+{
+    -fx-background-color: black;
+    -fx-border-color: black;
+
+}
+
+#btnPeliculas:hover
+{
+    -fx-border-color: white;
+    -fx-background-color: white;
+}
+
+#btnCandy
+{
+    -fx-background-color: white;
+    -fx-border-color: white;
+}
+
+
+#btnCandy:hover
+{
+    -fx-border-color: black;
+    -fx-background-color: black;
 }
 
 #peli
