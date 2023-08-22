@@ -49,7 +49,7 @@ public class HorarioController {
     }
 
     @FXML
-    void comprar(ActionEvent event) throws IOException {
+    void continuar(ActionEvent event) throws IOException {
         this.usuario.setHorario(this.opciones.getEleccion());
         this.usuario.setSala(this.opciones.getEleccion(), this.cine.getSalas());
         this.escenas.mostrarEscenaSig("sala");

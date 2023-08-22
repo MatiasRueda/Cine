@@ -1,11 +1,8 @@
 package cine.controller;
 
 import java.io.IOException;
-import java.util.concurrent.CountDownLatch;
 
 import javafx.application.Platform;
-import javafx.concurrent.Service;
-import javafx.concurrent.Task;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -42,12 +39,6 @@ public class Escenas {
         this.primaryStage.setScene(scena);
     }
 
-    static public void mostrarEscenaSig(Pane escenaActual, Parent siguienteEscena) throws IOException{
-        Scene scena = new Scene(siguienteEscena);
-        Stage stage = (Stage)escenaActual.getScene().getWindow();
-        stage.setScene(scena);
-    }
-
     public static Stage getStage(Parent root, Modality modal, StageStyle style) {
         Scene scene = new Scene(root);
         Stage stage = new Stage();
@@ -69,53 +60,21 @@ public class Escenas {
         stackPane.getChildren().add(contenido);
     }
 
-    public Pane armarPantallaCarga() throws IOException {
-        FXMLLoader fxmlLoader = this.getFXML("carga");
-        Pane pantallaCarga = fxmlLoader.load();
-        return pantallaCarga;
+    public Label cartelCarga() {
+        return this.carga.armar();
     }
 
     public void cargarSiguienteEscena(String siguienteEscena , StackPane stackPane) throws IOException, InterruptedException {
-        Label cartel = carga.armar();
+        Label cartel = this.carga.armar();
         stackPane.getChildren().add(cartel);
-        Thread.sleep(100);
-        
-        Service<Void> service = new Service<Void>() {
-            @Override
-            protected Task<Void> createTask() {
-                return new Task<Void>() {           
-                        @Override
-                        protected Void call() throws Exception {
-                            //Background work                       
-                            final CountDownLatch latch = new CountDownLatch(1);
-                            Platform.runLater(new Runnable() {                          
-                                @Override
-                                public void run() {
-                                    try{
-                                        Parent cartelera;
-                                        cartelera = loadFXML(siguienteEscena);
-                                        Scene sceneCartelera = new Scene(cartelera);
-                                        primaryStage.setScene(sceneCartelera);
-                                        primaryStage.show();
-                                    } catch (IOException e) {                           
-                                        // TODO Auto-generated catch block
-                                        e.printStackTrace();
-                                    }
-                                    finally {
-                                        latch.countDown();
-                                    }
-                                }
-                            });
-                            latch.await();    
-                            return null;
-                        }
-                    };
+        Thread.sleep(30);
+        Platform.runLater(() -> {
+            try {
+                mostrarEscenaSig(siguienteEscena);
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
             }
-        };
-
-        service.start();
-        //Platform.runLater(new ArmarEscena(stackPane));
-        //Platform.runLater(new CargarEscena(stackPane, primaryStage, siguienteEscena));
-
+        });
     }
 }

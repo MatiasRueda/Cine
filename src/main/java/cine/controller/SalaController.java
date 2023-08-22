@@ -73,7 +73,7 @@ public class SalaController {
       this.cine.guardarEleccion();
       this.usuario.reiniciarValores();
       this.cine.reiniciarValores();
-      this.escenas.mostrarEscenaSig("usuarioMenu");
+      this.escenas.mostrarEscenaSig("compraExito");
    }
 
 }

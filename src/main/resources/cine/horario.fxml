@@ -28,7 +28,7 @@
       </VBox>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
          <children>
-            <Button mnemonicParsing="false" onAction="#comprar" prefHeight="40.0" prefWidth="100.0" text="Comprar">
+            <Button mnemonicParsing="false" onAction="#continuar" prefHeight="40.0" prefWidth="100.0" text="Comprar">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></Button>

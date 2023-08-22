@@ -9,6 +9,7 @@ import java.util.LinkedHashSet;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
+import java.util.UUID;
 
 
 public class Cine {
@@ -150,6 +151,10 @@ public class Cine {
 
     public HashMap<String, String> getSalas() {
         return this.salas;
+    }
+
+    public String generarCodigo() {
+        return UUID.randomUUID().toString().substring(0, 5);
     }
 
     public void reiniciarValores() {

@@ -12,7 +12,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 
@@ -75,7 +74,7 @@ public class CarteleraController {
 
     @FXML
     void cancelar(ActionEvent event) throws IOException {
-        this.usuario = new Usuario();
+        this.usuario.reiniciarValores();
         this.escenas.mostrarEscenaSig("usuarioMenu");
     }
 
@@ -85,27 +84,29 @@ public class CarteleraController {
     }
 
     @FXML
-    void anterior(ActionEvent event) throws IOException{
-        Pane pantallaCarga = this.escenas.armarPantallaCarga();
-        this.stackCartelera.getChildren().add(pantallaCarga);
+    void anterior(ActionEvent event) throws IOException, InterruptedException{
+        Label carga = this.escenas.cartelCarga();
+        this.stackCartelera.getChildren().add(carga);
+        Thread.sleep(30);
         this.btnSiguiente.setDisable(false);
         offset--;
         Platform.runLater(() -> {
             cargarCartelera();
             if (offset == 0) btnAnterior.setDisable(true);
-            stackCartelera.getChildren().remove(pantallaCarga);
+            stackCartelera.getChildren().remove(carga);
         });
     }
 
     @FXML
-    void siguiente(ActionEvent event) throws IOException {
-        Pane pantallaCarga = this.escenas.armarPantallaCarga();
-        this.stackCartelera.getChildren().add(pantallaCarga);
+    void siguiente(ActionEvent event) throws IOException, InterruptedException {
+        Label carga = this.escenas.cartelCarga();
+        this.stackCartelera.getChildren().add(carga);
+        Thread.sleep(30);
         this.btnAnterior.setDisable(false);
         offset++;
         Platform.runLater(() -> {
             if (cargarCartelera().size() == 1) btnSiguiente.setDisable(true);
-            stackCartelera.getChildren().remove(pantallaCarga);
+            stackCartelera.getChildren().remove(carga);
         });
     }
 
