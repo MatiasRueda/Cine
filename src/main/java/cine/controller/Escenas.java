@@ -64,7 +64,9 @@ public class Escenas {
         return this.carga.armar();
     }
 
-    public void cargarSiguienteEscena(String siguienteEscena , StackPane stackPane) throws IOException, InterruptedException {
+    public void cargarSiguienteEscena(String siguienteEscena , StackPane stackPane, Pane contenedorActual) throws IOException, InterruptedException {
+        contenedorActual.setDisable(true);
+        contenedorActual.setEffect(new GaussianBlur());
         Label cartel = this.carga.armar();
         stackPane.getChildren().add(cartel);
         Thread.sleep(30);

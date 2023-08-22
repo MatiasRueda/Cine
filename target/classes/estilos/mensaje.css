@@ -1,0 +1,28 @@
+.label
+{
+    -fx-text-fill: white;
+}
+
+
+
+.button
+{   
+    -fx-background-color:yellow ;
+    -fx-border-color: black;
+    -fx-border-width: 2;
+    -fx-background-insets: 0;
+}
+
+.button:hover {
+    -fx-background-color:orange;
+    -fx-border-color:black;
+    -fx-background-insets: 0;
+}
+
+#mensaje
+{
+    -fx-border-color: black;
+    -fx-border-width: 5;
+    -fx-background-color: #ee0979;
+    -fx-background-color: linear-gradient(to right, #ff6a00, #ee0979);
+}

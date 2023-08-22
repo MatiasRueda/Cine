@@ -10,6 +10,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 
 public class FechaController {
@@ -18,6 +19,9 @@ public class FechaController {
     private Escenas escenas = MenuController.escenas;
     private Usuario usuario = MenuController.usuario;
     private Opciones opciones = new Opciones("white", "red");
+
+    @FXML
+    private StackPane stackFecha;
 
     @FXML
     private VBox fecha;
@@ -46,7 +50,12 @@ public class FechaController {
 
     @FXML
     void continuar(ActionEvent event) throws IOException {
-        this.usuario.setFechaPelicula(this.opciones.getEleccion());
+        String opcion = this.opciones.getEleccion();
+        if (opcion == null) {
+            this.escenas.mensajeError("Elija alguna opcion", this.stackFecha, this.fecha);
+            return;
+        }
+        this.usuario.setFechaPelicula(opcion);
         this.escenas.mostrarEscenaSig("horario");
     }
 

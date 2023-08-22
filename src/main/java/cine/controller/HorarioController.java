@@ -10,13 +10,18 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 
 public class HorarioController {
+
     private Cine cine = MenuController.cine;
     private Escenas escenas = MenuController.escenas;
     private Usuario usuario = MenuController.usuario;
     private Opciones opciones = new Opciones("white", "green");
+
+    @FXML 
+    private StackPane stackHorario;
 
     @FXML
     private VBox horario;
@@ -50,8 +55,13 @@ public class HorarioController {
 
     @FXML
     void continuar(ActionEvent event) throws IOException {
-        this.usuario.setHorario(this.opciones.getEleccion());
-        this.usuario.setSala(this.opciones.getEleccion(), this.cine.getSalas());
+        String opcion = this.opciones.getEleccion();
+        if (opcion == null) {
+            this.escenas.mensajeError(opcion, this.stackHorario, horario);
+            return;
+        }
+        this.usuario.setHorario(opcion);
+        this.usuario.setSala(opcion, this.cine.getSalas());
         this.escenas.mostrarEscenaSig("sala");
     }
 }

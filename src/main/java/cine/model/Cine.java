@@ -10,6 +10,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
 import java.util.UUID;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 
 public class Cine {
@@ -20,6 +22,7 @@ public class Cine {
     private ArrayList<String> horarios  = new ArrayList<>();
     private HashMap<String, Integer> precios;
     private Usuario usuario;
+    private String codigoCompra;
 
     public Cine(Usuario usuario) {
         this.usuario = usuario;
@@ -134,9 +137,12 @@ public class Cine {
 
     public boolean guardarEleccion() {
         Connection conn = this.database.conectarMySQL();
-        List<String> columnas =  Arrays.asList(new String[]{"reservado_por", "titulo", "fecha" ,"sala", "horario", "fila" , "columna"});
-        List<String> valores = this.usuario.getInformacion();
-        this.database.agregar(conn, "reserva", columnas, valores, new ArrayList<>());
+        this.codigoCompra = UUID.randomUUID().toString().substring(0, 5);
+        List<String> columnas =  Arrays.asList(new String[]{"codigo", "reservado_por", "titulo", "fecha" ,"sala", "horario", "fila" , "columna"});
+        List<String> codigo = Arrays.asList(this.codigoCompra);
+        List<Integer> encryptar = Arrays.asList(new Integer[]{0});
+        List<String> valores = Stream.concat(codigo.stream(), this.usuario.getInformacion().stream()).collect(Collectors.toList());
+        this.database.agregar(conn, "reserva", columnas, valores, encryptar);
         this.cerrarConeccion(conn);
         return true;
     }
@@ -153,8 +159,8 @@ public class Cine {
         return this.salas;
     }
 
-    public String generarCodigo() {
-        return UUID.randomUUID().toString().substring(0, 5);
+    public String getCodigoCompra() {
+        return this.codigoCompra;
     }
 
     public void reiniciarValores() {

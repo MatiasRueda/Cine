@@ -1,0 +1,54 @@
+.button
+{
+    -fx-border-style: solid solid solid hidden;
+    -fx-border-color: black;
+    -fx-border-width: 3px 0px 3px 3px;
+    -fx-background-color: white;
+}
+
+.button:hover
+{
+    -fx-background-color: black;
+    -fx-text-fill: white;
+    -fx-border-color: white;
+
+}
+
+.label
+{
+    -fx-text-fill: white;
+}
+
+.hyperlink
+{
+    -fx-background-color: rgb(127, 199, 127);
+    -fx-text-fill: black;
+    -fx-border-color: black;
+    -fx-border-width: 0px 0px 0px 3px;
+}
+
+.hyperlink:hover
+{
+    -fx-background-color: rgb(99, 99, 204);
+    -fx-underline: false;
+    -fx-text-fill: white;
+}
+
+#opciones
+{   
+    -fx-background-color: rgb(220, 219, 219);
+}
+
+#ingresar{
+    -fx-border-style: solid;
+    -fx-border-color: black;
+    -fx-border-width: 3px
+}
+
+#presentacion 
+{
+    -fx-border-color: black;
+    -fx-border-width: 0px 3px 3px 3px;
+    -fx-background-color: #4568dc;
+    -fx-background-color: linear-gradient(to right, #4568dc, #b06ab3);
+}
