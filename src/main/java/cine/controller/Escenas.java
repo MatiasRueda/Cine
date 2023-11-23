@@ -53,7 +53,7 @@ public class Escenas {
         contenedorActual.setEffect(new GaussianBlur());
         FXMLLoader fxmlLoader = this.getFXML("mensaje");
         Pane contenido = fxmlLoader.load();
-        MensajeController mensajeController = fxmlLoader.getController();
+        Mensaje mensajeController = fxmlLoader.getController();
         mensajeController.setMensaje(mensaje);
         mensajeController.setStackPane(stackPane);
         mensajeController.setContenedorActual(contenedorActual);

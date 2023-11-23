@@ -4,7 +4,7 @@
 <?import javafx.scene.text.Font?>
 
 
-<Label alignment="CENTER" prefHeight="75.0" prefWidth="250.0" stylesheets="@../estilos/carga.css" text="Cargando..." xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cine.controller.CargandoController">
+<Label alignment="CENTER" prefHeight="75.0" prefWidth="250.0" stylesheets="@../estilos/carga.css" text="Cargando..." xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cine.controller.Cargando">
    <font>
       <Font size="29.0" />
    </font>

@@ -11,8 +11,8 @@ import javafx.scene.layout.StackPane;
 // Peliculas: https://pixabay.com/es/vectors/claqueta-película-recorte-video-311792/
 // Candy: https://pixabay.com/es/vectors/palomitas-caja-bocadillo-película-4788367/
 
-public class ComprarController {
-    private Escenas escenas = MenuController.escenas;
+public class Comprar {
+    private Escenas escenas = Menu.escenas;
 
     @FXML
     private StackPane stackComprar;

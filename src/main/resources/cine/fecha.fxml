@@ -11,7 +11,7 @@
 <?import javafx.scene.text.Font?>
 
 
-<StackPane fx:id="stackFecha" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cine.controller.FechaController">
+<StackPane fx:id="stackFecha" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cine.controller.Fecha">
    <children>
       <VBox fx:id="fecha" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@../estilos/fecha.css">
          <children>

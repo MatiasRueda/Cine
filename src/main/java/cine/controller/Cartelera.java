@@ -15,10 +15,10 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 
-public class CarteleraController {
-    private Cine cine = MenuController.cine;
-    private Escenas escenas = MenuController.escenas;
-    private Usuario usuario = MenuController.usuario;
+public class Cartelera {
+    private Cine cine = Menu.cine;
+    private Escenas escenas = Menu.escenas;
+    private Usuario usuario = Menu.usuario;
 
     private int offset = 0;
 

@@ -9,9 +9,9 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
-public class UsuarioMenuController {
-    private Escenas escenas = MenuController.escenas;
-    private Usuario usuario = MenuController.usuario;
+public class UsuarioMenu {
+    private Escenas escenas = Menu.escenas;
+    private Usuario usuario = Menu.usuario;
 
     @FXML
     private HBox usuarioMenu;

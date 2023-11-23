@@ -8,9 +8,9 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
-public class ConfirmarController {
+public class Confirmar {
 
-    private Usuario usuario = MenuController.usuario;
+    private Usuario usuario = Menu.usuario;
     private Item fabrica = new Item();
     
     @FXML

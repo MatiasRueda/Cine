@@ -7,7 +7,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-import cine.controller.MenuController;
+import cine.controller.Menu;
 
 /**
  * JavaFX App
@@ -24,7 +24,7 @@ public class App extends Application {
         scene = new Scene(fxmlLoader.load(), 600, 400);
         stage.setTitle("Cine");
         stage.setScene(scene);
-        MenuController.escenas.setPrimaryStage(stage);
+        Menu.escenas.setPrimaryStage(stage);
         stage.show();
     }
 

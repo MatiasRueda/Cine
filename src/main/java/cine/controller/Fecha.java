@@ -13,11 +13,11 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 
-public class FechaController {
+public class Fecha {
 
-    private Cine cine = MenuController.cine;
-    private Escenas escenas = MenuController.escenas;
-    private Usuario usuario = MenuController.usuario;
+    private Cine cine = Menu.cine;
+    private Escenas escenas = Menu.escenas;
+    private Usuario usuario = Menu.usuario;
     private Opciones opciones = new Opciones("white", "red");
 
     @FXML
