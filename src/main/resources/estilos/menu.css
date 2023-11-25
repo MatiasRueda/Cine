@@ -14,24 +14,10 @@
 
 }
 
-.label
-{
-    -fx-text-fill: white;
-}
-
-.hyperlink
-{
-    -fx-background-color: rgb(127, 199, 127);
-    -fx-text-fill: black;
+#titulo {
+    -fx-background-color: white;
+    -fx-border-width: 2 0 2 0;
     -fx-border-color: black;
-    -fx-border-width: 0px 0px 0px 3px;
-}
-
-.hyperlink:hover
-{
-    -fx-background-color: rgb(99, 99, 204);
-    -fx-underline: false;
-    -fx-text-fill: white;
 }
 
 #opciones
