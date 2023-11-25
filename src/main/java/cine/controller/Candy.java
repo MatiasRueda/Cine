@@ -16,7 +16,7 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
-public class CandyController {
+public class Candy {
     private Cine cine = Menu.cine;
     private Escenas escenas = Menu.escenas;
     private Usuario usuario = Menu.usuario;
