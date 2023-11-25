@@ -20,7 +20,7 @@ public class MySQL {
     private Dotenv dotenv = Dotenv.load();
 
     public  MySQL() {
-        this.url = "jdbc:mysql://" + this.dotenv.get("DB_HOSTNAME") + ":" + this.dotenv.get("DB_PORT") + "/" + this.dotenv.get("DB") + "?useSSL=false&allowPublicKeyRetrieval=true";
+        this.url = "jdbc:mysql://" + this.dotenv.get("DB_HOST") + ":" + this.dotenv.get("DB_PORT") + "/" + this.dotenv.get("DB_NAME") + "?useSSL=false&allowPublicKeyRetrieval=true";
     }
 
     public Connection conectarMySQL() {
@@ -28,7 +28,7 @@ public class MySQL {
 
         try {
             Class.forName(driver);
-            conn = DriverManager.getConnection(url, this.dotenv.get("DB_USERNAME"), this.dotenv.get("DB_CONTRASENIA"));
+            conn = DriverManager.getConnection(url, this.dotenv.get("DB_USER"), this.dotenv.get("DB_PASSWORD"));
             System.out.println("Conectada a la base de datos");
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
