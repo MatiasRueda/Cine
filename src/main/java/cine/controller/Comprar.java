@@ -12,7 +12,7 @@ import javafx.scene.layout.StackPane;
 // Candy: https://pixabay.com/es/vectors/palomitas-caja-bocadillo-película-4788367/
 
 public class Comprar {
-    private Escenas escenas = Menu.escenas;
+    private Escenas escenas = Controlador.escenas;
 
     @FXML
     private StackPane stackComprar;

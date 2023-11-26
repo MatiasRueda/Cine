@@ -9,8 +9,8 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 
 public class Exito {
-    private Cine cine = Menu.cine;
-    private Escenas escenas = Menu.escenas;
+    private Cine cine = Controlador.cine;
+    private Escenas escenas = Controlador.escenas;
 
     @FXML
     private VBox compraExito;

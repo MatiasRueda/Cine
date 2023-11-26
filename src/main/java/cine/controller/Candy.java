@@ -17,9 +17,9 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 public class Candy {
-    private Cine cine = Menu.cine;
-    private Escenas escenas = Menu.escenas;
-    private Usuario usuario = Menu.usuario;
+    private Cine cine = Controlador.cine;
+    private Escenas escenas = Controlador.escenas;
+    private Usuario usuario = Controlador.usuario;
     private Item fabrica = new Item();
     private Candys candys = new Candys();
 

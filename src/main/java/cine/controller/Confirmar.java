@@ -10,7 +10,7 @@ import javafx.scene.layout.VBox;
 
 public class Confirmar {
 
-    private Usuario usuario = Menu.usuario;
+    private Usuario usuario = Controlador.usuario;
     private Item fabrica = new Item();
     
     @FXML

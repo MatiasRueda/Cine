@@ -11,8 +11,8 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 
 public class Registrar {
-    private Cine cine = Menu.cine;
-    private Escenas escenas = Menu.escenas;
+    private Cine cine = Controlador.cine;
+    private Escenas escenas = Controlador.escenas;
 
     @FXML
     private StackPane stackRegister;

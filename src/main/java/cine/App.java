@@ -7,7 +7,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-import cine.controller.Menu;
+import cine.controller.Controlador;
 
 /**
  * JavaFX App
@@ -19,12 +19,12 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        String escenaInicial = "menu";
+        String escenaInicial = "controlador";
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(escenaInicial + ".fxml"));
-        scene = new Scene(fxmlLoader.load(), 600, 400);
+        scene = new Scene(fxmlLoader.load(), 1300, 900);
         stage.setTitle("Cine");
         stage.setScene(scene);
-        Menu.escenas.setPrimaryStage(stage);
+        Controlador.escenas.setPrimaryStage(stage);
         stage.show();
     }
 

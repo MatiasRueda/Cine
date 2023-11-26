@@ -1,82 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.Cursor?>
-<?import javafx.scene.control.Button?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<StackPane fx:id="stackMenu" prefHeight="900.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cine.controller.Menu">
+
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cine.controller.Menu">
    <children>
-      <HBox fx:id="menu" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1300.0" stylesheets="@../estilos/menu.css">
+      <StackPane alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="1000.0">
          <children>
-            <VBox fx:id="opciones" alignment="TOP_CENTER" prefHeight="900.0" prefWidth="300.0">
-               <children>
-                  <StackPane prefHeight="183.0" prefWidth="300.0">
-                     <children>
-                        <Label fx:id="titulo" alignment="CENTER" prefHeight="110.0" prefWidth="300.0" text="Cine">
-                           <font>
-                              <Font size="39.0" />
-                           </font>
-                        </Label>
-                     </children>
-                  </StackPane>
-                  <Region prefHeight="100.0" prefWidth="200.0" />
-                  <Button alignment="CENTER" mnemonicParsing="false" onAction="#unirse" prefHeight="100.0" prefWidth="300.0" text="Unirse">
-                     <font>
-                        <Font size="23.0" />
-                     </font>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </Button>
-                  <Region prefHeight="50.0" />
-                  <Button alignment="CENTER" mnemonicParsing="false" onAction="#comprar" prefHeight="100.0" prefWidth="300.0" text="Comprar" VBox.vgrow="ALWAYS">
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                     <font>
-                        <Font size="23.0" />
-                     </font>
-                  </Button>
-                  <Region prefHeight="50.0" />
-                  <Button alignment="CENTER" mnemonicParsing="false" onAction="#promos" prefHeight="100.0" prefWidth="300.0" text="Promos" VBox.vgrow="ALWAYS">
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                     <font>
-                        <Font size="23.0" />
-                     </font>
-                  </Button>
-                  <Region prefHeight="50.0" />
-                  <Button fx:id="salirBtn" alignment="CENTER" mnemonicParsing="false" onAction="#salir" prefHeight="100.0" prefWidth="300.0" text="Salir" VBox.vgrow="ALWAYS">
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                     <font>
-                        <Font size="23.0" />
-                     </font>
-                  </Button>
-               </children>
-            </VBox>
-            <VBox fx:id="presentacion" alignment="CENTER" prefHeight="900.0" prefWidth="1000.0">
-               <children>
-                  <Label alignment="CENTER" prefHeight="50.0" prefWidth="211.0" text="Bienvenido al cine">
-                     <font>
-                        <Font size="22.0" />
-                     </font>
-                  </Label>
-                  <Label alignment="CENTER" prefHeight="39.0" prefWidth="266.0" text="Elija alguna de las opciones por favor">
-                     <font>
-                        <Font size="15.0" />
-                     </font>
-                  </Label>
-               </children>
-            </VBox>
+            <Label text="Ultimas peliculas agregadas:">
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Label>
          </children>
-      </HBox>
+         <padding>
+            <Insets left="50.0" />
+         </padding>
+      </StackPane>
+      <HBox fx:id="peliculas" prefHeight="250.0" prefWidth="200.0" />
+      <StackPane alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="1000.0">
+         <children>
+            <Label text="Ofertas">
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Label>
+         </children>
+         <VBox.margin>
+            <Insets />
+         </VBox.margin>
+         <padding>
+            <Insets left="50.0" />
+         </padding>
+      </StackPane>
+      <HBox fx:id="ofertas" prefHeight="250.0" prefWidth="200.0" />
    </children>
-</StackPane>
+</VBox>

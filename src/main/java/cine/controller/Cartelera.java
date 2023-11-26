@@ -16,9 +16,9 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 
 public class Cartelera {
-    private Cine cine = Menu.cine;
-    private Escenas escenas = Menu.escenas;
-    private Usuario usuario = Menu.usuario;
+    private Cine cine = Controlador.cine;
+    private Escenas escenas = Controlador.escenas;
+    private Usuario usuario = Controlador.usuario;
 
     private int offset = 0;
 
