@@ -9,9 +9,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<StackPane fx:id="stackOrigen" prefHeight="900.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cine.controller.Controlador">
+<StackPane fx:id="stackOrigen" prefHeight="900.0" prefWidth="1300.0" stylesheets="@../estilos/controlador.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cine.controller.Controlador">
    <children>
-      <HBox fx:id="controlador" alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1300.0" stylesheets="@../estilos/controlador.css">
+      <HBox fx:id="controlador" alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1300.0">
          <children>
             <VBox fx:id="navControlador" alignment="TOP_CENTER" prefHeight="900.0" prefWidth="300.0">
                <children>

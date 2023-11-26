@@ -28,7 +28,7 @@ public class Controlador {
     private VBox opciones;
 
     @FXML
-    private StackPane stackOrigen;
+    private StackPane stackControlador;
 
     public void setStage(Stage stage) {
         escenas.setPrimaryStage(stage);
@@ -37,7 +37,7 @@ public class Controlador {
     @FXML
     void comprar(ActionEvent event) throws IOException {
         if (usuario.getUsuarioNombre() == null) {
-            escenas.mensajeError("Es necesario ingresar", this.stackOrigen, this.controlador);
+            escenas.mensajeError("Es necesario ingresar", this.stackControlador, this.controlador);
             return;
         }
         escenas.mostrarEscenaSig("comprar");
