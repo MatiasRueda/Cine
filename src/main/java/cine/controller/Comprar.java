@@ -22,11 +22,11 @@ public class Comprar {
 
     @FXML
     void pelicula(ActionEvent event) throws IOException, InterruptedException {
-        this.escenas.cargarSiguienteEscena("cartelera", this.stackComprar, this.comprar);
+        this.escenas.cargarSiguienteEscena(ESCENA.CARTELERA, this.stackComprar, this.comprar);
     }
 
     @FXML
     void candy(ActionEvent event) throws IOException, InterruptedException{
-        this.escenas.cargarSiguienteEscena("candy", this.stackComprar, this.comprar);
+        this.escenas.cargarSiguienteEscena(ESCENA.CANDY, this.stackComprar, this.comprar);
     }
 }

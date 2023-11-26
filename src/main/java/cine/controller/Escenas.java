@@ -24,17 +24,17 @@ public class Escenas {
         this.primaryStage = stage;
     }
 
-    public FXMLLoader getFXML(String fxml) {
-        return new FXMLLoader(App.class.getResource(fxml + ".fxml"));
+    public FXMLLoader getFXML(ESCENA escena) {
+        return new FXMLLoader(App.class.getResource(escena.toString().toLowerCase() + ".fxml"));
     }
 
-    public Parent loadFXML(String fxml) throws IOException {
+    public Parent loadFXML(ESCENA fxml) throws IOException {
         FXMLLoader fxmlLoader = this.getFXML(fxml);
         return fxmlLoader.load();
     }
 
-    public void mostrarEscenaSig(String siguienteEscena) throws IOException{
-        Parent root = loadFXML(siguienteEscena);
+    public void mostrarEscenaSig(ESCENA escena) throws IOException{
+        Parent root = loadFXML(escena);
         Scene scena = new Scene(root);
         this.primaryStage.setScene(scena);
     }
@@ -51,7 +51,7 @@ public class Escenas {
     public void mensajeError(String mensaje, StackPane stackPane, Pane contenedorActual) throws IOException {
         contenedorActual.setDisable(true);
         contenedorActual.setEffect(new GaussianBlur());
-        FXMLLoader fxmlLoader = this.getFXML("mensaje");
+        FXMLLoader fxmlLoader = this.getFXML(ESCENA.MENSAJE);
         Pane contenido = fxmlLoader.load();
         Mensaje mensajeController = fxmlLoader.getController();
         mensajeController.setMensaje(mensaje);
@@ -64,7 +64,7 @@ public class Escenas {
         return this.carga.armar();
     }
 
-    public void cargarSiguienteEscena(String siguienteEscena , StackPane stackPane, Pane contenedorActual) throws IOException, InterruptedException {
+    public void cargarSiguienteEscena(ESCENA escena , StackPane stackPane, Pane contenedorActual) throws IOException, InterruptedException {
         contenedorActual.setDisable(true);
         contenedorActual.setEffect(new GaussianBlur());
         Label cartel = this.carga.armar();
@@ -72,7 +72,7 @@ public class Escenas {
         Thread.sleep(30);
         Platform.runLater(() -> {
             try {
-                mostrarEscenaSig(siguienteEscena);
+                mostrarEscenaSig(escena);
             } catch (IOException e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();

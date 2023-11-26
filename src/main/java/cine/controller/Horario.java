@@ -50,7 +50,7 @@ public class Horario {
     void cancelar(ActionEvent event) throws IOException {
         this.usuario.reiniciarValores();
         this.cine.reiniciarValores();
-        this.escenas.mostrarEscenaSig("usuarioMenu");
+        this.escenas.mostrarEscenaSig(ESCENA.MENU);
     }
 
     @FXML
@@ -62,6 +62,6 @@ public class Horario {
         }
         this.usuario.setHorario(opcion);
         this.usuario.setSala(opcion, this.cine.getSalas());
-        this.escenas.mostrarEscenaSig("sala");
+        this.escenas.mostrarEscenaSig(ESCENA.SALA);
     }
 }

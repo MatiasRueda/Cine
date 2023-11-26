@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<StackPane fx:id="stackOrigen" prefHeight="900.0" prefWidth="1300.0" stylesheets="@../estilos/controlador.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cine.controller.Controlador">
+<StackPane fx:id="stackControlador" prefHeight="900.0" prefWidth="1300.0" stylesheets="@../estilos/controlador.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cine.controller.Controlador">
    <children>
       <HBox fx:id="controlador" alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1300.0">
          <children>
@@ -37,15 +37,6 @@
                         </Button>
                         <Region prefHeight="50.0" />
                         <Button alignment="CENTER" mnemonicParsing="false" onAction="#comprar" prefHeight="100.0" prefWidth="300.0" text="Comprar" VBox.vgrow="ALWAYS">
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                           <font>
-                              <Font size="23.0" />
-                           </font>
-                        </Button>
-                        <Region prefHeight="50.0" />
-                        <Button alignment="CENTER" mnemonicParsing="false" onAction="#promos" prefHeight="100.0" prefWidth="300.0" text="Promos" VBox.vgrow="ALWAYS">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>

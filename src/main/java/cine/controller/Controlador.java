@@ -30,6 +30,11 @@ public class Controlador {
     @FXML
     private StackPane stackControlador;
 
+    @FXML 
+    void initialize() {
+        
+    }
+
     public void setStage(Stage stage) {
         escenas.setPrimaryStage(stage);
     }
@@ -40,17 +45,12 @@ public class Controlador {
             escenas.mensajeError("Es necesario ingresar", this.stackControlador, this.controlador);
             return;
         }
-        escenas.mostrarEscenaSig("comprar");
-    }
-
-    @FXML
-    void promos(ActionEvent event) throws IOException {
-        escenas.mostrarEscenaSig("promos");
+        escenas.mostrarEscenaSig(ESCENA.COMPRAR);
     }
 
     @FXML
     void unirse(ActionEvent event) throws IOException {
-        escenas.mostrarEscenaSig("ingresar");
+        escenas.mostrarEscenaSig(ESCENA.INGRESAR);
     }
 
     @FXML

@@ -35,7 +35,7 @@ public class Sala {
    void cancelar(ActionEvent event) throws IOException{
       this.usuario.reiniciarValores();
       this.cine.reiniciarValores();
-      this.escenas.mostrarEscenaSig("usuarioMenu");
+      this.escenas.mostrarEscenaSig(ESCENA.MENU);
    }
 
    @FXML
@@ -43,7 +43,7 @@ public class Sala {
       this.cine.guardarEleccion();
       this.usuario.reiniciarValores();
       this.cine.reiniciarValores();
-      this.escenas.mostrarEscenaSig("compraExito");
+      this.escenas.mostrarEscenaSig(ESCENA.COMPRADO);
    }
 
 }

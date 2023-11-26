@@ -90,12 +90,12 @@ public class Candy {
     void cancelar(ActionEvent event) throws IOException {
         this.usuario.reiniciarValores();
         this.cine.reiniciarValores();
-        this.escenas.mostrarEscenaSig("usuarioMenu");
+        this.escenas.mostrarEscenaSig(ESCENA.MENU);
     }
 
     @FXML
     void continuar(ActionEvent event) throws IOException {
-        this.escenas.mostrarEscenaSig("confirmar");
+        this.escenas.mostrarEscenaSig(ESCENA.CONFIRMAR);
     }
 
 }

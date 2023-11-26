@@ -75,12 +75,12 @@ public class Cartelera {
     @FXML
     void cancelar(ActionEvent event) throws IOException {
         this.usuario.reiniciarValores();
-        this.escenas.mostrarEscenaSig("usuarioMenu");
+        this.escenas.mostrarEscenaSig(ESCENA.MENU);
     }
 
     @FXML
     void continuar(ActionEvent event) throws IOException {
-        this.escenas.mostrarEscenaSig("fecha");
+        this.escenas.mostrarEscenaSig(ESCENA.FECHA);
     }
 
     @FXML

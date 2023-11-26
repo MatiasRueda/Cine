@@ -8,7 +8,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 
-public class Exito {
+public class Comprado {
     private Cine cine = Controlador.cine;
     private Escenas escenas = Controlador.escenas;
 
@@ -25,7 +25,7 @@ public class Exito {
 
     @FXML
     void menu(ActionEvent event) throws IOException {
-        this.escenas.mostrarEscenaSig("usuarioMenu");
+        this.escenas.mostrarEscenaSig(ESCENA.MENU);
     }
 
 }

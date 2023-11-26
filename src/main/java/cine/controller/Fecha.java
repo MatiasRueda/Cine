@@ -45,7 +45,7 @@ public class Fecha {
     void cancelar(ActionEvent event) throws IOException {
         this.usuario.reiniciarValores();
         this.cine.reiniciarValores();
-        this.escenas.mostrarEscenaSig("usuarioMenu");
+        this.escenas.mostrarEscenaSig(ESCENA.MENU);
     }
 
     @FXML
@@ -56,7 +56,7 @@ public class Fecha {
             return;
         }
         this.usuario.setFechaPelicula(opcion);
-        this.escenas.mostrarEscenaSig("horario");
+        this.escenas.mostrarEscenaSig(ESCENA.HORARIO);
     }
 
 }

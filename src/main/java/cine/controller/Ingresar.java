@@ -41,17 +41,17 @@ public class Ingresar {
             return;
         }
         this.usuario.setUsuarioNombre(this.nombre.getText());
-        this.escenas.mostrarEscenaSig("usuarioMenu");
+        this.escenas.mostrarEscenaSig(ESCENA.MENU);
     }
 
     @FXML
     void registrarse(ActionEvent event) throws IOException {
-        this.escenas.mostrarEscenaSig("registrar");
+        this.escenas.mostrarEscenaSig(ESCENA.REGISTRAR);
     }
 
     @FXML
     void menu(ActionEvent event) throws IOException {
-        this.escenas.mostrarEscenaSig("menu");
+        this.escenas.mostrarEscenaSig(ESCENA.MENU);
     }   
 
 }

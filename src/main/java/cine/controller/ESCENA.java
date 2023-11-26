@@ -7,9 +7,10 @@ public enum ESCENA {
     CARTELERA,
     CONFIRMAR,
     FECHA,
-    EXITO,
+    COMPRADO,
     HORARIO,
     INGRESAR,
     REGISTRAR,
-    SALA
+    SALA,
+    MENSAJE
 }
