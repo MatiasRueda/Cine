@@ -79,11 +79,14 @@ public class Cine {
     }
 
     public boolean login(String nombre, String contrasenia) {
+        if (verificador.loginParteUnoError(nombre, contrasenia))
+            return false;
         Connection conn = this.database.conectarMySQL();
-        if (verificador.loginParteUnoError(conn, nombre, contrasenia)) return false;
+        if (verificador.loginParteDosError(conn, nombre)) 
+            return false;
         String contraseniaObtenida = this.database.getValor(conn, "usuario", "contrasenia" , "nombre" , nombre).iterator().next();
         this.cerrarConeccion(conn);
-        return !this.verificador.loginParteDosError(contrasenia, contraseniaObtenida);
+        return !this.verificador.loginParteTresError(contrasenia, contraseniaObtenida);
     }
 
     public ArrayList<String> getFechas() { 

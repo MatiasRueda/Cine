@@ -24,11 +24,15 @@ public class Verificador {
         return this.mensajes.setMensaje(resultado, Errores.USUARIO_REGISTRADO, Errores.USUARIO_NO_REGISTRADO);
     }
 
-    public boolean loginParteUnoError(Connection conn, String nombre, String contrasenia) {
-        return (this.campoEnBlanco(nombre, Errores.NOMBRE_CAMPO) || this.campoEnBlanco(contrasenia, Errores.CONTRASENIA_CAMPO) || !this.estaEnDB(conn, nombre));
+    public boolean loginParteUnoError(String nombre, String contrasenia) {
+        return this.campoEnBlanco(nombre, Errores.NOMBRE_CAMPO) || this.campoEnBlanco(contrasenia, Errores.CONTRASENIA_CAMPO);
     }
 
-    public boolean loginParteDosError(String contrasenia, String contraseniaObtenida) {
+    public boolean loginParteDosError(Connection conn, String nombre) {
+        return !this.estaEnDB(conn, nombre);
+    }
+
+    public boolean loginParteTresError(String contrasenia, String contraseniaObtenida) {
         boolean resultado = !this.database.compararContrasenias(contrasenia, contraseniaObtenida);
         this.mensajes.setMensaje(resultado, Errores.CONTRASENIA_INCORRECTA);
         return resultado;
