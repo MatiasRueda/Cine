@@ -57,7 +57,7 @@ public class Horario {
     void continuar(ActionEvent event) throws IOException {
         String opcion = this.opciones.getEleccion();
         if (opcion == null) {
-            this.escenas.mensajeError(opcion, this.stackHorario, horario);
+            this.escenas.mensajeError(opcion);
             return;
         }
         this.usuario.setHorario(opcion);

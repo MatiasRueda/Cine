@@ -38,7 +38,7 @@ public class Registrar {
     @FXML
     void registrar(ActionEvent event) throws IOException {
         if (!this.cine.register(usuarioNombre.getText(), DNI.getText(), email.getText(), contrasenia.getText(), contraseniaConfirmar.getText())) {
-            this.escenas.mensajeError(this.cine.getMensaje(), this.stackRegister, this.register);
+            this.escenas.mensajeError(this.cine.getMensaje());
             return;
         }
         this.escenas.mostrarEscenaSig(ESCENA.MENU);

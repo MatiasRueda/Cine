@@ -18,10 +18,20 @@ import cine.view.Carga;
 
 public class Escenas {
     private Stage primaryStage;
+    private StackPane stackPane;
+    private Pane escenaPrincipal;
     private Carga carga = new Carga();
 
     public void setPrimaryStage(Stage stage) {
         this.primaryStage = stage;
+    }
+
+    public void setStackPane(StackPane stackPane) {
+        this.stackPane = stackPane;
+    }
+
+    public void setEscenaPrincipal(Pane escena) {
+        this.escenaPrincipal = escena;
     }
 
     public FXMLLoader getFXML(ESCENA escena) {
@@ -48,20 +58,26 @@ public class Escenas {
         return stage;
     }
     
-    public void mensajeError(String mensaje, StackPane stackPane, Pane contenedorActual) throws IOException {
-        contenedorActual.setDisable(true);
-        contenedorActual.setEffect(new GaussianBlur());
+    public void mensajeError(String mensaje) throws IOException {
+        this.escenaPrincipal.setDisable(true);
+        this.escenaPrincipal.setEffect(new GaussianBlur());
         FXMLLoader fxmlLoader = this.getFXML(ESCENA.MENSAJE);
         Pane contenido = fxmlLoader.load();
         Mensaje mensajeController = fxmlLoader.getController();
         mensajeController.setMensaje(mensaje);
         mensajeController.setStackPane(stackPane);
-        mensajeController.setContenedorActual(contenedorActual);
+        mensajeController.setContenedorActual(this.escenaPrincipal);
         stackPane.getChildren().add(contenido);
     }
 
     public Label cartelCarga() {
         return this.carga.armar();
+    }
+
+    public void cargarEscena(ESCENA escena , Pane pane) throws IOException {
+        pane.getChildren().remove(1);
+        Pane escenaCargada = (Pane) this.loadFXML(escena);
+        pane.getChildren().add(escenaCargada);
     }
 
     public void cargarSiguienteEscena(ESCENA escena , StackPane stackPane, Pane contenedorActual) throws IOException, InterruptedException {

@@ -6,10 +6,8 @@ import cine.model.Cine;
 import cine.model.Usuario;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Hyperlink;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 
 
@@ -20,10 +18,7 @@ public class Ingresar {
     private Usuario usuario = Controlador.usuario;
 
     @FXML
-    private StackPane stackLogin;
-
-    @FXML
-    private VBox login;
+    private VBox ingresar;
 
     @FXML
     private TextField nombre;
@@ -32,12 +27,9 @@ public class Ingresar {
     private PasswordField contrasenia;
 
     @FXML
-    private Hyperlink register;
-
-    @FXML
-    void loguear(ActionEvent event) throws IOException {    
+    void ingresar(ActionEvent event) throws IOException {    
         if (!this.cine.login(nombre.getText() , contrasenia.getText())) {
-            this.escenas.mensajeError(this.cine.getMensaje(), this.stackLogin, this.login);
+            this.escenas.mensajeError(this.cine.getMensaje());
             return;
         }
         this.usuario.setUsuarioNombre(this.nombre.getText());
@@ -45,13 +37,8 @@ public class Ingresar {
     }
 
     @FXML
-    void registrarse(ActionEvent event) throws IOException {
+    void registrar(ActionEvent event) throws IOException {
         this.escenas.mostrarEscenaSig(ESCENA.REGISTRAR);
     }
-
-    @FXML
-    void menu(ActionEvent event) throws IOException {
-        this.escenas.mostrarEscenaSig(ESCENA.MENU);
-    }   
 
 }

@@ -52,7 +52,7 @@ public class Fecha {
     void continuar(ActionEvent event) throws IOException {
         String opcion = this.opciones.getEleccion();
         if (opcion == null) {
-            this.escenas.mensajeError("Elija alguna opcion", this.stackFecha, this.fecha);
+            this.escenas.mensajeError("Elija alguna opcion");
             return;
         }
         this.usuario.setFechaPelicula(opcion);
