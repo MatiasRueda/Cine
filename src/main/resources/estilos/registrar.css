@@ -3,7 +3,7 @@
     -fx-background-color: white;
     -fx-border-color: black;
     -fx-border-style: solid;
-    -fx-border-width: 3px;
+    -fx-border-width: 3;
     -fx-background-insets: 0;
 }
 
@@ -20,22 +20,12 @@
     -fx-text-fill: white;
 }
 
-.hyperlink
-{
-    -fx-text-fill: rgb(169, 222, 169);
-}
-
 #informacion 
 {
-    -fx-background-color: #000428;
-    -fx-background-color: linear-gradient(to right, #000428, #004e92); 
-    -fx-border-color: black;
-    -fx-border-width: 3;
+    -fx-background-color: black;
 }
 
-#opciones 
+#aceptar 
 {   
-    -fx-border-color: black;
-    -fx-border-width: 0px 3px 3px 3px;
     -fx-background-color: rgb(139, 134, 134);
 }

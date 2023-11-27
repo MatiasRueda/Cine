@@ -69,6 +69,7 @@ public class Controlador {
     @FXML
     void ingresar(ActionEvent event) throws IOException {
         this.elegirOpcion((Button) event.getSource());
+        System.out.println(this.controlador.getChildren());
         escenas.cargarEscena(ESCENA.INGRESAR);
     }
 

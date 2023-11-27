@@ -1,8 +1,8 @@
 .button
 {
-    -fx-border-style: solid solid solid hidden;
+    -fx-border-style: solid;
     -fx-border-color: black;
-    -fx-border-width: 3px 0px 3px 3px;
+    -fx-border-width: 3 0 3 3;
     -fx-background-color: white;
 }
 
@@ -24,18 +24,4 @@
     -fx-background-color: white;
     -fx-border-width: 0 4 0 0;
     -fx-border-color: black;
-}
-
-#ingresar{
-    -fx-border-style: solid;
-    -fx-border-color: black;
-    -fx-border-width: 3px
-}
-
-#presentacion 
-{
-    -fx-border-color: black;
-    -fx-border-width: 0px 3px 3px 3px;
-    -fx-background-color: #4568dc;
-    -fx-background-color: linear-gradient(to right, #4568dc, #b06ab3);
 }

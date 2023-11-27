@@ -38,7 +38,7 @@ public class Ingresar {
 
     @FXML
     void registrar(ActionEvent event) throws IOException {
-        this.escenas.mostrarEscenaSig(ESCENA.REGISTRAR);
+        this.escenas.cargarEscena(ESCENA.REGISTRAR);
     }
 
 }

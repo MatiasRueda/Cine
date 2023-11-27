@@ -10,42 +10,56 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<VBox fx:id="ingresar" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1000.0" stylesheets="@../estilos/login.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cine.controller.Ingresar">
+<VBox fx:id="ingresar" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1000.0" stylesheets="@../estilos/ingresar.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cine.controller.Ingresar">
    <children>
-      <VBox fx:id="informacion" alignment="CENTER" fillWidth="false" prefHeight="750.0" prefWidth="100.0">
+      <VBox fx:id="informacion" alignment="CENTER" prefHeight="750.0" prefWidth="1000.0">
          <children>
-            <Label text="Ingresar">
+            <Label alignment="CENTER" prefHeight="80.0" prefWidth="320.0" text="Ingresar">
                <font>
-                  <Font size="18.0" />
+                  <Font size="40.0" />
                </font>
             </Label>
-            <VBox alignment="CENTER" fillWidth="false" prefHeight="75.0" prefWidth="600.0">
+            <VBox alignment="CENTER" fillWidth="false" prefHeight="122.0" prefWidth="1000.0">
                <children>
-                  <Label prefHeight="25.0" text="Nombre de usuario:" />
-                  <TextField fx:id="nombre" prefWidth="200.0" />
+                  <Label alignment="CENTER" prefHeight="40.0" prefWidth="200.0" text="Nombre de usuario:">
+                     <font>
+                        <Font size="20.0" />
+                     </font></Label>
+                  <TextField fx:id="nombre" prefHeight="25.0" prefWidth="280.0" />
                </children>
             </VBox>
-            <VBox alignment="CENTER" fillWidth="false" prefHeight="75.0" prefWidth="600.0">
+            <VBox alignment="CENTER" fillWidth="false" prefHeight="122.0" prefWidth="1000.0">
                <children>
-                  <Label prefHeight="25.0" text="Contrasenia:" />
-                  <PasswordField fx:id="contrasenia" prefWidth="200.0" />
+                  <Label alignment="CENTER" prefHeight="40.0" prefWidth="200.0" text="Contrasenia:">
+                     <font>
+                        <Font size="20.0" />
+                     </font></Label>
+                  <PasswordField fx:id="contrasenia" prefHeight="25.0" prefWidth="280.0" />
                </children>
             </VBox>
-            <HBox alignment="CENTER" prefHeight="25.0" prefWidth="600.0">
+            <HBox alignment="CENTER" prefHeight="63.0" prefWidth="600.0">
                <children>
-                  <Label prefHeight="25.0" text="No tienes cuenta? " />
-                  <Hyperlink fx:id="register" onAction="#registrar" text="Registrarse" />
+                  <Label prefHeight="45.0" prefWidth="135.0" text="No tienes cuenta? ">
+                     <font>
+                        <Font size="16.0" />
+                     </font></Label>
+                  <Hyperlink fx:id="register" onAction="#registrar" prefHeight="45.0" prefWidth="95.0" text="Registrarse">
+                     <font>
+                        <Font size="16.0" />
+                     </font></Hyperlink>
                </children>
             </HBox>
          </children>
       </VBox>
-      <HBox fx:id="opciones" alignment="CENTER" fillHeight="false" prefHeight="150.0" prefWidth="600.0">
+      <HBox fx:id="aceptar" alignment="CENTER" prefHeight="150.0" prefWidth="1000.0">
          <children>
-            <Button contentDisplay="CENTER" mnemonicParsing="false" onAction="#ingresar" prefHeight="45.0" prefWidth="121.0" text="Ingresar">
+            <Button contentDisplay="CENTER" mnemonicParsing="false" onAction="#ingresar" prefHeight="80.0" prefWidth="175.0" text="Ingresar">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
+               <font>
+                  <Font size="20.0" />
+               </font>
             </Button>
          </children>
       </HBox>
