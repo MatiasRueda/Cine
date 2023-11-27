@@ -1,8 +1,9 @@
 package cine.controller;
 
 public enum ESCENA {
-    MENU,
+    INICIO,
     CANDY,
+    CARGANDO,
     COMPRAR,
     CARTELERA,
     CONFIRMAR,

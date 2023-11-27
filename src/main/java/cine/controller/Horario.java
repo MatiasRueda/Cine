@@ -50,7 +50,7 @@ public class Horario {
     void cancelar(ActionEvent event) throws IOException {
         this.usuario.reiniciarValores();
         this.cine.reiniciarValores();
-        this.escenas.mostrarEscenaSig(ESCENA.MENU);
+        this.escenas.mostrarEscenaSig(ESCENA.INICIO);
     }
 
     @FXML

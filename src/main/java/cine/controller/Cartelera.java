@@ -12,6 +12,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 
@@ -75,7 +76,7 @@ public class Cartelera {
     @FXML
     void cancelar(ActionEvent event) throws IOException {
         this.usuario.reiniciarValores();
-        this.escenas.mostrarEscenaSig(ESCENA.MENU);
+        this.escenas.mostrarEscenaSig(ESCENA.INICIO);
     }
 
     @FXML
@@ -85,29 +86,30 @@ public class Cartelera {
 
     @FXML
     void anterior(ActionEvent event) throws IOException, InterruptedException{
-        Label carga = this.escenas.cartelCarga();
-        this.stackCartelera.getChildren().add(carga);
+        Pane cargando = (Pane) this.escenas.loadFXML(ESCENA.CARGANDO);
+        this.stackCartelera.getChildren().add(cargando);
         Thread.sleep(30);
         this.btnSiguiente.setDisable(false);
         offset--;
         Platform.runLater(() -> {
             cargarCartelera();
             if (offset == 0) btnAnterior.setDisable(true);
-            stackCartelera.getChildren().remove(carga);
+            stackCartelera.getChildren().remove(cargando);
         });
     }
 
     @FXML
     void siguiente(ActionEvent event) throws IOException, InterruptedException {
-        Label carga = this.escenas.cartelCarga();
-        this.stackCartelera.getChildren().add(carga);
+        Pane cargando = (Pane) this.escenas.loadFXML(ESCENA.CARGANDO);
+        this.stackCartelera.getChildren().add(cargando);
         Thread.sleep(30);
         this.btnAnterior.setDisable(false);
         offset++;
         Platform.runLater(() -> {
             if (cargarCartelera().size() == 1) btnSiguiente.setDisable(true);
-            stackCartelera.getChildren().remove(carga);
+            stackCartelera.getChildren().remove(cargando);
         });
     }
+
 
 }

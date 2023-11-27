@@ -33,7 +33,7 @@ public class Ingresar {
             return;
         }
         this.usuario.setUsuarioNombre(this.nombre.getText());
-        this.escenas.mostrarEscenaSig(ESCENA.MENU);
+        this.escenas.mostrarEscenaSig(ESCENA.INICIO);
     }
 
     @FXML

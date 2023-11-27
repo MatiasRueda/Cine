@@ -6,7 +6,6 @@ import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
 import javafx.scene.effect.GaussianBlur;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
@@ -14,13 +13,11 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import cine.App;
-import cine.view.Carga;
 
 public class Escenas {
     private Stage primaryStage;
     private StackPane stackPane;
     private Pane escenaPrincipal;
-    private Carga carga = new Carga();
 
     public void setPrimaryStage(Stage stage) {
         this.primaryStage = stage;
@@ -70,29 +67,25 @@ public class Escenas {
         stackPane.getChildren().add(contenido);
     }
 
-    public Label cartelCarga() {
-        return this.carga.armar();
-    }
-
-    public void cargarEscena(ESCENA escena , Pane pane) throws IOException {
-        pane.getChildren().remove(1);
+    public void cargarEscena(ESCENA escena) throws IOException {
+        this.escenaPrincipal.getChildren().remove(1);
         Pane escenaCargada = (Pane) this.loadFXML(escena);
-        pane.getChildren().add(escenaCargada);
+        this.escenaPrincipal.getChildren().add(escenaCargada);
     }
 
     public void cargarSiguienteEscena(ESCENA escena , StackPane stackPane, Pane contenedorActual) throws IOException, InterruptedException {
         contenedorActual.setDisable(true);
         contenedorActual.setEffect(new GaussianBlur());
-        Label cartel = this.carga.armar();
-        stackPane.getChildren().add(cartel);
+        Pane cargando = (Pane) this.loadFXML(ESCENA.CARGANDO);
+        stackPane.getChildren().add(cargando);
         Thread.sleep(30);
         Platform.runLater(() -> {
             try {
                 mostrarEscenaSig(escena);
             } catch (IOException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
         });
     }
+
 }

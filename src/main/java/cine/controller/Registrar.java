@@ -41,13 +41,13 @@ public class Registrar {
             this.escenas.mensajeError(this.cine.getMensaje());
             return;
         }
-        this.escenas.mostrarEscenaSig(ESCENA.MENU);
+        this.escenas.mostrarEscenaSig(ESCENA.INICIO);
     }
 
 
     @FXML
     void menu(ActionEvent event) throws IOException {
-        this.escenas.mostrarEscenaSig(ESCENA.MENU);
+        this.escenas.mostrarEscenaSig(ESCENA.INICIO);
     }
 
 }

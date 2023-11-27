@@ -3,7 +3,7 @@ package cine.controller;
 import javafx.fxml.FXML;
 import javafx.scene.layout.HBox;
 
-public class Menu {
+public class Inicio {
 
     @FXML
     private HBox ofertas;
