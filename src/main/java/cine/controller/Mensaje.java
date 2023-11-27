@@ -4,10 +4,9 @@ import java.io.IOException;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 
 public class Mensaje {
 
@@ -17,18 +16,14 @@ public class Mensaje {
     @FXML
     private VBox mensaje;
 
-    @FXML
-    private Button aceptarBtn;
-
     @FXML 
     private Pane stackPane;
 
     @FXML
-    private Label mensajeText;
-
+    private Text texto;
 
     public void setMensaje(String mensaje) {
-        this.mensajeText.setText(mensaje);
+        this.texto.setText(mensaje);
     }
 
     public void setStackPane(Pane stackPane) {

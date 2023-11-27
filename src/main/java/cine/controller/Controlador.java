@@ -47,6 +47,10 @@ public class Controlador {
         });
     }
 
+    public void agregarOpcion(Button opcion, int indice) {
+        this.navControlador.getChildren().add(indice, opcion);
+    }
+
     public void setStage(Stage stage) {
         escenas.setPrimaryStage(stage);
     }
@@ -69,11 +73,9 @@ public class Controlador {
     @FXML
     void ingresar(ActionEvent event) throws IOException {
         this.elegirOpcion((Button) event.getSource());
-        System.out.println(this.controlador.getChildren());
         escenas.cargarEscena(ESCENA.INGRESAR);
     }
 
-    @FXML
     void comprar(ActionEvent event) throws IOException {
         this.elegirOpcion((Button) event.getSource());
         if (usuario.getUsuarioNombre() == null) {
