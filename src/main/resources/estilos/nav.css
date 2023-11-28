@@ -2,7 +2,7 @@
 {
     -fx-border-style: solid;
     -fx-border-color: black;
-    -fx-border-width: 3 0 3 3;
+    -fx-border-width: 3 0 3 0;
     -fx-background-color: white;
 }
 
@@ -20,8 +20,8 @@
     -fx-border-color: black;
 }
 
-#navControlador {
-    -fx-background-color: white;
+#controlador {
     -fx-border-width: 0 4 0 0;
     -fx-border-color: black;
 }
+

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox fx:id="controlador" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="300.0" stylesheets="@../estilos/nav.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cine.controller.NavSinUsuario">
+   <children>
+      <StackPane fx:id="titulo" prefHeight="200.0" prefWidth="300.0">
+         <children>
+            <Label alignment="CENTER" prefHeight="110.0" prefWidth="300.0" text="Cine">
+               <font>
+                  <Font size="39.0" />
+               </font>
+            </Label>
+         </children>
+      </StackPane>
+      <VBox fx:id="opciones" prefHeight="700.0" prefWidth="100.0">
+         <children>
+            <Region prefHeight="75.0" prefWidth="200.0" />
+            <Button fx:id="inicioBtn" mnemonicParsing="false" onAction="#inicio" prefHeight="100.0" prefWidth="300.0" text="Inicio">
+               <font>
+                  <Font size="23.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Region prefHeight="50.0" />
+            <Button fx:id="ingresarBtn" alignment="CENTER" mnemonicParsing="false" onAction="#ingresar" prefHeight="100.0" prefWidth="300.0" text="Ingresar">
+               <font>
+                  <Font size="23.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Region prefHeight="50.0" />
+            <Button alignment="CENTER" mnemonicParsing="false" onAction="#salir" prefHeight="100.0" prefWidth="300.0" text="Salir" VBox.vgrow="ALWAYS">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <font>
+                  <Font size="23.0" />
+               </font>
+            </Button>
+         </children>
+      </VBox>
+   </children>
+</VBox>

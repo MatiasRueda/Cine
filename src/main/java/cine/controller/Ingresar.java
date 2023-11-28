@@ -17,6 +17,7 @@ public class Ingresar {
     private Escenas escenas = Controlador.escenas;
     private Usuario usuario = Controlador.usuario;
 
+
     @FXML
     private VBox ingresar;
 
@@ -33,7 +34,7 @@ public class Ingresar {
             return;
         }
         this.usuario.setUsuarioNombre(this.nombre.getText());
-        this.escenas.mostrarEscenaSig(ESCENA.INICIO);
+        this.escenas.usuario();    
     }
 
     @FXML

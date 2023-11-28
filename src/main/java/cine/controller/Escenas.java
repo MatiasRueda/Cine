@@ -68,9 +68,17 @@ public class Escenas {
     }
 
     public void cargarEscena(ESCENA escena) throws IOException {
-        this.escenaPrincipal.getChildren().remove(1);
         Pane escenaCargada = (Pane) this.loadFXML(escena);
+        this.escenaPrincipal.getChildren().remove(1);
         this.escenaPrincipal.getChildren().add(escenaCargada);
+    }
+
+    public void usuario() throws IOException {
+        Pane navUsuario = (Pane) this.loadFXML(ESCENA.NAVUSUARIO);
+        Pane inicio = (Pane) this.loadFXML(ESCENA.INICIO);
+        this.escenaPrincipal.getChildren().remove(1);
+        this.escenaPrincipal.getChildren().remove(0);
+        this.escenaPrincipal.getChildren().addAll(navUsuario, inicio);
     }
 
     public void cargarSiguienteEscena(ESCENA escena , StackPane stackPane, Pane contenedorActual) throws IOException, InterruptedException {
