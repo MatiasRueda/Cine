@@ -25,7 +25,7 @@ public class Comprado {
 
     @FXML
     void menu(ActionEvent event) throws IOException {
-        //this.escenas.mostrarEscenaSig(ESCENA.INICIO);
+        this.escenas.cargarEscena(ESCENA.INICIO);
     }
 
 }

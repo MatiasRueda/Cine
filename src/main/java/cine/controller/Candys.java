@@ -23,7 +23,7 @@ public class Candys {
             HBox item = this.fabrica.armar(producto, String.valueOf(cantidad));
             this.contenedor.getChildren().add(item);
         });
-
+        this.precioTotal.setText(String.valueOf(this.usuario.getPrecioCandy()));
     }
 
 }

@@ -99,28 +99,6 @@ public class MySQL {
         return valoresObtenidos;
     }
 
-
-    public ArrayList<ArrayList<String>> getValorLimitOffset(Connection conn, String tabla, List<String> columnas , String limit, String offset) {
-        ArrayList<ArrayList<String>> valoresObtenidos = new ArrayList<>();
-        try {
-            String query = peticion.select(tabla, columnas, limit, offset);
-            PreparedStatement stmt = conn.prepareStatement(query);
-            ResultSet rs = stmt.executeQuery();
-            while(rs.next()) {
-                ArrayList<String> fila = new ArrayList<>();
-                for (String columna : columnas) {
-                    fila.add(rs.getString(columna));
-                }
-                valoresObtenidos.add(fila);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return null;
-        }
-        return valoresObtenidos;
-    }
-
-
     public boolean agregar(Connection conn, String tabla, List<String> columnas, List<String> valores, List<Integer> encryptar) {
         try{
             String query = this.peticion.insert(tabla, columnas);

@@ -11,7 +11,7 @@
    <children>
       <StackPane prefHeight="75.0" prefWidth="300.0">
          <children>
-            <Label text="Peliculas">
+            <Label text="Pelicula">
                <font>
                   <Font size="30.0" />
                </font>
@@ -75,9 +75,9 @@
                         <Font size="20.0" />
                      </font>
                   </Label>
-                  <Label text="Label">
+                  <Label fx:id="precio" text="Label">
                      <font>
-                        <Font size="17.0" />
+                        <Font size="20.0" />
                      </font>
                   </Label>
                   <Label text="\$">

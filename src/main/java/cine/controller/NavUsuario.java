@@ -2,6 +2,8 @@ package cine.controller;
 
 import java.io.IOException;
 
+import cine.model.Cine;
+import cine.model.Usuario;
 import cine.view.Nav;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -11,6 +13,8 @@ import javafx.scene.layout.VBox;
 
 public class NavUsuario {
     private Escenas escenas = Controlador.escenas;
+    private Usuario usuario = Controlador.usuario;
+    private Cine cine = Controlador.cine;
     private final Nav nav = new Nav();
  
     @FXML
@@ -40,8 +44,11 @@ public class NavUsuario {
     }
 
     @FXML
-    void inicio(ActionEvent event) {
-
+    void inicio(ActionEvent event) throws IOException {
+        this.usuario.reiniciarValores();
+        this.cine.reiniciarValores();
+        this.elegirOpcion((Button) event.getSource());
+        escenas.cargarEscena(ESCENA.INICIO);
     }
 
     @FXML

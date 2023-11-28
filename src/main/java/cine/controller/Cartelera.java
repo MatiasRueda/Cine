@@ -66,14 +66,8 @@ public class Cartelera {
         this.duracion.setText(pelicula.get(4));
         Image imagenPeli = new Image(pelicula.get(5), 175, 275, false, false);
         this.imagen.setImage(imagenPeli);
-        this.usuario.setTituloPelicula(pelicula.iterator().next());
+        this.usuario.setTituloPelicula(pelicula.get(0), pelicula.get(6));
         return peliculas;
-    }
-
-    @FXML
-    void cancelar(ActionEvent event) throws IOException {
-        this.usuario.reiniciarValores();
-        //this.escenas.mostrarEscenaSig(ESCENA.INICIO);
     }
 
     @FXML

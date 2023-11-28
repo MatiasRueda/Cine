@@ -43,11 +43,4 @@ public class Registrar {
         }
         //this.escenas.mostrarEscenaSig(ESCENA.INICIO);
     }
-
-
-    @FXML
-    void menu(ActionEvent event) throws IOException {
-        //this.escenas.mostrarEscenaSig(ESCENA.INICIO);
-    }
-
 }

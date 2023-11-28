@@ -1,9 +1,11 @@
 package cine.controller;
 
+import cine.model.Usuario;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
 public class Peliculas {
+    private Usuario usuario = Controlador.usuario;    
 
     @FXML
     private Label fecha;
@@ -13,5 +15,16 @@ public class Peliculas {
 
     @FXML
     private Label titulo;
+
+    @FXML
+    private Label precio;
+
+    @FXML
+    void initialize() {
+        this.titulo.setText(this.usuario.getTituloPelicula());
+        this.horario.setText(this.usuario.getHorario());
+        this.fecha.setText(this.usuario.getFechaPelicula());
+        this.precio.setText(String.valueOf(this.usuario.getPrecioPelicula()));
+    }
 
 }

@@ -38,8 +38,7 @@ public class Candy {
     private void sacarDeLaLista(HBox item, String productoNombre) {
         this.contenedor.getChildren().remove(item);
         this.cine.sacarProducto(productoNombre);
-        String precio = String.valueOf(this.usuario.getPrecioTotal());
-        this.precio.setText(precio);
+        this.precio.setText(String.valueOf(this.usuario.getPrecioCandy()));
     }
 
     private void setActionLista(HBox item, String productoNombre) {
@@ -56,8 +55,7 @@ public class Candy {
         this.setActionLista(item, productoNombre);
         this.contenedor.getChildren().add(item);
         this.cine.agregarProducto(productoNombre);
-        String precio = String.valueOf(this.usuario.getPrecioTotal());
-        this.precio.setText(precio);
+        this.precio.setText(String.valueOf(this.usuario.getPrecioCandy()));
     }
 
     private void setActionElementos(VBox vbox) {
@@ -85,15 +83,6 @@ public class Candy {
             this.elementos.getChildren().add(producto);
         }
         this.recorrerVbox();
-    }
-
-
-
-    @FXML
-    void cancelar(ActionEvent event) throws IOException {
-        this.usuario.reiniciarValores();
-        this.cine.reiniciarValores();
-        //this.escenas.mostrarEscenaSig(ESCENA.INICIO);
     }
 
     @FXML

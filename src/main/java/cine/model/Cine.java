@@ -113,7 +113,7 @@ public class Cine {
 
     public ArrayList<ArrayList<String>> getCartelera() {
         Connection conn = this.database.conectarMySQL();
-        List<String> columnas = Arrays.asList(new String[]{"titulo", "fecha" , "audio", "subtitulo", "duracion", "imagen" }); 
+        List<String> columnas = Arrays.asList(new String[]{"titulo", "fecha" , "audio", "subtitulo", "duracion", "imagen" , "precio" }); 
         ArrayList<ArrayList<String>> filas = this.database.getValor(conn, "pelicula", columnas, null, null);
         this.cerrarConeccion(conn);
         return filas;
@@ -138,14 +138,31 @@ public class Cine {
         return resultado;
     }
 
+    private void guardarPeli(Connection conn) {
+        List<String> peli_columnas =  Arrays.asList(new String[]{"codigo", "reservado_por", "titulo", "fecha" ,"sala", "horario", "fila" , "columna"});
+        List<String> codigo = Arrays.asList(this.codigoCompra);
+        List<Integer> encryptar = Arrays.asList(new Integer[]{0});
+        List<String> peli_valores = Stream.concat(codigo.stream(), this.usuario.getInformacionPeli().stream()).collect(Collectors.toList());
+        this.database.agregar(conn, "reserva_peli", peli_columnas, peli_valores, encryptar);
+    }
+
+    private void guardarCandy(Connection conn) {
+        List<String> codigo = Arrays.asList(this.codigoCompra);
+        List<String> candy_columnas =  Arrays.asList(new String[]{"codigo", "reservado_por", "producto", "cantidad"});
+        List<Integer> encryptar = Arrays.asList(new Integer[]{});
+        this.usuario.getProductos().forEach((producto, cantidad) -> {
+            List<String> candy_productos = Stream.concat(codigo.stream(), Arrays.asList(new String[] { this.usuario.getUsuarioNombre(), producto , String.valueOf(cantidad)}).stream()).collect(Collectors.toList());
+            this.database.agregar(conn, "reserva_candy", candy_columnas, candy_productos, encryptar);
+        });
+    }
+
     public boolean guardarEleccion() {
         Connection conn = this.database.conectarMySQL();
         this.codigoCompra = UUID.randomUUID().toString().substring(0, 5);
-        List<String> columnas =  Arrays.asList(new String[]{"codigo", "reservado_por", "titulo", "fecha" ,"sala", "horario", "fila" , "columna"});
-        List<String> codigo = Arrays.asList(this.codigoCompra);
-        List<Integer> encryptar = Arrays.asList(new Integer[]{0});
-        List<String> valores = Stream.concat(codigo.stream(), this.usuario.getInformacion().stream()).collect(Collectors.toList());
-        this.database.agregar(conn, "reserva", columnas, valores, encryptar);
+        if (this.usuario.getTituloPelicula() != null) 
+            guardarPeli(conn);
+        if (!this.usuario.getProductos().isEmpty())
+            guardarCandy(conn);
         this.cerrarConeccion(conn);
         return true;
     }

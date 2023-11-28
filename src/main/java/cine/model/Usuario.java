@@ -14,16 +14,17 @@ public class Usuario {
     private char fila;
     private char columna;
     private HashMap<String, Integer> productos;
-    private int precioTotal;
+    private int precioCandy;
+    private int precioPelicula;
 
     public void agregarProducto(String productoNombre, int precio) {
         this.productos.put(productoNombre, this.productos.get(productoNombre) + 1);
-        this.precioTotal += precio;
+        this.precioCandy += precio;
     }
 
     public void sacarProducto(String productoNombre, int precio) {
         this.productos.put(productoNombre, this.productos.get(productoNombre) - 1);
-        this.precioTotal -= precio;
+        this.precioCandy -= precio;
     }
 
     public String getUsuarioNombre() {
@@ -54,20 +55,25 @@ public class Usuario {
         return this.fila;
     }
 
-    public List<String> getInformacion() {
+    public List<String> getInformacionPeli() {
         return Arrays.asList(new String[]{this.usuarioNombre, this.tituloPelicula, this.fechaPelicula, this.sala ,this.horario, String.valueOf(this.fila), String.valueOf(this.columna)});
     }
 
-    public int getPrecioTotal() {
-        return this.precioTotal;
+    public int getPrecioPelicula() {
+        return this.precioPelicula;
+    }
+
+    public int getPrecioCandy() {
+        return this.precioCandy;
     }
 
     public void setUsuarioNombre(String usuarioNombre) {
         this.usuarioNombre = usuarioNombre;
     }
 
-    public void setTituloPelicula(String tituloPelicula) {
+    public void setTituloPelicula(String tituloPelicula, String precio) {
         this.tituloPelicula = tituloPelicula;
+        this.precioPelicula = Integer.parseInt(precio);
     }
 
     public void setFechaPelicula(String fechaPelicula) {
@@ -110,6 +116,6 @@ public class Usuario {
         this.horario = null;
         this.sala = null;
         this.productos = new HashMap<>();
-        this.precioTotal = 0;
+        this.precioCandy = 0;
     }
 }
