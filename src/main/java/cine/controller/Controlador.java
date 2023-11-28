@@ -10,7 +10,6 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
 
 public class Controlador {
     public static Usuario usuario = new Usuario();
@@ -31,11 +30,6 @@ public class Controlador {
 
     @FXML
     private VBox opciones;
-
-
-    public void setStage(Stage stage) {
-        escenas.setPrimaryStage(stage);
-    }
 
     @FXML 
     void initialize() throws IOException {

@@ -5,23 +5,14 @@ import java.io.IOException;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.effect.GaussianBlur;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 import cine.App;
 
 public class Escenas {
-    private Stage primaryStage;
     private StackPane stackPane;
     private Pane escenaPrincipal;
-
-    public void setPrimaryStage(Stage stage) {
-        this.primaryStage = stage;
-    }
 
     public void setStackPane(StackPane stackPane) {
         this.stackPane = stackPane;
@@ -39,21 +30,6 @@ public class Escenas {
         FXMLLoader fxmlLoader = this.getFXML(fxml);
         return fxmlLoader.load();
     }
-
-    public void mostrarEscenaSig(ESCENA escena) throws IOException{
-        Parent root = loadFXML(escena);
-        Scene scena = new Scene(root);
-        this.primaryStage.setScene(scena);
-    }
-
-    public static Stage getStage(Parent root, Modality modal, StageStyle style) {
-        Scene scene = new Scene(root);
-        Stage stage = new Stage();
-        stage.initModality(modal);
-        stage.initStyle(style);
-        stage.setScene(scene);
-        return stage;
-    }
     
     public void cargando() throws IOException {
         this.escenaPrincipal.setDisable(true);
@@ -66,6 +42,11 @@ public class Escenas {
         this.escenaPrincipal.setDisable(false);
         this.escenaPrincipal.setEffect(null);
         this.stackPane.getChildren().remove(1);
+    }
+
+    public Pane getEscena(ESCENA escena) throws IOException {
+        Pane escenaObtenida = (Pane) this.loadFXML(escena);
+        return escenaObtenida;
     }
 
     public void mensajeError(String mensaje) throws IOException {

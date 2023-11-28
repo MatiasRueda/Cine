@@ -60,6 +60,7 @@ public class Item {
         Label nombre = etiqueta(texto);
         nombre.setPrefWidth(this.CONTENEDOR_WIDTH - this.CONTENEDOR_DOS_WIDTH);
         Label nombre2 = etiqueta(texto2);
+        nombre2.setAlignment(Pos.CENTER);
         nombre2.setPrefWidth(this.CONTENEDOR_DOS_WIDTH);
         contenedor.getChildren().addAll(nombre, nombre2);
         return contenedor;

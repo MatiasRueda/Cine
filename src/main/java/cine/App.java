@@ -25,7 +25,6 @@ public class App extends Application {
         stage.setTitle("Cine");
         stage.setScene(scene);
         stage.setResizable(false);
-        Controlador.escenas.setPrimaryStage(stage);
         stage.show();
     }
 

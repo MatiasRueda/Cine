@@ -1,56 +1,32 @@
 package cine.controller;
 
+import java.io.IOException;
+
 import cine.model.Usuario;
-import cine.view.Item;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.Pane;
 
 public class Confirmar {
-
+    private Escenas escenas = Controlador.escenas;
     private Usuario usuario = Controlador.usuario;
-    private Item fabrica = new Item();
-    
-    @FXML
-    private Label fecha;
 
     @FXML
-    private Label horario;
+    private HBox productos;
 
     @FXML
-    private Label precioTotal;
-
-    @FXML
-    private Label titulo;
-
-    @FXML
-    private VBox contenedor;
-
-    @FXML
-    void initialize() {
-
-        this.usuario.getProductos().forEach((producto, cantidad) -> {
-            HBox item = this.fabrica.armar(producto, String.valueOf(cantidad));
-            this.contenedor.getChildren().add(item);
-        });
-        /* 
-        for (int cantidad = 0; cantidad < 10; cantidad++) {
-            HBox item = this.fabrica.armar(this.contenedor, "Producto" + String.valueOf(cantidad), false);
-            this.contenedor.getChildren().add(item);
+    void initialize() throws IOException {
+        if (!this.usuario.getProductos().isEmpty()) {
+            FXMLLoader fxml = escenas.getFXML(ESCENA.CANDYS);
+            Pane pane = (Pane) fxml.load();
+            this.productos.getChildren().add(pane);
         }
-        */
     }
 
     @FXML
     void confirmar(ActionEvent event) {
 
     }
-
-    @FXML
-    void menu(ActionEvent event) {
-
-    }
-
 }

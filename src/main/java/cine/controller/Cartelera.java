@@ -73,7 +73,7 @@ public class Cartelera {
     @FXML
     void cancelar(ActionEvent event) throws IOException {
         this.usuario.reiniciarValores();
-        this.escenas.mostrarEscenaSig(ESCENA.INICIO);
+        //this.escenas.mostrarEscenaSig(ESCENA.INICIO);
     }
 
     @FXML
