@@ -55,6 +55,19 @@ public class Escenas {
         return stage;
     }
     
+    public void cargando() throws IOException {
+        this.escenaPrincipal.setDisable(true);
+        this.escenaPrincipal.setEffect(new GaussianBlur());
+        Pane cargando = (Pane) this.loadFXML(ESCENA.CARGANDO);
+        this.stackPane.getChildren().add(cargando);
+    }
+
+    public void sacarCargando() {
+        this.escenaPrincipal.setDisable(false);
+        this.escenaPrincipal.setEffect(null);
+        this.stackPane.getChildren().remove(1);
+    }
+
     public void mensajeError(String mensaje) throws IOException {
         this.escenaPrincipal.setDisable(true);
         this.escenaPrincipal.setEffect(new GaussianBlur());

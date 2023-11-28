@@ -5,42 +5,32 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Region?>
-<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<StackPane fx:id="stackFecha" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cine.controller.Fecha">
+<VBox fx:id="fecha" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1000.0" stylesheets="@../estilos/fecha.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cine.controller.Fecha">
    <children>
-      <VBox fx:id="fecha" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@../estilos/fecha.css">
+      <VBox alignment="CENTER" prefHeight="700.0" prefWidth="100.0">
          <children>
-            <VBox alignment="CENTER" prefHeight="300.0" prefWidth="100.0">
-               <children>
-                  <Label fx:id="labelFecha" alignment="CENTER" prefHeight="38.0" prefWidth="600.0" text="Fechas disponibles:">
-                     <font>
-                        <Font size="21.0" />
-                     </font>
-                  </Label>
-                  <FlowPane fx:id="fechas" alignment="CENTER" hgap="10.0" prefHeight="200.0" prefWidth="600.0" vgap="20.0" />
-               </children>
-            </VBox>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
-               <children>
-                  <Button mnemonicParsing="false" onAction="#continuar" prefHeight="40.0" prefWidth="100.0" text="Continuar">
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </Button>
-                  <Region prefHeight="200.0" prefWidth="50.0" />
-                  <Button mnemonicParsing="false" onAction="#cancelar" prefHeight="40.0" prefWidth="100.0" text="Cancelar">
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </Button>
-               </children>
-            </HBox>
+            <Label fx:id="labelFecha" alignment="CENTER" prefHeight="38.0" prefWidth="600.0" text="Fechas disponibles:">
+               <font>
+                  <Font size="35.0" />
+               </font>
+            </Label>
+            <FlowPane fx:id="fechas" alignment="CENTER" hgap="10.0" prefHeight="350.0" prefWidth="1000.0" vgap="20.0" />
          </children>
       </VBox>
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <Button mnemonicParsing="false" onAction="#continuar" prefHeight="80.0" prefWidth="175.0" text="Continuar">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+         </children>
+      </HBox>
    </children>
-</StackPane>
+</VBox>

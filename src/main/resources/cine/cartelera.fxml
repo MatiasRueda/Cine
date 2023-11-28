@@ -40,7 +40,7 @@
                                     <Font size="20.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="titulo" prefHeight="30.0" prefWidth="311.0" text="Label">
+                              <Label fx:id="titulo" prefHeight="30.0" prefWidth="306.0" text="Label">
                                  <font>
                                     <Font size="20.0" />
                                  </font>
@@ -85,7 +85,7 @@
                                     <Font size="20.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="subtitulos" prefHeight="30.0" prefWidth="258.0" text="Label">
+                              <Label fx:id="subtitulos" prefHeight="30.0" prefWidth="263.0" text="Label">
                                  <font>
                                     <Font size="20.0" />
                                  </font>
@@ -105,7 +105,7 @@
                                     <Font size="20.0" />
                                  </font>
                               </Label>
-                              <Label prefHeight="30.0" prefWidth="238.0" text=" minutos">
+                              <Label prefHeight="30.0" prefWidth="243.0" text=" minutos">
                                  <font>
                                     <Font size="20.0" />
                                  </font>
@@ -133,6 +133,9 @@
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
+               <font>
+                  <Font size="20.0" />
+               </font>
             </Button>
          </children>
       </HBox>

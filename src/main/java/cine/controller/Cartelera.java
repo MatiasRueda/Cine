@@ -12,19 +12,15 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 
 public class Cartelera {
     private Cine cine = Controlador.cine;
     private Escenas escenas = Controlador.escenas;
     private Usuario usuario = Controlador.usuario;
+    private ArrayList<ArrayList<String>> peliculas;
 
-    private int offset = 0;
-
-    @FXML
-    private StackPane stackCartelera;
+    private int indice = 0;
 
     @FXML
     private VBox cartelera;
@@ -55,22 +51,23 @@ public class Cartelera {
     
     @FXML
     void initialize() {
-        ArrayList<ArrayList<String>> filas = this.cargarCartelera();
-        if (filas.size() == 1) btnSiguiente.setDisable(true);
+        this.peliculas = this.cine.getCartelera();
+        this.cargarCartelera();
+        if (peliculas.size() == 1) 
+            btnSiguiente.setDisable(true);
     }
 
     private ArrayList<ArrayList<String>> cargarCartelera() {
-        ArrayList<ArrayList<String>> filas = this.cine.getCartelera(String.valueOf(offset));
-        ArrayList<String> fila = filas.iterator().next();
-        this.titulo.setText(fila.get(0));
-        this.fecha.setText(fila.get(1));
-        this.audio.setText(fila.get(2));
-        this.subtitulos.setText(fila.get(3));
-        this.duracion.setText(fila.get(4));
-        Image imagenPeli = new Image(fila.get(5), 175, 275, false, false);
+        ArrayList<String> pelicula = this.peliculas.get(this.indice);
+        this.titulo.setText(pelicula.get(0));
+        this.fecha.setText(pelicula.get(1));
+        this.audio.setText(pelicula.get(2));
+        this.subtitulos.setText(pelicula.get(3));
+        this.duracion.setText(pelicula.get(4));
+        Image imagenPeli = new Image(pelicula.get(5), 175, 275, false, false);
         this.imagen.setImage(imagenPeli);
-        this.usuario.setTituloPelicula(fila.iterator().next());
-        return filas;
+        this.usuario.setTituloPelicula(pelicula.iterator().next());
+        return peliculas;
     }
 
     @FXML
@@ -80,34 +77,35 @@ public class Cartelera {
     }
 
     @FXML
-    void continuar(ActionEvent event) throws IOException {
-        this.escenas.mostrarEscenaSig(ESCENA.FECHA);
+    void continuar(ActionEvent event) throws IOException, InterruptedException {
+        this.escenas.cargarSiguienteEscena(ESCENA.FECHA);
     }
 
     @FXML
     void anterior(ActionEvent event) throws IOException, InterruptedException{
-        Pane cargando = (Pane) this.escenas.loadFXML(ESCENA.CARGANDO);
-        this.stackCartelera.getChildren().add(cargando);
-        Thread.sleep(30);
+        this.escenas.cargando();
         this.btnSiguiente.setDisable(false);
-        offset--;
+        indice--;
+        Thread.sleep(30);
         Platform.runLater(() -> {
-            cargarCartelera();
-            if (offset == 0) btnAnterior.setDisable(true);
-            stackCartelera.getChildren().remove(cargando);
+            this.cargarCartelera();
+            if (indice == 0) 
+                btnAnterior.setDisable(true);
+            this.escenas.sacarCargando();
         });
     }
 
     @FXML
     void siguiente(ActionEvent event) throws IOException, InterruptedException {
-        Pane cargando = (Pane) this.escenas.loadFXML(ESCENA.CARGANDO);
-        this.stackCartelera.getChildren().add(cargando);
-        Thread.sleep(30);
+        this.escenas.cargando();
         this.btnAnterior.setDisable(false);
-        offset++;
+        indice++;
+        Thread.sleep(30);
         Platform.runLater(() -> {
-            if (cargarCartelera().size() == 1) btnSiguiente.setDisable(true);
-            stackCartelera.getChildren().remove(cargando);
+            this.cargarCartelera();
+            if (this.peliculas.size() == (indice + 1))
+                btnSiguiente.setDisable(true);
+            this.escenas.sacarCargando();
         });
     }
 

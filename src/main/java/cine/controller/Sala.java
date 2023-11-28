@@ -39,11 +39,11 @@ public class Sala {
    }
 
    @FXML
-   void comprar(ActionEvent event) throws IOException {
+   void comprar(ActionEvent event) throws IOException, InterruptedException {
       this.cine.guardarEleccion();
       this.usuario.reiniciarValores();
       this.cine.reiniciarValores();
-      this.escenas.mostrarEscenaSig(ESCENA.COMPRADO);
+      this.escenas.cargarSiguienteEscena(ESCENA.COMPRADO);
    }
 
 }

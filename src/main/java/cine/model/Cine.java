@@ -111,10 +111,10 @@ public class Cine {
         return this.horarios;
     }
 
-    public ArrayList<ArrayList<String>> getCartelera(String offset) {
+    public ArrayList<ArrayList<String>> getCartelera() {
         Connection conn = this.database.conectarMySQL();
         List<String> columnas = Arrays.asList(new String[]{"titulo", "fecha" , "audio", "subtitulo", "duracion", "imagen" }); 
-        ArrayList<ArrayList<String>> filas = this.database.getValorLimitOffset(conn, "pelicula", columnas, "2", offset);
+        ArrayList<ArrayList<String>> filas = this.database.getValor(conn, "pelicula", columnas, null, null);
         this.cerrarConeccion(conn);
         return filas;
     }
