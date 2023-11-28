@@ -44,7 +44,8 @@ public class Candy {
 
     private void setActionLista(HBox item, String productoNombre) {
         for(Node node : item.getChildren()) {
-            if (!(node instanceof Button)) continue;
+            if (!(node instanceof Button))
+                continue;
             Button boton = (Button) node;
             boton.setOnAction(e -> sacarDeLaLista(item, productoNombre));
         }
@@ -61,7 +62,8 @@ public class Candy {
 
     private void setActionElementos(VBox vbox) {
         for (Node elemento : vbox.getChildren()) {
-            if (!(elemento instanceof Button)) continue;
+            if (!(elemento instanceof Button))
+                continue;
             Button button = (Button) elemento;
             button.setOnAction(e -> agregarItemLista(button.getId()));
         }  
@@ -69,7 +71,8 @@ public class Candy {
 
     private void recorrerVbox() {
         for (Node elemento : this.elementos.getChildren()) {
-            if (!(elemento instanceof VBox)) continue;
+            if (!(elemento instanceof VBox))
+                continue;
             this.setActionElementos((VBox) elemento);
         }   
     }

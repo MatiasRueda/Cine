@@ -14,7 +14,7 @@
    <children>
       <HBox alignment="CENTER" fillHeight="false" prefHeight="700.0" prefWidth="600.0">
          <children>
-            <FlowPane fx:id="elementos" alignment="CENTER" columnHalignment="CENTER" hgap="15.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="450.0" prefWidth="425.0" vgap="20.0">
+            <FlowPane fx:id="elementos" alignment="CENTER" columnHalignment="CENTER" hgap="15.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="450.0" prefWidth="450.0" vgap="20.0">
                <padding>
                   <Insets right="10.0" />
                </padding>
@@ -26,9 +26,9 @@
                         <Font size="31.0" />
                      </font>
                   </Label>
-                  <ScrollPane prefHeight="150.0" prefWidth="300.0">
+                  <ScrollPane hbarPolicy="NEVER" pannable="true" prefHeight="150.0" prefWidth="300.0" scaleShape="false" VBox.vgrow="ALWAYS">
                      <content>
-                        <VBox fx:id="contenedor" fillWidth="false" prefHeight="15.0" prefWidth="235.0" />
+                        <VBox fx:id="contenedor" fillWidth="false" prefHeight="180.0" prefWidth="294.0" scaleShape="false" spacing="2.0" />
                      </content>
                   </ScrollPane>
                   <HBox alignment="CENTER" prefHeight="25.0" prefWidth="300.0">

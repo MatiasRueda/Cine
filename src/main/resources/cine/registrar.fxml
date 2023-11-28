@@ -25,7 +25,10 @@
                         <Font size="20.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="usuarioNombre" prefHeight="25.0" prefWidth="280.0" />
+                  <TextField fx:id="usuarioNombre" prefHeight="25.0" prefWidth="280.0">
+                     <font>
+                        <Font size="20.0" />
+                     </font></TextField>
                </children>
             </VBox>
             <VBox alignment="CENTER" fillWidth="false" prefHeight="100.0" prefWidth="1000.0">
@@ -35,7 +38,10 @@
                         <Font size="20.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="DNI" prefHeight="25.0" prefWidth="280.0" />
+                  <TextField fx:id="DNI" prefHeight="25.0" prefWidth="280.0">
+                     <font>
+                        <Font size="20.0" />
+                     </font></TextField>
                </children>
             </VBox>
             <VBox alignment="CENTER" fillWidth="false" prefHeight="100.0" prefWidth="1000.0">
@@ -45,7 +51,10 @@
                         <Font size="20.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="email" prefHeight="25.0" prefWidth="280.0" />
+                  <TextField fx:id="email" prefHeight="25.0" prefWidth="280.0">
+                     <font>
+                        <Font size="20.0" />
+                     </font></TextField>
                </children>
             </VBox>
             <VBox alignment="CENTER" fillWidth="false" prefHeight="100.0" prefWidth="1000.0">
@@ -55,7 +64,10 @@
                         <Font size="20.0" />
                      </font>
                   </Label>
-                  <PasswordField fx:id="contrasenia" prefWidth="280.0" />
+                  <PasswordField fx:id="contrasenia" prefWidth="280.0">
+                     <font>
+                        <Font size="20.0" />
+                     </font></PasswordField>
                </children>
             </VBox>
             <VBox alignment="CENTER" fillWidth="false" prefHeight="100.0" prefWidth="1000.0">
@@ -65,7 +77,10 @@
                         <Font size="20.0" />
                      </font>
                   </Label>
-                  <PasswordField fx:id="contraseniaConfirmar" prefWidth="280.0" />
+                  <PasswordField fx:id="contraseniaConfirmar" prefWidth="280.0">
+                     <font>
+                        <Font size="20.0" />
+                     </font></PasswordField>
                </children>
             </VBox>
          </children>

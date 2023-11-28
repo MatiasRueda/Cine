@@ -25,7 +25,10 @@
                      <font>
                         <Font size="20.0" />
                      </font></Label>
-                  <TextField fx:id="nombre" prefHeight="25.0" prefWidth="280.0" />
+                  <TextField fx:id="nombre" prefHeight="25.0" prefWidth="280.0">
+                     <font>
+                        <Font size="20.0" />
+                     </font></TextField>
                </children>
             </VBox>
             <VBox alignment="CENTER" fillWidth="false" prefHeight="122.0" prefWidth="1000.0">
@@ -34,7 +37,10 @@
                      <font>
                         <Font size="20.0" />
                      </font></Label>
-                  <PasswordField fx:id="contrasenia" prefHeight="25.0" prefWidth="280.0" />
+                  <PasswordField fx:id="contrasenia" prefHeight="25.0" prefWidth="280.0">
+                     <font>
+                        <Font size="20.0" />
+                     </font></PasswordField>
                </children>
             </VBox>
             <HBox alignment="CENTER" prefHeight="63.0" prefWidth="600.0">
