@@ -81,15 +81,18 @@ public class Escenas {
         this.escenaPrincipal.getChildren().addAll(navUsuario, inicio);
     }
 
-    public void cargarSiguienteEscena(ESCENA escena , StackPane stackPane, Pane contenedorActual) throws IOException, InterruptedException {
-        contenedorActual.setDisable(true);
-        contenedorActual.setEffect(new GaussianBlur());
+    public void cargarSiguienteEscena(ESCENA escena) throws IOException, InterruptedException {
+        this.escenaPrincipal.setDisable(true);
+        this.escenaPrincipal.setEffect(new GaussianBlur());
         Pane cargando = (Pane) this.loadFXML(ESCENA.CARGANDO);
-        stackPane.getChildren().add(cargando);
+        this.stackPane.getChildren().add(cargando);
         Thread.sleep(30);
         Platform.runLater(() -> {
             try {
-                mostrarEscenaSig(escena);
+                this.cargarEscena(escena);
+                this.escenaPrincipal.setDisable(false);
+                this.escenaPrincipal.setEffect(null);
+                this.stackPane.getChildren().remove(cargando);
             } catch (IOException e) {
                 e.printStackTrace();
             }

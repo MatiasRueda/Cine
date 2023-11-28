@@ -67,7 +67,7 @@ public class Cartelera {
         this.audio.setText(fila.get(2));
         this.subtitulos.setText(fila.get(3));
         this.duracion.setText(fila.get(4));
-        Image imagenPeli = new Image(fila.get(5), 125, 175, false, false);
+        Image imagenPeli = new Image(fila.get(5), 175, 275, false, false);
         this.imagen.setImage(imagenPeli);
         this.usuario.setTituloPelicula(fila.iterator().next());
         return filas;

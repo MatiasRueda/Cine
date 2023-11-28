@@ -7,63 +7,59 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<StackPane fx:id="stackComprar" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cine.controller.Comprar">
+
+<HBox fx:id="comprar" alignment="CENTER" fillHeight="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1000.0" stylesheets="@../estilos/comprar.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cine.controller.Comprar">
    <children>
-      <HBox fx:id="comprar" alignment="CENTER" fillHeight="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@../estilos/comprar.css">
+      <VBox fx:id="peli" alignment="CENTER" prefHeight="900.0" prefWidth="500.0">
          <children>
-            <VBox fx:id="peli" alignment="CENTER" fillWidth="false" prefHeight="400.0" prefWidth="300.0">
-               <children>
-                  <Button fx:id="btnPeliculas" mnemonicParsing="false" onAction="#pelicula" prefHeight="100.0" prefWidth="100.0" style="-fx-background-insets: 0;">
-                     <graphic>
-                        <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../imagenes/pelicula.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </Button>
-                  <Label fx:id="peliculaText" alignment="CENTER" contentDisplay="CENTER" prefHeight="40.0" prefWidth="80.0" text="Peliculas">
-                     <font>
-                        <Font size="16.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets />
-                     </VBox.margin>
-                  </Label>
-               </children>
-            </VBox>
-            <VBox fx:id="pochoclo" alignment="CENTER" fillWidth="false" prefHeight="400.0" prefWidth="300.0">
-               <children>
-                  <Button fx:id="btnCandy" mnemonicParsing="false" onAction="#candy" prefHeight="100.0" prefWidth="100.0" style="-fx-background-insets: 0;">
-                     <graphic>
-                        <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../imagenes/pochoclos.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </Button>
-                  <Label alignment="CENTER" prefHeight="40.0" prefWidth="80.0" text="Candy">
-                     <font>
-                        <Font size="16.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets />
-                     </VBox.margin>
-                  </Label>
-               </children>
-            </VBox>
+            <Button fx:id="btnPeliculas" mnemonicParsing="false" onAction="#pelicula" prefHeight="100.0" prefWidth="100.0" style="-fx-background-insets: 0;">
+               <graphic>
+                  <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../imagenes/pelicula.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Label fx:id="peliculaText" alignment="CENTER" contentDisplay="CENTER" prefHeight="40.0" prefWidth="80.0" text="Peliculas">
+               <font>
+                  <Font size="16.0" />
+               </font>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </Label>
          </children>
-      </HBox>
+      </VBox>
+      <VBox fx:id="pochoclo" alignment="CENTER" prefHeight="900.0" prefWidth="500.0">
+         <children>
+            <Button fx:id="btnCandy" mnemonicParsing="false" onAction="#candy" prefHeight="100.0" prefWidth="100.0" style="-fx-background-insets: 0;">
+               <graphic>
+                  <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../imagenes/pochoclos.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Label alignment="CENTER" prefHeight="40.0" prefWidth="80.0" text="Candy">
+               <font>
+                  <Font size="16.0" />
+               </font>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </Label>
+         </children>
+      </VBox>
    </children>
-</StackPane>
+</HBox>
