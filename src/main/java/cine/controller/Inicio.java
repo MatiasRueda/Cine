@@ -1,8 +1,10 @@
 package cine.controller;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
+import cine.model.Cine;
 import cine.model.Usuario;
 import cine.view.Pelicula;
 import javafx.fxml.FXML;
@@ -15,6 +17,7 @@ public class Inicio {
     private ArrayList<ArrayList<String>> proximamentePeliculas = Controlador.proximamente;
     private Escenas escenas = Controlador.escenas;
     private Usuario usuario = Controlador.usuario;
+    private Cine cine = Controlador.cine;
     private final Pelicula pelicula = new Pelicula();
 
     @FXML
@@ -38,8 +41,9 @@ public class Inicio {
                 return;
             } 
             this.usuario.setTituloPelicula(pelicula.get(0), pelicula.get(6));
+            this.cine.setPelicula();
             this.escenas.cargarSiguienteEscena(ESCENA.FECHA);
-        }   catch (IOException | InterruptedException e ) {
+        }   catch (IOException | InterruptedException | SQLException e ) {
             e.printStackTrace();
         }
     }

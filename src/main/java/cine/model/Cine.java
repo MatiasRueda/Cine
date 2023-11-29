@@ -21,6 +21,7 @@ public class Cine {
     private HashMap<String, String> salas = new HashMap<>();
     private ArrayList<String> horarios  = new ArrayList<>();
     private HashMap<String, Integer> precios;
+    private ArrayList<ArrayList<String>> filas;
     private Usuario usuario;
     private String codigoCompra;
 
@@ -34,8 +35,8 @@ public class Cine {
 
     private void setSalasHorarios(ArrayList<ArrayList<String>> salasHorarios) {
         for(ArrayList<String> salaHorario : salasHorarios)  {
-            this.salas.put(salaHorario.get(1), salaHorario.get(0));
-            this.horarios.add(salaHorario.get(1));
+            this.salas.put(salaHorario.get(2), salaHorario.get(0));
+            this.horarios.add(salaHorario.get(2));
         }
     }
 
@@ -86,23 +87,19 @@ public class Cine {
     }
 
     public ArrayList<String> getFechas() throws SQLException { 
-        Connection conn = this.database.conectarMySQL();
-        ArrayList<String> fechasObtenidas = this.database.getValor(conn, "sala", "fecha", "titulo", this.usuario.getTituloPelicula());
-        Set<String> unicasFechas = new LinkedHashSet<>(fechasObtenidas);
+        ArrayList<String> todasFechas = new ArrayList<>();
+        this.filas.forEach(peliculas -> todasFechas.add(peliculas.get(1)));
+        Set<String> unicasFechas = new LinkedHashSet<>(todasFechas);
         ArrayList<String> fechas = new ArrayList<>(unicasFechas);
         Collections.sort(fechas);
-        this.cerrarConeccion(conn);
         return fechas;
     }
 
     public ArrayList<String> getHorarios() throws SQLException { 
-        Connection conn = this.database.conectarMySQL();
-        List<String> columnas =  Arrays.asList(new String[]{"sala", "horario"});
-        List<String> condiciones =  Arrays.asList(new String[]{"fecha", "titulo"});
-        List<String> valores =  Arrays.asList(new String[]{this.usuario.getFechaPelicula(),  this.usuario.getTituloPelicula()});
-        ArrayList<ArrayList<String>> resultado = this.database.getValorVariasCondiciones(conn, "sala", columnas, condiciones, valores);
-        this.cerrarConeccion(conn);
-        setSalasHorarios(resultado);
+        ArrayList<ArrayList<String>> horariosFiltrados = (ArrayList<ArrayList<String>>) this.filas.stream()
+            .filter(fila -> fila.get(1).equals(this.usuario.getFechaPelicula()))
+            .collect(Collectors.toList());
+        setSalasHorarios(horariosFiltrados);
         Collections.sort(this.horarios);
         return this.horarios;
     }
@@ -155,6 +152,13 @@ public class Cine {
             List<String> candy_productos = Stream.concat(codigo.stream(), Arrays.asList(new String[] { this.usuario.getUsuarioNombre(), producto , String.valueOf(cantidad)}).stream()).collect(Collectors.toList());
             this.database.agregar(conn, "reserva_candy", candy_columnas, candy_productos, encryptar);
         });
+    }
+
+    public void setPelicula() throws SQLException {
+        Connection conn = this.database.conectarMySQL();
+        List<String> columnas =  Arrays.asList(new String[]{"sala", "fecha", "horario"});
+        this.filas = this.database.getValor(conn, "sala", columnas, "titulo", this.usuario.getTituloPelicula());
+        this.cerrarConeccion(conn);
     }
 
     public boolean guardarEleccion() throws SQLException {
