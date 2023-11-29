@@ -2,12 +2,14 @@ package cine.view;
 
 import javafx.scene.Cursor;
 import javafx.scene.control.Button;
+import javafx.scene.text.Font;
 
 public class Opciones {
     private String eleccion;
     private Button anteriorBtn;
-    private int BOTON_HEIGHT = 45;
-    private int BOTON_WIDTH = 100;
+    private int BOTON_HEIGHT = 80;
+    private int BOTON_WIDTH = 160;
+    private final double font = 20;
     private String DEFAULT_STYLE = "-fx-border-color: black; -fx-text-fill: black; -fx-border-width: 2;";
     private String SELECT_STYLE = "-fx-border-color: black; -fx-text-fill: white; -fx-border-width: 2;";
 
@@ -33,6 +35,7 @@ public class Opciones {
     public Button armar(String elemento) {
         Button boton = new Button(elemento);
         boton.setCursor(Cursor.HAND);
+        boton.setFont(Font.font(this.font));
         boton.setPrefHeight(this.BOTON_HEIGHT);
         boton.setPrefWidth(this.BOTON_WIDTH);
         boton.setStyle(DEFAULT_STYLE);

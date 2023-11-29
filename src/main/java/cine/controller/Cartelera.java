@@ -3,8 +3,6 @@ package cine.controller;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
-
-import cine.model.Cine;
 import cine.model.Usuario;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -16,10 +14,9 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 
 public class Cartelera {
-    private Cine cine = Controlador.cine;
     private Escenas escenas = Controlador.escenas;
     private Usuario usuario = Controlador.usuario;
-    private ArrayList<ArrayList<String>> peliculas;
+    private ArrayList<ArrayList<String>> peliculas = Controlador.peliculas;
 
     private int indice = 0;
 
@@ -52,7 +49,6 @@ public class Cartelera {
     
     @FXML
     void initialize() throws SQLException {
-        this.peliculas = this.cine.getCartelera();
         this.cargarCartelera();
         if (peliculas.size() == 1) 
             btnSiguiente.setDisable(true);

@@ -7,14 +7,13 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cine.controller.Inicio">
    <children>
-      <StackPane alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="1000.0">
+      <StackPane alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="1000.0">
          <children>
-            <Label text="Ultimas peliculas agregadas:">
+            <Label text="Ultimos estrenos:">
                <font>
-                  <Font size="25.0" />
+                  <Font size="35.0" />
                </font>
             </Label>
          </children>
@@ -22,12 +21,15 @@
             <Insets left="50.0" />
          </padding>
       </StackPane>
-      <HBox fx:id="peliculas" prefHeight="250.0" prefWidth="200.0" />
-      <StackPane alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="1000.0">
+      <HBox fx:id="peliculas" alignment="CENTER_LEFT" fillHeight="false" prefHeight="300.0" prefWidth="200.0" spacing="75.0">
+         <padding>
+            <Insets left="100.0" right="100.0" />
+         </padding></HBox>
+      <StackPane alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="1000.0">
          <children>
-            <Label text="Ofertas">
+            <Label text="Próximamente:">
                <font>
-                  <Font size="25.0" />
+                  <Font size="35.0" />
                </font>
             </Label>
          </children>
@@ -38,6 +40,12 @@
             <Insets left="50.0" />
          </padding>
       </StackPane>
-      <HBox fx:id="ofertas" prefHeight="250.0" prefWidth="200.0" />
+      <HBox fx:id="ofertas" alignment="CENTER_LEFT" fillHeight="false" prefHeight="300.0" prefWidth="200.0" spacing="75.0">
+         <VBox.margin>
+            <Insets />
+         </VBox.margin>
+         <padding>
+            <Insets left="100.0" right="100.0" />
+         </padding></HBox>
    </children>
 </VBox>

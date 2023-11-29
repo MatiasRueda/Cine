@@ -4,12 +4,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<VBox alignment="CENTER" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cine.controller.Cargando">
+<VBox alignment="CENTER" prefHeight="100.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label alignment="CENTER" prefHeight="75.0" prefWidth="250.0" stylesheets="@../estilos/carga.css" text="Cargando...">
+      <Label alignment="CENTER" prefHeight="100.0" prefWidth="400.0" stylesheets="@../estilos/carga.css" text="Cargando...">
          <font>
-            <Font size="29.0" />
+            <Font size="50.0" />
          </font>
       </Label>
    </children>
