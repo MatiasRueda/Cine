@@ -5,7 +5,7 @@ import java.sql.SQLException;
 
 import cine.model.Cine;
 import cine.model.Usuario;
-import cine.view.Opciones;
+import cine.view.Opcion;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -15,11 +15,12 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
 public class Horario {
-
     private Cine cine = Controlador.cine;
     private Escenas escenas = Controlador.escenas;
     private Usuario usuario = Controlador.usuario;
-    private Opciones opciones = new Opciones("white", "green");
+    private Opcion opcion = new Opcion("white", "green");
+    private String eleccion;
+    private Button anterior;
 
     @FXML
     private VBox horario;
@@ -33,25 +34,33 @@ public class Horario {
     @FXML
     private Label labelFecha;
 
+    private void elegir(Button boton) {
+        if (anterior != null) 
+            opcion.colorearDefault(anterior);
+        opcion.colorearElegido(boton);
+        this.eleccion = boton.getText();
+        this.anterior = boton;
+    }
+
     @FXML
     void initialize() throws SQLException {
         this.textHorarios.setText("Horarios para: " + this.usuario.getTituloPelicula());
         this.labelFecha.setText("Fecha elegida: " + this.usuario.getFechaPelicula());
         for (String horario: this.cine.getHorarios()) {
-            Button boton = this.opciones.armar(horario);
+            Button boton = this.opcion.armar(horario);
+            boton.setOnAction(e -> elegir(boton));
             this.horarios.getChildren().add(boton);        
         }
     }
 
     @FXML
     void continuar(ActionEvent event) throws IOException, InterruptedException {
-        String opcion = this.opciones.getEleccion();
-        if (opcion == null) {
+        if (this.eleccion == null) {
             this.escenas.mensajeError("Elija alguna opcion");
             return;
         }
-        this.usuario.setHorario(opcion);
-        this.usuario.setSala(opcion, this.cine.getSalas());
+        this.usuario.setHorario(this.eleccion);
+        this.usuario.setSala(this.eleccion, this.cine.getSalas());
         this.escenas.cargarSiguienteEscena(ESCENA.SALA);
     }
 }
