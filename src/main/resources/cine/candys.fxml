@@ -43,7 +43,7 @@
             </HBox>
             <ScrollPane prefHeight="150.0" prefWidth="300.0">
                <content>
-                  <VBox fx:id="contenedor" prefHeight="132.0" prefWidth="295.0" />
+                  <VBox fx:id="contenedor" alignment="CENTER" prefHeight="148.0" prefWidth="295.0" />
                </content>
             </ScrollPane>
          </children>

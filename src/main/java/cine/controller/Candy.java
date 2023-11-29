@@ -88,6 +88,10 @@ public class Candy {
 
     @FXML
     void continuar(ActionEvent event) throws IOException {
+        if (this.contenedor.getChildren().size() == 0) {
+            this.escenas.mensajeError("Elija algun producto");
+            return;
+        }
         this.escenas.cargarEscena(ESCENA.CONFIRMAR);
     }
 

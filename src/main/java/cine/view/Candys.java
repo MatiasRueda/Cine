@@ -39,7 +39,7 @@ public class Candys {
         etiqueta.setAlignment(Pos.CENTER);
         etiqueta.setPrefHeight(this.ETIQUETA_HEIGHT);
         etiqueta.setPrefWidth(this.ETIQUETA_WIDTH);
-        etiqueta.setFont(Font.font(20));
+        etiqueta.setFont(Font.font(15));
         return etiqueta;
     }
     
