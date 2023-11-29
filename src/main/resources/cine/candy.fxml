@@ -7,12 +7,22 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
 <VBox fx:id="candy" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1000.0" stylesheets="@../estilos/candy.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cine.controller.Candy">
    <children>
-      <HBox alignment="CENTER" fillHeight="false" prefHeight="700.0" prefWidth="600.0">
+      <StackPane prefHeight="50.0" prefWidth="1000.0">
+         <children>
+            <Label text="Candy">
+               <font>
+                  <Font size="35.0" />
+               </font>
+            </Label>
+         </children>
+      </StackPane>
+      <HBox alignment="CENTER" fillHeight="false" prefHeight="600.0" prefWidth="1000.0">
          <children>
             <FlowPane fx:id="elementos" alignment="CENTER" columnHalignment="CENTER" hgap="15.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="450.0" prefWidth="450.0" vgap="20.0">
                <padding>

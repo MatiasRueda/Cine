@@ -33,7 +33,7 @@ public class Sala {
 
    @FXML
    void comprar(ActionEvent event) throws IOException, InterruptedException {
-      this.escenas.cargarSiguienteEscena(ESCENA.CONFIRMAR);
+      this.escenas.cargarSiguienteEscena(ESCENA.OPCION);
    }
 
 }

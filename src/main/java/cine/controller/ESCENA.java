@@ -15,6 +15,7 @@ public enum ESCENA {
     FECHA,
     COMPRADO,
     HORARIO,
+    OPCION,
     INGRESAR,
     REGISTRAR,
     SALA,

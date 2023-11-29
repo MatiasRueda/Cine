@@ -34,7 +34,7 @@ public class Confirmar {
     }
 
     @FXML
-    void confirmar(ActionEvent event) throws IOException {
+    void confirmar(ActionEvent event) throws IOException, InterruptedException {
         this.cine.guardarEleccion();
         this.escenas.cargarEscena(ESCENA.COMPRADO);
     }

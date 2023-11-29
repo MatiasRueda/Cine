@@ -58,7 +58,7 @@ public class NavUsuario {
     }
 
     @FXML
-    void salir(ActionEvent event) {
+    void cerrarSesion(ActionEvent event) {
 
     }
 }

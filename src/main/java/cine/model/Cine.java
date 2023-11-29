@@ -124,7 +124,7 @@ public class Cine {
         List<String> columnas =  Arrays.asList(new String[]{"fila", "Columna"});
         List<String> condiciones =  Arrays.asList(new String[]{"fecha", "sala", "horario"});
         List<String> valores =  Arrays.asList(new String[]{this.usuario.getFechaPelicula(), this.usuario.getSala(), this.usuario.getHorario()});
-        ArrayList<ArrayList<String>> resultado = this.database.getValorVariasCondiciones(conn, "reserva", columnas, condiciones, valores);
+        ArrayList<ArrayList<String>> resultado = this.database.getValorVariasCondiciones(conn, "reserva_peli", columnas, condiciones, valores);
         this.cerrarConeccion(conn);
         return convertirIntFilasColumnas( resultado);
     }

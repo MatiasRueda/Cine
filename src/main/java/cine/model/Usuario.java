@@ -13,7 +13,7 @@ public class Usuario {
     private String sala;
     private char fila;
     private char columna;
-    private HashMap<String, Integer> productos;
+    private HashMap<String, Integer> productos = new HashMap<>();
     private int precioCandy;
     private int precioPelicula;
 
