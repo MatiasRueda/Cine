@@ -5,6 +5,7 @@ import java.sql.SQLException;
 
 import cine.model.Cine;
 import cine.model.Usuario;
+import cine.view.Nav;
 import cine.view.Opciones;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -19,6 +20,7 @@ public class Fecha {
     private Escenas escenas = Controlador.escenas;
     private Usuario usuario = Controlador.usuario;
     private Opciones opciones = new Opciones("white", "red");
+    private Nav nav = NavUsuario.nav;
 
     @FXML
     private VBox fecha;
@@ -31,6 +33,7 @@ public class Fecha {
 
     @FXML
     void initialize() throws SQLException {
+        nav.indicarComprar();
         this.labelFecha.setText("Fechas disponibles para: " + this.usuario.getTituloPelicula());
         for (String fecha: this.cine.getFechas()) {
             Button boton = this.opciones.armar(fecha);

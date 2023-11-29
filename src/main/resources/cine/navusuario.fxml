@@ -31,7 +31,7 @@
                </cursor>
             </Button>
             <Region prefHeight="50.0" />
-            <Button alignment="CENTER" mnemonicParsing="false" onAction="#comprar" prefHeight="100.0" prefWidth="300.0" text="Comprar">
+            <Button fx:id="comprarBtn" alignment="CENTER" mnemonicParsing="false" onAction="#comprar" prefHeight="100.0" prefWidth="300.0" text="Comprar">
                <font>
                   <Font size="23.0" />
                </font>

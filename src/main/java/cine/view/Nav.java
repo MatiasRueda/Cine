@@ -11,6 +11,8 @@ public class Nav {
     private final int OpcionWidth = 300;
     private final int EspacioHeight = 50;
     private Button inicio;
+    private Button ingresar;
+    private Button comprar;
     private VBox opciones;
 
     public Button crearOpcion(String nombre) {
@@ -26,12 +28,28 @@ public class Nav {
         this.inicio = inicio;
     }
 
+    public void setBtnComprar(Button comprar) {
+        this.comprar = comprar;
+    }
+
+    public void setBtnIngresar(Button ingresar) {
+        this.ingresar = ingresar;
+    }
+
     public void setOpciones(VBox opciones) {
         this.opciones = opciones;
     }
 
     public void indicarInicio() {
         this.elegirOpcion(this.inicio);
+    }
+
+    public void indicarIngresar() {
+        this.elegirOpcion(this.ingresar);
+    }
+
+    public void indicarComprar() {
+        this.elegirOpcion(this.comprar);
     }
     
     public void elegirOpcion(Button opcion) {

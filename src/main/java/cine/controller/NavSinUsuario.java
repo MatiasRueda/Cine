@@ -12,10 +12,13 @@ import javafx.stage.Stage;
 
 public class NavSinUsuario {
     public final static Escenas escenas = Controlador.escenas;
-    private final Nav nav = new Nav();
+    public final static Nav nav = new Nav();
 
     @FXML
     private Button inicioBtn;
+
+    @FXML
+    private Button ingresarBtn;
 
     @FXML
     private VBox opciones;
@@ -26,6 +29,7 @@ public class NavSinUsuario {
     @FXML
     void initialize() {
         nav.setStyle(this.inicioBtn, true);
+        nav.setBtnIngresar(this.ingresarBtn);
         nav.setOpciones(this.opciones);
     }
 

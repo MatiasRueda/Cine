@@ -21,6 +21,9 @@ public class NavUsuario {
     private Button inicioBtn;
 
     @FXML
+    private Button comprarBtn;
+
+    @FXML
     private VBox opciones;
 
     @FXML
@@ -29,6 +32,7 @@ public class NavUsuario {
     @FXML
     void initialize() {
         nav.setBtnInicio(this.inicioBtn);
+        nav.setBtnComprar(this.comprarBtn);
         nav.setOpciones(this.opciones);
         nav.setStyle(this.inicioBtn, true);
     }

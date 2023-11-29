@@ -5,6 +5,7 @@ import java.sql.SQLException;
 
 import cine.model.Cine;
 import cine.model.Usuario;
+import cine.view.Nav;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.PasswordField;
@@ -17,7 +18,7 @@ public class Ingresar {
     private Cine cine = Controlador.cine;
     private Escenas escenas = Controlador.escenas;
     private Usuario usuario = Controlador.usuario;
-
+    private Nav nav = NavSinUsuario.nav;
 
     @FXML
     private VBox ingresar;
@@ -27,6 +28,11 @@ public class Ingresar {
 
     @FXML
     private PasswordField contrasenia;
+
+    @FXML
+    void initialize() {
+        nav.indicarIngresar();
+    }
 
     @FXML
     void ingresar(ActionEvent event) throws IOException, SQLException {    
