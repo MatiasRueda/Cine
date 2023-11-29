@@ -1,6 +1,7 @@
 package cine.controller;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 import cine.model.Cine;
 import javafx.event.ActionEvent;
@@ -36,7 +37,7 @@ public class Registrar {
     private PasswordField contraseniaConfirmar;
 
     @FXML
-    void registrar(ActionEvent event) throws IOException {
+    void registrar(ActionEvent event) throws IOException, SQLException {
         if (!this.cine.register(usuarioNombre.getText(), DNI.getText(), email.getText(), contrasenia.getText(), contraseniaConfirmar.getText())) {
             this.escenas.mensajeError(this.cine.getMensaje());
             return;

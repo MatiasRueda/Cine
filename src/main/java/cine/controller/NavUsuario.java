@@ -49,6 +49,7 @@ public class NavUsuario {
 
     @FXML
     void cerrarSesion(ActionEvent event) throws IOException {
+        this.usuario.cerrarSesion();
         this.escenas.cerrarSesion();
     }
 }

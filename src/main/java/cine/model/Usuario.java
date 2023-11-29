@@ -118,4 +118,9 @@ public class Usuario {
         this.productos = new HashMap<>();
         this.precioCandy = 0;
     }
+
+    public void cerrarSesion() {
+        this.reiniciarValores();
+        this.usuarioNombre = null;
+    }
 }

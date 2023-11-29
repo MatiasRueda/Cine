@@ -1,6 +1,7 @@
 package cine.controller;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 import cine.model.Cine;
 import cine.model.Usuario;
@@ -29,7 +30,7 @@ public class Fecha {
     private Label labelFecha;
 
     @FXML
-    void initialize() {
+    void initialize() throws SQLException {
         this.labelFecha.setText("Fechas disponibles para: " + this.usuario.getTituloPelicula());
         for (String fecha: this.cine.getFechas()) {
             Button boton = this.opciones.armar(fecha);

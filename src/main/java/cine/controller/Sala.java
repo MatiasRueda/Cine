@@ -1,6 +1,7 @@
 package cine.controller;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 import cine.model.Cine;
 import cine.model.Usuario;
@@ -14,7 +15,7 @@ public class Sala {
    private Cine cine = Controlador.cine;
    private Escenas escenas = Controlador.escenas;
    private Usuario usuario = Controlador.usuario;
-   private Butacas butacas = new Butacas(this.usuario, this.cine.getReservas());
+   private Butacas butacas;
 
    @FXML
    private VBox sala;
@@ -26,7 +27,8 @@ public class Sala {
    private GridPane butacasUno;
 
    @FXML
-   void initialize() {
+   void initialize() throws SQLException {
+      this.butacas = new Butacas(this.usuario, this.cine.getReservas());
       this.butacas.setActionGridPane(this.butacasUno);
       this.butacas.setActionGridPane(this.butacasDos);
    }

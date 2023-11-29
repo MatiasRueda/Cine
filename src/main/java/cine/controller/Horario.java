@@ -1,6 +1,7 @@
 package cine.controller;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 import cine.model.Cine;
 import cine.model.Usuario;
@@ -32,7 +33,7 @@ public class Horario {
     private Label labelFecha;
 
     @FXML
-    void initialize() {
+    void initialize() throws SQLException {
         this.labelHorarios.setText("Horarios para: " + this.usuario.getTituloPelicula());
         this.labelFecha.setText("Fecha elegida: " + this.usuario.getFechaPelicula());
         for (String horario: this.cine.getHorarios()) {

@@ -52,104 +52,104 @@ public class CineTest {
     // ************* REGISTER TEST ****************** //
 
     @Test
-    public void noCompletarNombreEsFalseRegisterTest() {
+    public void noCompletarNombreEsFalseRegisterTest() throws SQLException {
         assertFalse(this.cine.register("", this.DNI , this.EMAIL, this.CONTRASENIA, this.CONTRASENIA));
     }
 
     @Test
-    public void noCompletarNombreDejaMensajeRegisterTest() {
+    public void noCompletarNombreDejaMensajeRegisterTest() throws SQLException {
         this.cine.register("", this.DNI,  this.EMAIL, this.CONTRASENIA,  this.CONTRASENIA);
         assertEquals(Errores.NOMBRE_CAMPO.mensaje, this.cine.getMensaje());
     }
 
     @Test
-    public void noCompletarDNIEsFalseRegisterTest() {
+    public void noCompletarDNIEsFalseRegisterTest() throws SQLException {
         assertFalse(this.cine.register(this.NOMBRE, "" , this.EMAIL, this.CONTRASENIA,  this.CONTRASENIA));
     }
 
     @Test
-    public void noCompletarDNIDejaMensajeRegisterTest() {
+    public void noCompletarDNIDejaMensajeRegisterTest() throws SQLException {
         this.cine.register(this.NOMBRE, "", this.EMAIL, this.CONTRASENIA,  this.CONTRASENIA);
         assertEquals(Errores.DNI_CAMPO.mensaje, this.cine.getMensaje());
     }
 
     @Test
-    public void noCompletarContraseniaEsFalseRegisterTest() {
+    public void noCompletarContraseniaEsFalseRegisterTest() throws SQLException {
         assertFalse(this.cine.register(this.NOMBRE, this.DNI , this.EMAIL, "",  this.CONTRASENIA));
     }
 
     @Test
-    public void noCompletarContraseniaDejaMensajeRegisterTest() {
+    public void noCompletarContraseniaDejaMensajeRegisterTest() throws SQLException {
         this.cine.register(this.NOMBRE, this.DNI, this.EMAIL, "",  this.CONTRASENIA);
         assertEquals(Errores.CONTRASENIA_CAMPO.mensaje, this.cine.getMensaje());
     }
 
     @Test
-    public void noCompletarConfirmarContraseniaDejaMensajeRegisterTest() {
+    public void noCompletarConfirmarContraseniaDejaMensajeRegisterTest() throws SQLException {
         this.cine.register(this.NOMBRE, this.DNI, this.EMAIL, this.CONTRASENIA,  "");
         assertEquals(Errores.CONTRASENIA_CONFIRMAR_CAMPO.mensaje, this.cine.getMensaje());
     }
 
     @Test
-    public void lasContraseniasNoCoincidenDejaMensajeRegisterTest() {
+    public void lasContraseniasNoCoincidenDejaMensajeRegisterTest() throws SQLException {
         this.cine.register(this.NOMBRE, this.DNI, this.EMAIL, this.CONTRASENIA,  this.CONTRASENIA + "agaig");
         assertEquals(Errores.CONTRASENIAS_DISTINTAS.mensaje, this.cine.getMensaje());
     }
 
     @Test
-    public void registrarseCorrectamenteEsTrueTest() {
+    public void registrarseCorrectamenteEsTrueTest() throws SQLException {
         assertTrue(this.cine.register(this.NOMBRE, this.DNI, this.EMAIL, this.CONTRASENIA,  this.CONTRASENIA));
     }
 
     // ************* LOGIN TEST ****************** //
 
     @Test
-    public void noCompletarNombreEsFalseLoginTest() {
+    public void noCompletarNombreEsFalseLoginTest() throws SQLException {
         assertFalse(this.cine.login("", this.CONTRASENIA));
     }
 
     @Test
-    public void noCompletarNombreDejaMensajeTest() {
+    public void noCompletarNombreDejaMensajeTest() throws SQLException {
         this.cine.login("", this.CONTRASENIA);
         assertEquals(Errores.NOMBRE_CAMPO.mensaje, this.cine.getMensaje());
     }
 
     @Test
-    public void noCompletarContraseniaEsFalseLoginTest() {
+    public void noCompletarContraseniaEsFalseLoginTest() throws SQLException {
         assertFalse(this.cine.login(this.NOMBRE, ""));
     }
 
     @Test
-    public void noCompletarContraseniaDejaMensajeTest() {
+    public void noCompletarContraseniaDejaMensajeTest() throws SQLException {
         this.cine.login(this.NOMBRE, "");
         assertEquals(Errores.CONTRASENIA_CAMPO.mensaje, this.cine.getMensaje());
     }
 
     @Test
-    public void noCompletarNombreContraseniaEsFalseLoginTest() {
+    public void noCompletarNombreContraseniaEsFalseLoginTest() throws SQLException {
         assertFalse(this.cine.login("", ""));
     }
 
     @Test
-    public void noCompletarNombreContraseniaDejaMensajeTest() {
+    public void noCompletarNombreContraseniaDejaMensajeTest() throws SQLException {
         this.cine.login("", "");
         assertEquals(Errores.NOMBRE_CAMPO.mensaje, this.cine.getMensaje());
     }
 
     @Test
-    public void loguearseSinRegistrarseEsFalseTest() {
+    public void loguearseSinRegistrarseEsFalseTest() throws SQLException {
         assertFalse(this.cine.login(this.NOMBRE, this.CONTRASENIA));
     }
 
     @Test
-    public void contraseniaIncorrectaDejaMensajeRegisterTest() {
+    public void contraseniaIncorrectaDejaMensajeRegisterTest() throws SQLException {
         this.cine.register(this.NOMBRE, this.DNI, this.EMAIL, this.CONTRASENIA + "agaig",  this.CONTRASENIA + "agaig");
         this.cine.login(this.NOMBRE, this.CONTRASENIA);
         assertEquals(Errores.CONTRASENIA_INCORRECTA.mensaje, this.cine.getMensaje());
     }    
 
     @Test
-    public void sePuedeLoguearDespuesDeRegistraseDaTrueTest() {
+    public void sePuedeLoguearDespuesDeRegistraseDaTrueTest() throws SQLException {
         this.cine.register(this.NOMBRE, this.DNI, this.EMAIL, this.CONTRASENIA,  this.CONTRASENIA);
         assertTrue(this.cine.login(this.NOMBRE, this.CONTRASENIA));
     }

@@ -1,6 +1,7 @@
 package cine.controller;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 import cine.model.Cine;
 import cine.model.Usuario;
@@ -34,7 +35,7 @@ public class Confirmar {
     }
 
     @FXML
-    void confirmar(ActionEvent event) throws IOException, InterruptedException {
+    void confirmar(ActionEvent event) throws IOException, InterruptedException, SQLException {
         this.cine.guardarEleccion();
         this.escenas.cargarEscena(ESCENA.COMPRADO);
     }

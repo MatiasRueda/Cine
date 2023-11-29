@@ -28,12 +28,8 @@ public class Cine {
         this.usuario = usuario;
     }
 
-    private void cerrarConeccion(Connection conn) {
-        try {
-            conn.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+    private void cerrarConeccion(Connection conn) throws SQLException {
+        conn.close();
     }
 
     private void setSalasHorarios(ArrayList<ArrayList<String>> salasHorarios) {
@@ -67,7 +63,7 @@ public class Cine {
         this.precios = precios;
     }
 
-    public boolean register(String nombre, String dni , String email, String contrasenia, String confirmarContrasenia) {
+    public boolean register(String nombre, String dni , String email, String contrasenia, String confirmarContrasenia) throws SQLException {
         Connection conn = this.database.conectarMySQL();
         if (verificador.registerError(conn, nombre, dni, email, contrasenia, confirmarContrasenia)) return false;
         List<String> columnas = Arrays.asList(new String[]{"nombre","contrasenia", "dni", "email"});
@@ -78,7 +74,7 @@ public class Cine {
         return resultado;
     }
 
-    public boolean login(String nombre, String contrasenia) {
+    public boolean login(String nombre, String contrasenia) throws SQLException {
         if (verificador.loginParteUnoError(nombre, contrasenia))
             return false;
         Connection conn = this.database.conectarMySQL();
@@ -89,7 +85,7 @@ public class Cine {
         return !this.verificador.loginParteTresError(contrasenia, contraseniaObtenida);
     }
 
-    public ArrayList<String> getFechas() { 
+    public ArrayList<String> getFechas() throws SQLException { 
         Connection conn = this.database.conectarMySQL();
         ArrayList<String> fechasObtenidas = this.database.getValor(conn, "sala", "fecha", "titulo", this.usuario.getTituloPelicula());
         Set<String> unicasFechas = new LinkedHashSet<>(fechasObtenidas);
@@ -99,7 +95,7 @@ public class Cine {
         return fechas;
     }
 
-    public ArrayList<String> getHorarios() { 
+    public ArrayList<String> getHorarios() throws SQLException { 
         Connection conn = this.database.conectarMySQL();
         List<String> columnas =  Arrays.asList(new String[]{"sala", "horario"});
         List<String> condiciones =  Arrays.asList(new String[]{"fecha", "titulo"});
@@ -111,7 +107,7 @@ public class Cine {
         return this.horarios;
     }
 
-    public ArrayList<ArrayList<String>> getCartelera() {
+    public ArrayList<ArrayList<String>> getCartelera() throws SQLException {
         Connection conn = this.database.conectarMySQL();
         List<String> columnas = Arrays.asList(new String[]{"titulo", "fecha" , "audio", "subtitulo", "duracion", "imagen" , "precio" }); 
         ArrayList<ArrayList<String>> filas = this.database.getValor(conn, "pelicula", columnas, null, null);
@@ -119,7 +115,7 @@ public class Cine {
         return filas;
     }
 
-    public ArrayList<ArrayList<Integer>> getReservas() {
+    public ArrayList<ArrayList<Integer>> getReservas() throws SQLException {
         Connection conn = this.database.conectarMySQL();
         List<String> columnas =  Arrays.asList(new String[]{"fila", "Columna"});
         List<String> condiciones =  Arrays.asList(new String[]{"fecha", "sala", "horario"});
@@ -129,7 +125,7 @@ public class Cine {
         return convertirIntFilasColumnas( resultado);
     }
 
-    public ArrayList<ArrayList<String>> getCandy() { 
+    public ArrayList<ArrayList<String>> getCandy() throws SQLException { 
         Connection conn = this.database.conectarMySQL();
         List<String> columnas =  Arrays.asList(new String[]{"nombre", "precio", "imagen"});
         ArrayList<ArrayList<String>> resultado = this.database.getValor(conn, "candy", columnas, null , null);
@@ -156,7 +152,7 @@ public class Cine {
         });
     }
 
-    public boolean guardarEleccion() {
+    public boolean guardarEleccion() throws SQLException {
         Connection conn = this.database.conectarMySQL();
         this.codigoCompra = UUID.randomUUID().toString().substring(0, 5);
         if (this.usuario.getTituloPelicula() != null) 

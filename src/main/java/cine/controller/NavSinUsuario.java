@@ -15,9 +15,6 @@ public class NavSinUsuario {
     private final Nav nav = new Nav();
 
     @FXML
-    private Button ingresarBtn;
-
-    @FXML
     private Button inicioBtn;
 
     @FXML
@@ -29,29 +26,18 @@ public class NavSinUsuario {
     @FXML
     void initialize() {
         nav.setStyle(this.inicioBtn, true);
-    }
-
-    private void elegirOpcion(Button opcion) {
-        this.opciones.getChildren().forEach(o -> {
-            if (!(o instanceof Button))
-                return;
-            if (opcion != o) {
-                nav.setStyle((Button) o, false);
-                return;
-            } 
-            nav.setStyle(opcion, true);
-        });
+        nav.setOpciones(this.opciones);
     }
 
     @FXML
     void inicio(ActionEvent event) throws IOException {
-        this.elegirOpcion(this.inicioBtn);
+        nav.elegirOpcion((Button) event.getSource());
         escenas.cargarEscena(ESCENA.INICIO);
     }
 
     @FXML
     void ingresar(ActionEvent event) throws IOException {
-        this.elegirOpcion((Button) event.getSource());
+        nav.elegirOpcion((Button) event.getSource());
         escenas.cargarEscena(ESCENA.INGRESAR);
     }
 

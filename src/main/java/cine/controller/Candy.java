@@ -1,6 +1,7 @@
 package cine.controller;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import cine.model.Cine;
@@ -76,7 +77,7 @@ public class Candy {
     }
 
     @FXML
-    void initialize() {
+    void initialize() throws SQLException {
         ArrayList<ArrayList<String>> filas = this.cine.getCandy();
         for (ArrayList<String> fila : filas) {
             VBox producto = this.candys.armar(fila.get(0), fila.get(1), fila.get(2));

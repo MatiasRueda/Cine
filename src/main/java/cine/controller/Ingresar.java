@@ -1,6 +1,7 @@
 package cine.controller;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 import cine.model.Cine;
 import cine.model.Usuario;
@@ -28,7 +29,7 @@ public class Ingresar {
     private PasswordField contrasenia;
 
     @FXML
-    void ingresar(ActionEvent event) throws IOException {    
+    void ingresar(ActionEvent event) throws IOException, SQLException {    
         if (!this.cine.login(nombre.getText() , contrasenia.getText())) {
             this.escenas.mensajeError(this.cine.getMensaje());
             return;

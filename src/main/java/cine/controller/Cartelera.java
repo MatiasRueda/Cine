@@ -1,6 +1,7 @@
 package cine.controller;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import cine.model.Cine;
@@ -50,7 +51,7 @@ public class Cartelera {
     private Button btnSiguiente;
     
     @FXML
-    void initialize() {
+    void initialize() throws SQLException {
         this.peliculas = this.cine.getCartelera();
         this.cargarCartelera();
         if (peliculas.size() == 1) 
