@@ -75,6 +75,14 @@ public class Escenas {
         this.escenaPrincipal.getChildren().addAll(navUsuario, inicio);
     }
 
+    public void cerrarSesion() throws IOException {
+        Pane navSinUsuario = (Pane) this.loadFXML(ESCENA.NAVSINUSUARIO);
+        Pane inicio = (Pane) this.loadFXML(ESCENA.INICIO);
+        this.escenaPrincipal.getChildren().remove(1);
+        this.escenaPrincipal.getChildren().remove(0);
+        this.escenaPrincipal.getChildren().addAll(navSinUsuario, inicio);
+    }
+
     public void cargarSiguienteEscena(ESCENA escena) throws IOException, InterruptedException {
         this.escenaPrincipal.setDisable(true);
         this.escenaPrincipal.setEffect(new GaussianBlur());

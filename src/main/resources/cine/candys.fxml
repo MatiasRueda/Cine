@@ -8,9 +8,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" fillWidth="false" prefHeight="325.0" prefWidth="425.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cine.controller.Candys">
+<VBox alignment="CENTER" prefHeight="325.0" prefWidth="425.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cine.controller.Candys">
    <children>
-      <StackPane prefHeight="75.0" prefWidth="300.0">
+      <StackPane prefHeight="50.0" prefWidth="300.0">
          <children>
             <Label text="Candy">
                <font>
@@ -46,26 +46,26 @@
                   <VBox fx:id="contenedor" prefHeight="132.0" prefWidth="295.0" />
                </content>
             </ScrollPane>
-            <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0">
-               <children>
-                  <Label text="Total a pagar:  ">
-                     <font>
-                        <Font size="20.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="precioTotal" text="Label">
-                     <font>
-                        <Font size="17.0" />
-                     </font>
-                  </Label>
-                  <Label text="\$">
-                     <font>
-                        <Font size="17.0" />
-                     </font>
-                  </Label>
-               </children>
-            </HBox>
          </children>
       </VBox>
+      <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0">
+         <children>
+            <Label text="Total a pagar:  ">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="precioTotal" text="Label">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Label>
+            <Label text="\$">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
    </children>
 </VBox>

@@ -12,10 +12,10 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 
 public class NavUsuario {
-    private Escenas escenas = Controlador.escenas;
-    private Usuario usuario = Controlador.usuario;
-    private Cine cine = Controlador.cine;
-    private final Nav nav = new Nav();
+    private final Escenas escenas = Controlador.escenas;
+    private final Usuario usuario = Controlador.usuario;
+    private final Cine cine = Controlador.cine;
+    public final static Nav nav = new Nav();
  
     @FXML
     private Button inicioBtn;
@@ -26,20 +26,10 @@ public class NavUsuario {
     @FXML
     private StackPane titulo;
 
-    private void elegirOpcion(Button opcion) {
-        this.opciones.getChildren().forEach(o -> {
-            if (!(o instanceof Button))
-                return;
-            if (opcion != o) {
-                nav.setStyle((Button) o, false);
-                return;
-            } 
-            nav.setStyle(opcion, true);
-        });
-    }
-
     @FXML
     void initialize() {
+        nav.setBtnInicio(this.inicioBtn);
+        nav.setOpciones(this.opciones);
         nav.setStyle(this.inicioBtn, true);
     }
 
@@ -47,18 +37,18 @@ public class NavUsuario {
     void inicio(ActionEvent event) throws IOException {
         this.usuario.reiniciarValores();
         this.cine.reiniciarValores();
-        this.elegirOpcion((Button) event.getSource());
+        nav.elegirOpcion((Button) event.getSource());
         escenas.cargarEscena(ESCENA.INICIO);
     }
 
     @FXML
     void comprar(ActionEvent event) throws IOException {
-        this.elegirOpcion((Button) event.getSource());
+        nav.elegirOpcion((Button) event.getSource());
         escenas.cargarEscena(ESCENA.COMPRAR);
     }
 
     @FXML
-    void cerrarSesion(ActionEvent event) {
-
+    void cerrarSesion(ActionEvent event) throws IOException {
+        this.escenas.cerrarSesion();
     }
 }
