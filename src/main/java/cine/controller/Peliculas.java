@@ -3,6 +3,7 @@ package cine.controller;
 import cine.model.Usuario;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.text.Text;
 
 public class Peliculas {
     private Usuario usuario = Controlador.usuario;    
@@ -14,7 +15,7 @@ public class Peliculas {
     private Label horario;
 
     @FXML
-    private Label titulo;
+    private Text titulo;
 
     @FXML
     private Label precio;

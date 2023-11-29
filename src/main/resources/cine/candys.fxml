@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" prefHeight="325.0" prefWidth="425.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cine.controller.Candys">
+<VBox fx:id="candys" alignment="CENTER" prefHeight="325.0" prefWidth="425.0" stylesheets="@../estilos/candys.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cine.controller.Candys">
    <children>
       <StackPane prefHeight="50.0" prefWidth="300.0">
          <children>
