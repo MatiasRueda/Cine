@@ -35,7 +35,7 @@ public class Ingresar {
             return;
         }
         this.usuario.setUsuarioNombre(this.nombre.getText());
-        this.escenas.usuario();    
+        this.escenas.ingresarUsuario();    
     }
 
     @FXML

@@ -12,10 +12,15 @@ import cine.App;
 
 public class Escenas {
     private StackPane stackPane;
+    private StackPane stackEscena;
     private Pane escenaPrincipal;
 
     public void setStackPane(StackPane stackPane) {
         this.stackPane = stackPane;
+    }
+
+    public void setStackEscena(StackPane stackEscena) {
+        this.stackEscena = stackEscena;
     }
 
     public void setEscenaPrincipal(Pane escena) {
@@ -62,25 +67,27 @@ public class Escenas {
     }
 
     public void cargarEscena(ESCENA escena) throws IOException {
+        if (this.stackEscena.getChildren().size() != 1) 
+            this.stackEscena.getChildren().remove(1);
+        if (escena == ESCENA.INICIO)
+            return;
         Pane escenaCargada = (Pane) this.loadFXML(escena);
-        this.escenaPrincipal.getChildren().remove(1);
-        this.escenaPrincipal.getChildren().add(escenaCargada);
+        this.stackEscena.getChildren().add(escenaCargada);
     }
 
-    public void usuario() throws IOException {
+    public void ingresarUsuario() throws IOException {
         Pane navUsuario = (Pane) this.loadFXML(ESCENA.NAVUSUARIO);
-        Pane inicio = (Pane) this.loadFXML(ESCENA.INICIO);
-        this.escenaPrincipal.getChildren().remove(1);
+        this.stackEscena.getChildren().remove(1);
         this.escenaPrincipal.getChildren().remove(0);
-        this.escenaPrincipal.getChildren().addAll(navUsuario, inicio);
+        this.escenaPrincipal.getChildren().add(0, navUsuario);
     }
 
     public void cerrarSesion() throws IOException {
         Pane navSinUsuario = (Pane) this.loadFXML(ESCENA.NAVSINUSUARIO);
-        Pane inicio = (Pane) this.loadFXML(ESCENA.INICIO);
-        this.escenaPrincipal.getChildren().remove(1);
+        if (this.stackEscena.getChildren().size() != 1) 
+            this.stackEscena.getChildren().remove(1);
         this.escenaPrincipal.getChildren().remove(0);
-        this.escenaPrincipal.getChildren().addAll(navSinUsuario, inicio);
+        this.escenaPrincipal.getChildren().add(0, navSinUsuario);
     }
 
     public void cargarSiguienteEscena(ESCENA escena) throws IOException, InterruptedException {

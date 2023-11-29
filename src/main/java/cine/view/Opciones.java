@@ -26,7 +26,8 @@ public class Opciones {
     }
 
     private void setAction(Button boton) {
-        if (anteriorBtn != null) anteriorBtn.setStyle(DEFAULT_STYLE);
+        if (anteriorBtn != null) 
+            anteriorBtn.setStyle(DEFAULT_STYLE);
         boton.setStyle(SELECT_STYLE);
         eleccion = boton.getText();
         anteriorBtn = boton;

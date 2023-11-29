@@ -39,10 +39,15 @@ public class Controlador {
         peliculas = cine.getCartelera();
         escenas.setStackPane(this.stackControlador);
         escenas.setEscenaPrincipal(this.controlador);
+        StackPane stackEscena = new StackPane();
+        stackEscena.prefHeight(900);
+        stackEscena.prefWidth(1000);
+        escenas.setStackEscena(stackEscena);
         Pane navSinUsuario = (Pane) escenas.loadFXML(ESCENA.NAVSINUSUARIO);
         Pane inicio = (Pane) escenas.loadFXML(ESCENA.INICIO);
+        stackEscena.getChildren().add(inicio);
         this.controlador.getChildren().add(navSinUsuario);
-        this.controlador.getChildren().add(inicio);
+        this.controlador.getChildren().add(stackEscena);
     }
 
 
