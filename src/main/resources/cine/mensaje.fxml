@@ -9,15 +9,19 @@
 
 <VBox fx:id="mensaje" alignment="CENTER" fillWidth="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="450.0" style="-fx-border-color: black;" stylesheets="@../estilos/mensaje.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cine.controller.Mensaje">
    <children>
+      <Region prefHeight="18.0" prefWidth="200.0" />
       <Text fx:id="texto" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" wrappingWidth="361.13671875">
          <font>
-            <Font size="20.0" />
+            <Font size="25.0" />
          </font>
       </Text>
-      <Region prefHeight="61.0" prefWidth="200.0" />
+      <Region prefHeight="42.0" prefWidth="200.0" />
       <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#aceptar" prefHeight="60.0" prefWidth="125.0" text="Aceptar" textAlignment="CENTER" VBox.vgrow="NEVER">
          <cursor>
             <Cursor fx:constant="HAND" />
-         </cursor></Button>
+         </cursor>
+         <font>
+            <Font size="18.0" />
+         </font></Button>
    </children>
 </VBox>

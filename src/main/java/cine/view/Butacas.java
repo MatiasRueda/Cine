@@ -14,6 +14,8 @@ public class Butacas {
     private Button anteriorBtn;
     private String DEFAULT_STYLE = "-fx-border-color: black; -fx-text-fill: black; -fx-background-color: white;";
     private String SELECT_STYLE = "-fx-border-color: black; -fx-text-fill: white; -fx-background-color: green;";
+    private Integer fila = -1;
+    private Integer columna = -1;
 
     public Butacas(Usuario usuario, ArrayList<ArrayList<Integer>> reservas) {
         this.usuario = usuario;
@@ -23,6 +25,8 @@ public class Butacas {
     private void action(Node node, Integer fila, Integer columna) {
         if (this.anteriorBtn != null) anteriorBtn.setStyle(this.DEFAULT_STYLE);
         node.setStyle(this.SELECT_STYLE);
+        this.fila = fila;
+        this.columna = columna;
         this.anteriorBtn = (Button) node;
         this.usuario.setFila(fila);
         this.usuario.setColumna(columna);
@@ -42,5 +46,13 @@ public class Butacas {
             boton.setStyle("-fx-background-color: red");
             boton.setDisable(true);
         }
+    }
+
+    public Integer getColumna() {
+        return this.columna;
+    }
+
+    public Integer getFila() {
+        return this.fila;
     }
 }

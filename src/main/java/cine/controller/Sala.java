@@ -21,7 +21,7 @@ public class Sala {
    private VBox sala;
 
    @FXML
-    private GridPane butacasDos;
+   private GridPane butacasDos;
 
    @FXML
    private GridPane butacasUno;
@@ -35,6 +35,10 @@ public class Sala {
 
    @FXML
    void comprar(ActionEvent event) throws IOException, InterruptedException {
+      if (this.butacas.getFila() == -1 && this.butacas.getColumna() == -1) {
+         this.escenas.mensajeError("Elija alguna escena");
+         return;
+      }
       this.escenas.cargarSiguienteEscena(ESCENA.OPCION);
    }
 

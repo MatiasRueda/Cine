@@ -7,7 +7,6 @@ import cine.model.Cine;
 import cine.model.Usuario;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 
@@ -22,14 +21,12 @@ public class Confirmar {
     @FXML
     void initialize() throws IOException {
         if(this.usuario.getTituloPelicula() != null) {
-            FXMLLoader fxml = escenas.getFXML(ESCENA.PELICULAS);
-            Pane peliculas = (Pane) fxml.load();
+            Pane peliculas = (Pane) this.escenas.loadFXML(ESCENA.PELICULAS);
             this.productos.getChildren().add(peliculas);
         }
 
         if (!this.usuario.getProductos().isEmpty()) {
-            FXMLLoader fxml = escenas.getFXML(ESCENA.CANDYS);
-            Pane candys = (Pane) fxml.load();
+            Pane candys = (Pane) this.escenas.loadFXML(ESCENA.CANDYS);
             this.productos.getChildren().add(candys);
         }
     }

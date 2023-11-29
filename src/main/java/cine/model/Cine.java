@@ -107,12 +107,17 @@ public class Cine {
         return this.horarios;
     }
 
-    public ArrayList<ArrayList<String>> getCartelera() throws SQLException {
+    public ArrayList<ArrayList<ArrayList<String>>> getPeliculas() throws SQLException {
         Connection conn = this.database.conectarMySQL();
+        ArrayList<ArrayList<ArrayList<String>>> peliculas = new ArrayList<>();
         List<String> columnas = Arrays.asList(new String[]{"titulo", "fecha" , "audio", "subtitulo", "duracion", "imagen" , "precio" }); 
         ArrayList<ArrayList<String>> filas = this.database.getValor(conn, "pelicula", columnas, null, null);
+        peliculas.add(filas);
+        columnas = Arrays.asList(new String[]{"titulo", "imagen"});
+        filas = this.database.getValor(conn, "proximamente", columnas, null, null);
+        peliculas.add(filas);
         this.cerrarConeccion(conn);
-        return filas;
+        return peliculas;
     }
 
     public ArrayList<ArrayList<Integer>> getReservas() throws SQLException {

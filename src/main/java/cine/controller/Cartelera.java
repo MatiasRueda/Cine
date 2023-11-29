@@ -16,7 +16,7 @@ import javafx.scene.layout.VBox;
 public class Cartelera {
     private Escenas escenas = Controlador.escenas;
     private Usuario usuario = Controlador.usuario;
-    private ArrayList<ArrayList<String>> peliculas = Controlador.peliculas;
+    private ArrayList<ArrayList<String>> peliculas = Controlador.estreno;
 
     private int indice = 0;
 

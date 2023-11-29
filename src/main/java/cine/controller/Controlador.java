@@ -17,7 +17,8 @@ public class Controlador {
     public static Usuario usuario = new Usuario();
     public final static Cine cine = new Cine(usuario);
     public final static Escenas escenas = new Escenas();
-    public static ArrayList<ArrayList<String>> peliculas;
+    public static ArrayList<ArrayList<String>> estreno;
+    public static ArrayList<ArrayList<String>> proximamente;
 
     @FXML
     private StackPane stackControlador;
@@ -36,7 +37,9 @@ public class Controlador {
 
     @FXML 
     void initialize() throws IOException, SQLException {
-        peliculas = cine.getCartelera();
+        ArrayList<ArrayList<ArrayList<String>>> peliculas = cine.getPeliculas();
+        estreno = peliculas.get(0);
+        proximamente = peliculas.get(1);
         escenas.setStackPane(this.stackControlador);
         escenas.setEscenaPrincipal(this.controlador);
         StackPane stackEscena = new StackPane();
