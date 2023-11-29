@@ -12,34 +12,34 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 
 public class Sala {
-   private Cine cine = Controlador.cine;
-   private Escenas escenas = Controlador.escenas;
-   private Usuario usuario = Controlador.usuario;
-   private Butacas butacas;
+    private Cine cine = Controlador.cine;
+    private Escenas escenas = Controlador.escenas;
+    private Usuario usuario = Controlador.usuario;
+    private Butacas butacas;
 
-   @FXML
-   private VBox sala;
+    @FXML
+    private VBox sala;
 
-   @FXML
-   private GridPane butacasDos;
+    @FXML
+    private GridPane butacasDos;
 
-   @FXML
-   private GridPane butacasUno;
+    @FXML
+    private GridPane butacasUno;
 
-   @FXML
-   void initialize() throws SQLException {
-      this.butacas = new Butacas(this.usuario, this.cine.getReservas());
-      this.butacas.setActionGridPane(this.butacasUno);
-      this.butacas.setActionGridPane(this.butacasDos);
-   }
+    @FXML
+    void initialize() throws SQLException {
+        this.butacas = new Butacas(this.usuario, this.cine.getReservas());
+        this.butacas.setActionGridPane(this.butacasUno);
+        this.butacas.setActionGridPane(this.butacasDos);
+    }
 
-   @FXML
-   void comprar(ActionEvent event) throws IOException, InterruptedException {
-      if (this.butacas.getFila() == -1 && this.butacas.getColumna() == -1) {
-         this.escenas.mensajeError("Elija alguna escena");
-         return;
-      }
-      this.escenas.cargarSiguienteEscena(ESCENA.OPCION);
-   }
+    @FXML
+    void continuar(ActionEvent event) throws IOException, InterruptedException {
+        if (this.butacas.getFila() == -1 && this.butacas.getColumna() == -1) {
+            this.escenas.mensajeError("Elija alguna butaca");
+            return;
+        }
+        this.escenas.cargarSiguienteEscena(ESCENA.OPCION);
+    }
 
 }

@@ -10,9 +10,9 @@ import cine.view.Opciones;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 
 public class Fecha {
 
@@ -29,12 +29,12 @@ public class Fecha {
     private FlowPane fechas;
 
     @FXML
-    private Label labelFecha;
+    private Text textFecha;
 
     @FXML
     void initialize() throws SQLException {
         nav.indicarComprar();
-        this.labelFecha.setText("Fechas disponibles para: " + this.usuario.getTituloPelicula());
+        this.textFecha.setText("Fechas disponibles para: " + this.usuario.getTituloPelicula());
         for (String fecha: this.cine.getFechas()) {
             Button boton = this.opciones.armar(fecha);
             this.fechas.getChildren().add(boton);

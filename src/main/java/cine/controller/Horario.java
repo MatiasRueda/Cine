@@ -12,6 +12,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 
 public class Horario {
 
@@ -27,14 +28,14 @@ public class Horario {
     private FlowPane horarios;
 
     @FXML
-    private Label labelHorarios;
+    private Text textHorarios;
 
     @FXML
     private Label labelFecha;
 
     @FXML
     void initialize() throws SQLException {
-        this.labelHorarios.setText("Horarios para: " + this.usuario.getTituloPelicula());
+        this.textHorarios.setText("Horarios para: " + this.usuario.getTituloPelicula());
         this.labelFecha.setText("Fecha elegida: " + this.usuario.getFechaPelicula());
         for (String horario: this.cine.getHorarios()) {
             Button boton = this.opciones.armar(horario);
@@ -46,7 +47,7 @@ public class Horario {
     void continuar(ActionEvent event) throws IOException, InterruptedException {
         String opcion = this.opciones.getEleccion();
         if (opcion == null) {
-            this.escenas.mensajeError(opcion);
+            this.escenas.mensajeError("Elija alguna opcion");
             return;
         }
         this.usuario.setHorario(opcion);
