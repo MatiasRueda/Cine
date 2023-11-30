@@ -64,7 +64,7 @@ public class Cine {
         this.precios = precios;
     }
 
-    public boolean register(String nombre, String dni , String email, String contrasenia, String confirmarContrasenia) throws SQLException {
+    public boolean registrar(String nombre, String dni , String email, String contrasenia, String confirmarContrasenia) throws SQLException {
         Connection conn = this.database.conectarMySQL();
         if (verificador.registerError(conn, nombre, dni, email, contrasenia, confirmarContrasenia)) return false;
         List<String> columnas = Arrays.asList(new String[]{"nombre","contrasenia", "dni", "email"});
@@ -75,7 +75,7 @@ public class Cine {
         return resultado;
     }
 
-    public boolean login(String nombre, String contrasenia) throws SQLException {
+    public boolean ingresar(String nombre, String contrasenia) throws SQLException {
         if (verificador.loginParteUnoError(nombre, contrasenia))
             return false;
         Connection conn = this.database.conectarMySQL();

@@ -12,9 +12,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 
-
 public class Ingresar {
-
     private Cine cine = Controlador.cine;
     private Escenas escenas = Controlador.escenas;
     private Usuario usuario = Controlador.usuario;
@@ -36,12 +34,12 @@ public class Ingresar {
 
     @FXML
     void ingresar(ActionEvent event) throws IOException, SQLException {    
-        if (!this.cine.login(nombre.getText() , contrasenia.getText())) {
+        if (!this.cine.ingresar(nombre.getText() , contrasenia.getText())) {
             this.escenas.mensajeError(this.cine.getMensaje());
             return;
         }
         this.usuario.setUsuarioNombre(this.nombre.getText());
-        this.escenas.ingresarUsuario();    
+        this.escenas.ingresarUsuario();
     }
 
     @FXML

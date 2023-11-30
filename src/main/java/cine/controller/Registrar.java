@@ -38,10 +38,9 @@ public class Registrar {
 
     @FXML
     void registrar(ActionEvent event) throws IOException, SQLException {
-        if (!this.cine.register(usuarioNombre.getText(), DNI.getText(), email.getText(), contrasenia.getText(), contraseniaConfirmar.getText())) {
+        if (!this.cine.registrar(usuarioNombre.getText(), DNI.getText(), email.getText(), contrasenia.getText(), contraseniaConfirmar.getText())) {
             this.escenas.mensajeError(this.cine.getMensaje());
             return;
         }
-        //this.escenas.mostrarEscenaSig(ESCENA.INICIO);
     }
 }
