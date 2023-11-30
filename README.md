@@ -123,13 +123,13 @@ Cine
 ```
 
 ## Instalación
-  Para poder utilizar la aplicación será necesario contar con una base de datos.
-  Sin embargo en el mismo repositorio se cuenta con un archivo .jar que le podrá ser de utilidad
-  para usar esta aplicación.
-  Para poder utilizarlo:
-    1.  Es necesario tener instalado Java.
-    2.  Abra la terminal en la ruta donde se encuentra el archivo .jar.
-    3.  Escriba el siguiente comando:
+Para poder utilizar la aplicación será necesario contar con una base de datos.
+Sin embargo en el mismo repositorio se cuenta con un archivo .jar que le podrá ser de utilidad
+para usar esta aplicación.
+Para poder utilizarlo:
+1. Es necesario tener instalado Java.
+2. Abra la terminal en la ruta donde se encuentra el archivo .jar.
+3. Escriba el siguiente comando:
     ```
 	java -jar Cine.jar
     ```
