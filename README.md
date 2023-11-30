@@ -28,3 +28,110 @@ Proyecto realizado únicamente por mi.
     ```
 > [!NOTE]
 > La base de datos a la que conectada el archivo. jar es lenta.  Así que tenga por favor tenga paciencia.
+
+## Estructura
+```
+Cine
+├─ .gitignore
+├─ Cine.jar
+├─ pom.xml
+├─ README.md
+└─ src
+   ├─ main
+   │  ├─ java
+   │  │  ├─ cine
+   │  │  │  ├─ App.java
+   │  │  │  ├─ controller
+   │  │  │  │  ├─ Candy.java
+   │  │  │  │  ├─ Candys.java
+   │  │  │  │  ├─ Cartelera.java
+   │  │  │  │  ├─ Comprado.java
+   │  │  │  │  ├─ Comprar.java
+   │  │  │  │  ├─ Confirmar.java
+   │  │  │  │  ├─ Controlador.java
+   │  │  │  │  ├─ ESCENA.java
+   │  │  │  │  ├─ Escenas.java
+   │  │  │  │  ├─ Fecha.java
+   │  │  │  │  ├─ Horario.java
+   │  │  │  │  ├─ Ingresar.java
+   │  │  │  │  ├─ Inicio.java
+   │  │  │  │  ├─ Mensaje.java
+   │  │  │  │  ├─ NavSinUsuario.java
+   │  │  │  │  ├─ NavUsuario.java
+   │  │  │  │  ├─ Opcion.java
+   │  │  │  │  ├─ Peliculas.java
+   │  │  │  │  ├─ Registrar.java
+   │  │  │  │  └─ Sala.java
+   │  │  │  ├─ Main.java
+   │  │  │  ├─ model
+   │  │  │  │  ├─ Cine.java
+   │  │  │  │  ├─ Conversor.java
+   │  │  │  │  ├─ Encryptor.java
+   │  │  │  │  ├─ Errores.java
+   │  │  │  │  ├─ Mensajeria.java
+   │  │  │  │  ├─ MySQL.java
+   │  │  │  │  ├─ Peticion.java
+   │  │  │  │  ├─ Usuario.java
+   │  │  │  │  └─ Verificador.java
+   │  │  │  └─ view
+   │  │  │     ├─ Butacas.java
+   │  │  │     ├─ Candys.java
+   │  │  │     ├─ Item.java
+   │  │  │     ├─ Nav.java
+   │  │  │     ├─ Opcion.java
+   │  │  │     └─ Pelicula.java
+   │  │  └─ module-info.java
+   │  └─ resources
+   │     ├─ cine
+   │     │  ├─ candy.fxml
+   │     │  ├─ candys.fxml
+   │     │  ├─ carga.fxml
+   │     │  ├─ cargando.fxml
+   │     │  ├─ cartelera.fxml
+   │     │  ├─ comprado.fxml
+   │     │  ├─ comprar.fxml
+   │     │  ├─ confirmar.fxml
+   │     │  ├─ controlador.fxml
+   │     │  ├─ fecha.fxml
+   │     │  ├─ horario.fxml
+   │     │  ├─ ingresar.fxml
+   │     │  ├─ inicio.fxml
+   │     │  ├─ mensaje.fxml
+   │     │  ├─ navsinusuario.fxml
+   │     │  ├─ navusuario.fxml
+   │     │  ├─ opcion.fxml
+   │     │  ├─ peliculas.fxml
+   │     │  ├─ registrar.fxml
+   │     │  └─ sala.fxml
+   │     ├─ estilos
+   │     │  ├─ candy.css
+   │     │  ├─ candys.css
+   │     │  ├─ carga.css
+   │     │  ├─ cartelera.css
+   │     │  ├─ compraExito.css
+   │     │  ├─ comprar.css
+   │     │  ├─ confirmar.css
+   │     │  ├─ fecha.css
+   │     │  ├─ horario.css
+   │     │  ├─ ingresar.css
+   │     │  ├─ mensaje.css
+   │     │  ├─ nav.css
+   │     │  ├─ opcion.css
+   │     │  ├─ peliculas.css
+   │     │  ├─ registrar.css
+   │     │  └─ sala.css
+   │     └─ imagenes
+   │        ├─ pelicula.png
+   │        └─ pochoclos.png
+   └─ test
+      └─ java
+         └─ cine
+            ├─ CineTest.java
+            ├─ ConversorTest.java
+            ├─ EncryptorTest.java
+            ├─ ErroresTest.java
+            ├─ MensajeriaTest.java
+            ├─ MySQLTest.java
+            └─ PeticionTest.java
+
+```
