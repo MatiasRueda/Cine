@@ -50,7 +50,7 @@
       </VBox>
       <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0">
          <children>
-            <Label text="Total a pagar:  ">
+            <Label prefHeight="30.0" prefWidth="122.0" text="Total candys:">
                <font>
                   <Font size="20.0" />
                </font>

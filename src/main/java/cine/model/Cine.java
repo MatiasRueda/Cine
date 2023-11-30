@@ -139,14 +139,14 @@ public class Cine {
     private void guardarPeli(Connection conn) {
         List<String> peli_columnas =  Arrays.asList(new String[]{"codigo", "reservado_por", "titulo", "fecha" ,"sala", "horario", "fila" , "columna"});
         List<String> codigo = Arrays.asList(this.codigoCompra);
-        List<Integer> encryptar = Arrays.asList(new Integer[]{0});
+        List<Integer> encryptar = Arrays.asList(new Integer[]{});
         List<String> peli_valores = Stream.concat(codigo.stream(), this.usuario.getInformacionPeli().stream()).collect(Collectors.toList());
         this.database.agregar(conn, "reserva_peli", peli_columnas, peli_valores, encryptar);
     }
 
     private void guardarCandy(Connection conn) {
-        List<String> codigo = Arrays.asList(this.codigoCompra);
         List<String> candy_columnas =  Arrays.asList(new String[]{"codigo", "reservado_por", "producto", "cantidad"});
+        List<String> codigo = Arrays.asList(this.codigoCompra);
         List<Integer> encryptar = Arrays.asList(new Integer[]{});
         this.usuario.getProductos().forEach((producto, cantidad) -> {
             List<String> candy_productos = Stream.concat(codigo.stream(), Arrays.asList(new String[] { this.usuario.getUsuarioNombre(), producto , String.valueOf(cantidad)}).stream()).collect(Collectors.toList());
