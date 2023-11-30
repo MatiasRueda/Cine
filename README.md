@@ -15,20 +15,6 @@ Proyecto realizado únicamente por mi.
   - JUnit
   - MySQL
 
-## Instalación
-  Para poder utilizar la aplicación será necesario contar con una base de datos.
-  Sin embargo en el mismo repositorio se cuenta con un archivo .jar que le podrá ser de utilidad
-  para usar esta aplicación.
-  Para poder utilizarlo:
-    1.  Es necesario tener instalado Java.
-    2.  Abra la terminal en la ruta donde se encuentra el archivo .jar.
-    3.  Escriba el siguiente comando:
-    ```
-	java -jar Cine.jar
-    ```
-> [!NOTE]
-> La base de datos a la que conectada el archivo. jar es lenta.  Así que tenga por favor tenga paciencia.
-
 ## Estructura
 ```
 Cine
@@ -135,3 +121,17 @@ Cine
             └─ PeticionTest.java
 
 ```
+
+## Instalación
+  Para poder utilizar la aplicación será necesario contar con una base de datos.
+  Sin embargo en el mismo repositorio se cuenta con un archivo .jar que le podrá ser de utilidad
+  para usar esta aplicación.
+  Para poder utilizarlo:
+    1.  Es necesario tener instalado Java.
+    2.  Abra la terminal en la ruta donde se encuentra el archivo .jar.
+    3.  Escriba el siguiente comando:
+    ```
+	java -jar Cine.jar
+    ```
+> [!NOTE]
+> La base de datos a la que conectada el archivo. jar es lenta.  Así que tenga por favor tenga paciencia.
