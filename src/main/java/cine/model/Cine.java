@@ -155,6 +155,7 @@ public class Cine {
     }
 
     public void setPelicula() throws SQLException {
+        this.reiniciarValores();
         Connection conn = this.database.conectarMySQL();
         List<String> columnas =  Arrays.asList(new String[]{"sala", "fecha", "horario"});
         this.filas = this.database.getValor(conn, "sala", columnas, "titulo", this.usuario.getTituloPelicula());
@@ -169,6 +170,7 @@ public class Cine {
         if (!this.usuario.getProductos().isEmpty())
             guardarCandy(conn);
         this.cerrarConeccion(conn);
+        this.reiniciarValores();
         return true;
     }
 

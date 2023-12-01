@@ -29,6 +29,7 @@ public class NavSinUsuario {
     @FXML
     void initialize() {
         nav.setStyle(this.inicioBtn, true);
+        nav.setBtnInicio(this.inicioBtn);
         nav.setBtnIngresar(this.ingresarBtn);
         nav.setOpciones(this.opciones);
     }

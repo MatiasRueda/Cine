@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 import cine.model.Cine;
+import cine.view.Nav;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.PasswordField;
@@ -14,6 +15,7 @@ import javafx.scene.layout.VBox;
 public class Registrar {
     private Cine cine = Controlador.cine;
     private Escenas escenas = Controlador.escenas;
+    private Nav nav = NavSinUsuario.nav;
 
     @FXML
     private StackPane stackRegister;
@@ -42,5 +44,7 @@ public class Registrar {
             this.escenas.mensajeError(this.cine.getMensaje());
             return;
         }
+        this.escenas.cargarEscena(ESCENA.INICIO);
+        nav.indicarInicio();
     }
 }
