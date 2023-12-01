@@ -6,8 +6,8 @@
   La aplicación ofrece simular la compra de productos de un cine (entradas o alimentos) a través de una interfaz   grafica y guardar los datos de estos usuarios con sus compras realizadas.
   Por ultimo, el proyecto cuanta con algunos test automáticos.
 
-## Personas Contribuyentes
-Proyecto realizado únicamente por mi.
+## Tipo de proyecto
+Proyecto individual.
 
 ## Tecnologías utilizadas
   - Java
@@ -122,7 +122,7 @@ Cine
 
 ```
 
-## Instalación
+## Uso
 Para poder utilizar la aplicación será necesario contar con una base de datos.
 Sin embargo en el mismo repositorio se cuenta con un archivo .jar que le podrá ser de utilidad
 para usar esta aplicación.
@@ -134,4 +134,4 @@ Para poder utilizarlo:
 	java -jar Cine.jar
     ```
 > [!NOTE]
-> La base de datos a la que conectada el archivo. jar es lenta.  Así que tenga por favor tenga paciencia.
+> La base de datos a la que conectada el archivo. jar es lenta.  Así que por favor tenga paciencia.
