@@ -6,8 +6,30 @@
   La aplicación ofrece simular la compra de productos de un cine (entradas o alimentos) a través de una interfaz   grafica y guardar los datos de estos usuarios con sus compras realizadas.
   Por ultimo, el proyecto cuanta con algunos test automáticos.
 
+
+## Tabla de contenido
+* [Introducción](#Introducción)
+* [Tabla de contenido](#Tabla-de-contenido)
+* [Tipo de proyecto](#Tipo-de-proyecto)
+* [Capturas de pantalla](#Capturas-de-pantalla)
+* [Estrategias](#Estrategias)
+* [Tecnologías utilizadas](#Tecnologías-utilizadas)
+* [Estructura](#Estructura)
+* [Instalación](#Instalación)
+* [Uso](#Uso)
+
+
 ## Tipo de proyecto
 Proyecto individual.
+
+## Capturas de pantalla
+
+<img src="https://i.postimg.cc/tTF4wHYS/cine1.png"/>
+
+
+## Estrategia
+### Patrón de arquitectura (MVC):
+Utilizado principalmente para que la aplicacion tengo un mayor escalamiento
 
 ## Tecnologías utilizadas
   - Java
@@ -122,16 +144,27 @@ Cine
 
 ```
 
+## Instalación
+Para poder utilizarlo (En visual studio code):
+1. Es necesario tener instalado Java y Javafx.
+2. Abra visual studio code e instale la extensión 'Extension Pack for Java'
+
+
+
 ## Uso
 Para poder utilizar la aplicación será necesario contar con una base de datos.
 Sin embargo en el mismo repositorio se cuenta con un archivo .jar que le podrá ser de utilidad
 para usar esta aplicación.
 Para poder utilizarlo:
-1. Es necesario tener instalado Java.
-2. Abra la terminal en la ruta donde se encuentra el archivo .jar.
-3. Escriba el siguiente comando:
+1. Abra la terminal en la ruta donde se encuentra el archivo .jar.
+2. Escriba el siguiente comando:
     ```
 	java -jar Cine.jar
     ```
+En caso de tener una base de datos hay que utilizar el siguiente comando:
+```
+	mvn clean javafx:run 
+```
+
 > [!NOTE]
 > La base de datos a la que conectada el archivo. jar es lenta.  Así que por favor tenga paciencia.
