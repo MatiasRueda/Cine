@@ -158,12 +158,12 @@ para usar esta aplicación.
 Para poder utilizarlo:
 1. Abra la terminal en la ruta donde se encuentra el archivo .jar.
 2. Escriba el siguiente comando:
-    ```
-	java -jar Cine.jar
-    ```
+```
+java -jar Cine.jar
+```
 En caso de tener una base de datos hay que utilizar el siguiente comando:
 ```
-	mvn clean javafx:run 
+mvn clean javafx:run 
 ```
 
 > [!NOTE]
