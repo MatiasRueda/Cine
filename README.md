@@ -27,7 +27,7 @@ Proyecto individual.
 <img src="https://i.postimg.cc/tTF4wHYS/cine1.png"/>
 
 
-## Estrategia
+## Estrategias
 ### Patrón de arquitectura (MVC):
 Utilizado principalmente para que la aplicacion tengo un mayor escalamiento
 
